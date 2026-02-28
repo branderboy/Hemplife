@@ -8,40 +8,44 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,600;9..40,700&family=Outfit:wght@400;500;700;800;900&display=swap" rel="stylesheet">
     <style>
-/* ========== CSS VARIABLES — Original Professional Design ========== */
+/* ========== CSS VARIABLES — Organic Earth-Tone Design ========== */
 :root {
-  /* Primary Design Tokens */
-  --clr-primary: #1F3B0E;
-  --clr-primary-hover: #2D5016;
-  --clr-secondary: #C5A55A;
-  --clr-secondary-hover: #D4BE7E;
-  --clr-bg-light: #F4F5F2;
-  --clr-surface: #FFFFFF;
-  --clr-text-main: #0B1206;
-  --clr-text-muted: #646B5E;
-  --clr-border: #E2E8DE;
-  --shadow-sm: 0 4px 12px rgba(0,0,0,0.05);
-  --shadow-md: 0 12px 32px rgba(31,59,14,0.08);
-  --shadow-lg: 0 24px 48px rgba(31,59,14,0.15);
-  --transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+  /* Primary — deep forest & warm earth */
+  --clr-primary: #2C4A1A;
+  --clr-primary-hover: #3A5E24;
+  --clr-secondary: #B8963A;
+  --clr-secondary-hover: #CCAE5C;
+  --clr-bg-light: #FAF8F3;
+  --clr-surface: #FFFEF9;
+  --clr-text-main: #2A1F12;
+  --clr-text-muted: #6B5D4D;
+  --clr-border: #E5DDD0;
+  --shadow-sm: 0 4px 12px rgba(42,31,18,0.06);
+  --shadow-md: 0 12px 32px rgba(42,31,18,0.08);
+  --shadow-lg: 0 24px 48px rgba(42,31,18,0.12);
+  --transition: all 0.35s cubic-bezier(0.25, 0.8, 0.25, 1);
 
-  /* Compatibility Aliases (used by functional JS) */
-  --green-dark: #1F3B0E;
-  --green-mid: #2D5016;
-  --green-light: #4A7C28;
-  --green-pale: #E8F0DE;
-  --gold: #C5A55A;
-  --gold-light: #D4BE7E;
-  --gold-pale: #FAF6EB;
-  --cream: #F4F5F2;
-  --bg: #F4F5F2;
+  /* Earth-tone aliases */
+  --green-dark: #2C4A1A;
+  --green-mid: #3A5E24;
+  --green-light: #5A8235;
+  --green-pale: #EDF5E4;
+  --gold: #B8963A;
+  --gold-light: #CCAE5C;
+  --gold-pale: #FBF6EA;
+  --cream: #FAF8F3;
+  --bg: #FAF8F3;
+  --soil: #5C3D2E;
+  --soil-light: #7A5841;
+  --soil-pale: #F5EDE6;
+  --bark: #3E2A1A;
   --barn-red: #8B3A2A;
   --barn-red-pale: #FDF0EC;
-  --text: #0B1206;
-  --text-muted: #646B5E;
-  --border: #E2E8DE;
+  --text: #2A1F12;
+  --text-muted: #6B5D4D;
+  --border: #E5DDD0;
   --border-dark: #C9BFA8;
-  --surface: #FFFFFF;
+  --surface: #FFFEF9;
 }
 
 /* ========== RESETS & BASE ========== */
@@ -50,9 +54,9 @@ html { scroll-behavior: smooth; }
 body {
   font-family: 'DM Sans', sans-serif;
   font-weight: 400;
-  background-color: var(--clr-surface);
+  background-color: var(--clr-bg-light);
   color: var(--clr-text-muted);
-  line-height: 1.6;
+  line-height: 1.7;
   -webkit-font-smoothing: antialiased;
   overflow-x: hidden;
 }
@@ -75,8 +79,8 @@ ul, ol { list-style: none; }
 /* ========== LAYOUT ========== */
 .container { width: 100%; max-width: 1300px; margin: 0 auto; padding: 0 24px; }
 .section { padding: 120px 0; }
-.section-sm { padding: 48px 0; }
-.bg-light { background-color: var(--clr-bg-light); }
+.section-sm { padding: 60px 0; }
+.bg-light { background-color: var(--clr-surface); }
 .sec-title { margin-bottom: 60px; }
 .sec-title .subtitle {
   font-family: 'Outfit', sans-serif; color: var(--clr-secondary); font-size: 14px;
@@ -112,9 +116,9 @@ ul, ol { list-style: none; }
 .btn-lg { padding: 18px 42px; font-size: 15px; }
 
 /* ========== INFO BOXES ========== */
-.gold-box { background: var(--gold-pale); border: 1px solid var(--gold-light); border-left: 4px solid var(--gold); border-radius: 8px; padding: 20px 24px; margin: 24px 0; }
-.red-box { background: var(--barn-red-pale); border: 1px solid #e8c4bc; border-left: 4px solid var(--barn-red); border-radius: 8px; padding: 20px 24px; margin: 24px 0; }
-.green-box { background: var(--green-pale); border: 1px solid #c8ddb8; border-left: 4px solid var(--green-mid); border-radius: 8px; padding: 20px 24px; margin: 24px 0; }
+.gold-box { background: var(--gold-pale); border: 1px solid var(--gold-light); border-left: 4px solid var(--gold); border-radius: 10px; padding: 24px 28px; margin: 24px 0; }
+.red-box { background: var(--barn-red-pale); border: 1px solid #e8c4bc; border-left: 4px solid var(--barn-red); border-radius: 10px; padding: 24px 28px; margin: 24px 0; }
+.green-box { background: var(--green-pale); border: 1px solid #c8ddb8; border-left: 4px solid var(--green-mid); border-radius: 10px; padding: 24px 28px; margin: 24px 0; }
 
 /* ========== BADGES & PILLS ========== */
 .badge {
@@ -149,10 +153,10 @@ ul, ol { list-style: none; }
 
 /* ========== CARDS ========== */
 .card {
-  background: var(--surface); border: 1px solid var(--border); border-radius: 10px;
-  padding: 28px; box-shadow: 0 2px 8px rgba(42,42,34,.07); transition: transform 0.2s, box-shadow 0.2s;
+  background: var(--surface); border: 1px solid var(--border); border-radius: 14px;
+  padding: 28px; box-shadow: 0 2px 8px rgba(42,31,18,.05); transition: transform 0.3s, box-shadow 0.3s;
 }
-.card:hover { transform: translateY(-2px); box-shadow: 0 6px 20px rgba(42,42,34,.1); }
+.card:hover { transform: translateY(-3px); box-shadow: 0 8px 24px rgba(42,31,18,.08); }
 .card-flat { box-shadow: none; }
 .card-flat:hover { transform: none; }
 
@@ -182,9 +186,9 @@ ul, ol { list-style: none; }
 
 /* ========== NAV ========== */
 .header {
-  background-color: rgba(255, 255, 255, 0.98);
+  background-color: rgba(255, 254, 249, 0.97);
   backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
-  box-shadow: 0 4px 20px rgba(0,0,0,0.03);
+  box-shadow: 0 2px 16px rgba(42,31,18,0.05);
   position: sticky; top: 0; z-index: 100;
   border-bottom: 1px solid var(--clr-border);
 }
@@ -217,9 +221,9 @@ ul, ol { list-style: none; }
 .hero {
   position: relative;
   background:
-    linear-gradient(90deg, rgba(16, 28, 7, 0.95) 0%, rgba(16, 28, 7, 0.7) 50%, rgba(16, 28, 7, 0.1) 100%),
+    linear-gradient(90deg, rgba(30, 22, 12, 0.92) 0%, rgba(44, 74, 26, 0.75) 50%, rgba(30, 22, 12, 0.2) 100%),
     url('images/hero-bg.jpg') center/cover no-repeat;
-  background-color: #1a3a0e;
+  background-color: #2C4A1A;
   min-height: 85vh; display: flex; align-items: center;
   padding: 140px 0 100px;
 }
@@ -244,27 +248,39 @@ ul, ol { list-style: none; }
 
 /* ========== TRUST BANNER BAR ========== */
 .trust-banner {
-  background-color: var(--clr-primary); color: white;
-  padding: 30px 0; border-bottom: 3px solid var(--clr-secondary);
+  background: linear-gradient(135deg, var(--soil) 0%, var(--soil-light) 100%);
+  color: rgba(255,255,255,0.9); padding: 28px 0;
+  border-bottom: 3px solid var(--clr-secondary);
 }
 .trust-banner-grid { display: flex; justify-content: center; align-items: center; flex-wrap: wrap; gap: 0; }
 .trust-banner-item {
-  font-family: 'Outfit', sans-serif; font-weight: 800; font-size: 15px;
-  text-transform: uppercase; letter-spacing: 0.08em; padding: 0 30px;
+  font-family: 'Outfit', sans-serif; font-weight: 700; font-size: 14px;
+  text-transform: uppercase; letter-spacing: 0.1em; padding: 0 28px;
+  display: flex; align-items: center; gap: 10px;
+}
+.trust-banner-item::before {
+  content: ''; display: inline-block; width: 8px; height: 8px;
+  background: var(--clr-secondary); border-radius: 50%;
 }
 .trust-banner-divider {
-  width: 1px; height: 20px; background: rgba(255,255,255,0.2); flex-shrink: 0;
+  width: 1px; height: 18px; background: rgba(255,255,255,0.15); flex-shrink: 0;
 }
 
 /* ========== FULL-WIDTH BANNER ========== */
 .full-banner {
-  background: var(--clr-primary); color: #fff;
-  padding: 80px 0; border-top: 3px solid var(--clr-secondary);
+  background: linear-gradient(135deg, var(--soil) 0%, #4A3020 50%, var(--bark) 100%);
+  color: #fff; padding: 80px 0; position: relative;
+  border-top: 3px solid var(--clr-secondary);
   border-bottom: 3px solid var(--clr-secondary);
+}
+.full-banner::before {
+  content: ''; position: absolute; inset: 0;
+  background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.03'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+  pointer-events: none;
 }
 .full-banner h3 {
   font-family: 'Outfit', sans-serif; font-size: 32px; font-weight: 900;
-  color: var(--clr-secondary); margin-bottom: 0;
+  color: var(--clr-secondary); margin-bottom: 0; position: relative;
 }
 
 /* ========== ABOUT / COMPLIANCE SECTION ========== */
@@ -283,38 +299,50 @@ ul, ol { list-style: none; }
 }
 
 /* ========== STEP CARDS (How It Works) ========== */
-.step-card { text-align: center; padding: 30px 20px; }
-.step-icon {
-  width: 72px; height: 72px; margin: 0 auto 12px;
-  color: var(--clr-primary);
+.steps-row { position: relative; }
+.steps-row::before {
+  content: ''; position: absolute; top: 56px; left: 15%; right: 15%;
+  height: 2px; background: repeating-linear-gradient(90deg, var(--clr-border) 0, var(--clr-border) 8px, transparent 8px, transparent 16px);
+  z-index: 0;
 }
-.step-icon svg { width: 100%; height: 100%; }
+@media (max-width: 767px) { .steps-row::before { display: none; } }
+.step-card { text-align: center; padding: 20px 16px; position: relative; z-index: 1; }
+.step-icon {
+  width: 96px; height: 96px; margin: 0 auto 20px;
+  background: var(--soil-pale); border: 2px solid var(--clr-border);
+  border-radius: 50%; display: flex; align-items: center; justify-content: center;
+  color: var(--soil); transition: var(--transition);
+}
+.step-card:hover .step-icon { background: var(--green-pale); border-color: var(--clr-primary); color: var(--clr-primary); transform: scale(1.08); }
+.step-icon svg { width: 44px; height: 44px; }
 .step-num {
-  display: block; font-family: 'Outfit', sans-serif; font-weight: 900;
-  font-size: 14px; color: var(--clr-secondary); letter-spacing: 0.15em;
-  text-transform: uppercase; margin-bottom: 10px;
+  display: inline-block; font-family: 'Outfit', sans-serif; font-weight: 800;
+  font-size: 11px; color: var(--clr-surface); background: var(--clr-secondary);
+  padding: 3px 14px; border-radius: 20px; letter-spacing: 0.15em;
+  text-transform: uppercase; margin-bottom: 12px;
 }
 .step-card h4 {
-  color: var(--clr-primary); font-size: 18px; margin-bottom: 10px;
+  color: var(--clr-text-main); font-size: 18px; margin-bottom: 10px;
 }
 .step-card p {
-  color: var(--clr-text-muted); font-size: 14px; line-height: 1.6; margin: 0;
+  color: var(--clr-text-muted); font-size: 14px; line-height: 1.7; margin: 0;
+  max-width: 240px; margin-left: auto; margin-right: auto;
 }
 
 /* ========== PRODUCT CARDS ========== */
 .product-card {
   background: var(--clr-surface); border: 1px solid var(--clr-border);
-  border-radius: 12px; overflow: hidden; transition: var(--transition);
+  border-radius: 16px; overflow: hidden; transition: var(--transition);
   display: flex; flex-direction: column;
 }
-.product-card:hover { box-shadow: var(--shadow-lg); transform: translateY(-8px); border-color: var(--clr-secondary); }
+.product-card:hover { box-shadow: 0 16px 40px rgba(42,31,18,0.12); transform: translateY(-6px); border-color: var(--clr-secondary); }
 .product-img {
-  height: 280px; display: flex; align-items: center; justify-content: center;
-  background: linear-gradient(135deg, #F4F5F2 0%, #E2E8DE 100%);
+  height: 260px; display: flex; align-items: center; justify-content: center;
+  background: linear-gradient(135deg, var(--soil-pale) 0%, var(--clr-border) 100%);
   position: relative; font-size: 48px; font-weight: 700; color: rgba(255,255,255,.6);
 }
-.product-img.flower-bg { background: linear-gradient(135deg, #3a6b1e, #5a8b3e); }
-.product-img.extract-bg { background: linear-gradient(135deg, #8a7a3a, #c5a55a); }
+.product-img.flower-bg { background: linear-gradient(160deg, #3A5E24 0%, #5A8235 40%, #2C4A1A 100%); }
+.product-img.extract-bg { background: linear-gradient(160deg, var(--soil-light) 0%, var(--gold) 40%, var(--soil) 100%); }
 .product-badge {
   position: absolute; top: 20px; left: 20px;
   background: var(--clr-primary); color: white;
@@ -324,12 +352,12 @@ ul, ol { list-style: none; }
   box-shadow: 0 4px 10px rgba(0,0,0,0.1);
 }
 .product-body { padding: 24px; }
-.product-body h3 { font-size: 18px; margin-bottom: 4px; }
-.product-meta { font-size: 12px; color: var(--text-muted); margin-bottom: 12px; }
+.product-body h3 { font-size: 18px; margin-bottom: 4px; color: var(--clr-text-main); }
+.product-meta { font-size: 12px; color: var(--clr-text-muted); margin-bottom: 12px; }
 .product-badges { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 12px; }
-.product-desc { font-size: 14px; color: var(--text-muted); margin-bottom: 16px; line-height: 1.5; }
+.product-desc { font-size: 14px; color: var(--clr-text-muted); margin-bottom: 16px; line-height: 1.6; }
 .product-prices { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 12px; }
-.price-tag { padding: 4px 10px; background: var(--green-pale); border-radius: 4px; font-size: 12px; font-weight: 700; color: var(--green-dark); }
+.price-tag { padding: 5px 12px; background: var(--soil-pale); border-radius: 6px; font-size: 12px; font-weight: 700; color: var(--soil); border: 1px solid var(--clr-border); }
 .product-safety { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 16px; }
 .safety-badge { font-size: 11px; padding: 3px 8px; border-radius: 3px; font-weight: 600; }
 .safety-pass { background: var(--green-pale); color: var(--green-dark); }
@@ -353,11 +381,11 @@ tr:hover { background: var(--cream); }
 .form-group { margin-bottom: 25px; }
 .form-group label { display: block; font-weight: 700; font-size: 13px; text-transform: uppercase; letter-spacing: 0.04em; margin-bottom: 6px; color: var(--clr-text-main); }
 .form-group input, .form-group select, .form-group textarea {
-  width: 100%; padding: 20px; border: 2px solid var(--clr-border); border-radius: 8px;
+  width: 100%; padding: 18px; border: 2px solid var(--clr-border); border-radius: 10px;
   font-family: inherit; font-size: 16px; font-weight: 500;
   background: var(--clr-surface); color: var(--clr-text-main); transition: var(--transition);
 }
-.form-group input:focus, .form-group select:focus, .form-group textarea:focus { outline: none; border-color: var(--clr-primary); box-shadow: 0 0 0 4px rgba(45, 80, 22, 0.1); }
+.form-group input:focus, .form-group select:focus, .form-group textarea:focus { outline: none; border-color: var(--soil); box-shadow: 0 0 0 4px rgba(92,61,46,0.1); }
 .form-group textarea { height: 160px; resize: vertical; }
 .form-row { display: grid; grid-template-columns: 1fr; gap: 16px; }
 @media (min-width: 768px) { .form-row { grid-template-columns: 1fr 1fr; } }
@@ -453,9 +481,15 @@ tr:hover { background: var(--cream); }
 
 /* ========== FOOTER ========== */
 .footer {
-  background-color: #5C3D2E; color: rgba(255,255,255,0.7);
+  background-color: var(--soil); color: rgba(255,255,255,0.7);
   padding: 80px 0 0; border-top: 4px solid var(--clr-secondary);
-  background-image: linear-gradient(180deg, #6B4A38 0%, #5C3D2E 100%);
+  background-image: linear-gradient(180deg, var(--soil-light) 0%, var(--soil) 100%);
+  position: relative;
+}
+.footer::before {
+  content: ''; position: absolute; inset: 0;
+  background: url("data:image/svg+xml,%3Csvg width='40' height='40' viewBox='0 0 40 40' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%23ffffff' fill-opacity='0.02'%3E%3Cpath fill-rule='evenodd' d='M0 38.59l2.83-2.83 1.41 1.41L1.41 40H0v-1.41zM0 1.4l2.83 2.83 1.41-1.41L1.41 0H0v1.41zM38.59 40l-2.83-2.83 1.41-1.41L40 38.59V40h-1.41zM40 1.41l-2.83 2.83-1.41-1.41L38.59 0H40v1.41zM20 18.6l2.83-2.83 1.41 1.41L21.41 20l2.83 2.83-1.41 1.41L20 21.41l-2.83 2.83-1.41-1.41L18.59 20l-2.83-2.83 1.41-1.41L20 18.59z'/%3E%3C/g%3E%3C/svg%3E");
+  pointer-events: none;
 }
 .footer-grid { display: grid; grid-template-columns: 1fr; gap: 32px; padding-bottom: 40px; }
 @media (min-width: 768px) { .footer-grid { grid-template-columns: repeat(2, 1fr); } }
@@ -467,9 +501,9 @@ tr:hover { background: var(--cream); }
 .footer a:hover { color: var(--clr-secondary); padding-left: 5px; }
 .footer ul li { margin-bottom: 14px; }
 .footer-bottom {
-  background-color: #4A3122; padding: 25px 0; margin-top: 60px;
+  background-color: var(--bark); padding: 25px 0; margin-top: 60px;
   text-align: center; font-size: 13px; font-weight: 500;
-  border-top: 1px solid rgba(255,255,255,0.1);
+  border-top: 1px solid rgba(255,255,255,0.08); position: relative;
 }
 
 /* ========== UTILITIES ========== */
@@ -525,7 +559,7 @@ tr:hover { background: var(--cream); }
 
 /* ========== PAGE HEADERS ========== */
 .page-header {
-  background: linear-gradient(rgba(31, 59, 14, 0.85), rgba(31, 59, 14, 0.95)),
+  background: linear-gradient(135deg, rgba(30, 22, 12, 0.88), rgba(44, 74, 26, 0.85)),
     url('images/hero-bg.jpg') center/cover;
   padding: 120px 0; text-align: center; margin-bottom: 80px;
   border-bottom: 4px solid var(--clr-secondary);
@@ -651,11 +685,11 @@ tr:hover { background: var(--cream); }
   <section class="hero">
     <div class="container">
       <div class="hero-content">
-        <h1>Commercial <br><span style="color: var(--clr-secondary);">Hemp Supply.</span></h1>
-        <p>Lab-verified, chain-of-custody documented THCA &amp; CBD products tailored exclusively for licensed wholesale partners. Direct from the farm to your facility.</p>
+        <h1>Grown From <br><span style="color: var(--clr-secondary);">the Earth.</span></h1>
+        <p>Sun-grown, hand-cured, lab-verified hemp — cultivated in Maryland soil and delivered with complete chain-of-custody to licensed wholesale partners.</p>
         <div class="hero-btns">
-          <button class="btn btn-gold" onclick="navigate('products')">View Catalog</button>
-          <button class="btn btn-secondary" onclick="navigate('apply')">Apply for Account</button>
+          <button class="btn btn-gold" onclick="navigate('products')">Explore the Harvest</button>
+          <button class="btn btn-secondary" onclick="navigate('apply')">Join the Growers Circle</button>
         </div>
         <div class="hero-trust-line">
           <span>Farm Bill Compliant</span>
@@ -672,11 +706,11 @@ tr:hover { background: var(--cream); }
   <div class="trust-banner">
     <div class="container">
       <div class="trust-banner-grid">
-        <span class="trust-banner-item">Commercial Quantities</span>
+        <span class="trust-banner-item">Harvest-Fresh Quantities</span>
         <span class="trust-banner-divider"></span>
-        <span class="trust-banner-item">Dedicated Account Management</span>
+        <span class="trust-banner-item">Rooted Partnerships</span>
         <span class="trust-banner-divider"></span>
-        <span class="trust-banner-item">Secure Freight Logistics</span>
+        <span class="trust-banner-item">Farm-to-Door Delivery</span>
       </div>
     </div>
   </div>
@@ -690,31 +724,31 @@ tr:hover { background: var(--cream); }
         </div>
         <div class="about-content">
           <div class="sec-title" style="margin-bottom: 30px;">
-            <span class="subtitle">Our Commitment</span>
-            <h2>Cultivating Quality<br>&amp; Strict Compliance.</h2>
+            <span class="subtitle">From Our Soil to Your Shelves</span>
+            <h2>Cultivated with Care.<br>Documented with Integrity.</h2>
           </div>
-          <p style="margin-bottom: 40px; font-size: 18px;">All products provided by Hemp Life Farmers are derived from federally compliant hemp and contain no more than 0.3% &Delta;9-THC on a dry-weight basis. We supply licensed businesses with premium, thoroughly documented inventory.</p>
+          <p style="margin-bottom: 40px; font-size: 18px; line-height: 1.8;">Every harvest begins in Maryland soil — fed by sun, cured by hand, and verified by independent labs. We grow hemp the way nature intended and document every step from seed to shipment.</p>
           <ul class="list-style-one">
             <li>100% 2018 Farm Bill Compliant</li>
             <li>Wholesale Quantities (1lb &ndash; 50lb+)</li>
-            <li>Strict State Shipping Verification</li>
+            <li>Full Seed-to-Sale Chain of Custody</li>
           </ul>
-          <button class="btn btn-dark" style="margin-top: 40px;" onclick="navigate('apply')">Apply for Wholesale Account</button>
+          <button class="btn btn-dark" style="margin-top: 40px;" onclick="navigate('apply')">Begin Your Journey</button>
         </div>
       </div>
     </div>
   </section>
 
   <!-- How It Works -->
-  <section class="section-sm" style="background:var(--clr-surface);border-top:1px solid var(--clr-border);border-bottom:1px solid var(--clr-border);">
+  <section class="section-sm" style="background:var(--clr-surface);">
     <div class="container">
       <div class="text-center mb-4">
-        <div class="sec-title" style="margin-bottom:30px;">
-          <span class="subtitle">Process</span>
+        <div class="sec-title" style="margin-bottom:40px;">
+          <span class="subtitle">From Seed to Sale</span>
           <h2>How It Works</h2>
         </div>
       </div>
-      <div class="grid grid-4">
+      <div class="grid grid-4 steps-row">
         <div class="step-card">
           <div class="step-icon">
             <!-- Hemp leaf icon (line art) -->
@@ -728,9 +762,9 @@ tr:hover { background: var(--cream); }
               <path d="M32 14c2-5 8-10 14-10-1 6-6 12-14 14"/>
             </svg>
           </div>
-          <span class="step-num">01</span>
-          <h4>Get Invited</h4>
-          <p>Receive an invitation code from an existing Hemp Life Farmers member. This is an exclusive invite-only buyers club.</p>
+          <span class="step-num">Step 01</span>
+          <h4>Plant the Seed</h4>
+          <p>Get an invitation from a trusted member. Every partnership starts with a personal connection — roots before branches.</p>
         </div>
         <div class="step-card">
           <div class="step-icon">
@@ -745,9 +779,9 @@ tr:hover { background: var(--cream); }
               <path d="M28 48l4 4 8-10"/>
             </svg>
           </div>
-          <span class="step-num">02</span>
-          <h4>Apply &amp; Pay</h4>
-          <p>Submit your application with a $100 non-refundable fee. Agree to compliance terms. Reviewed within 24&ndash;48 hours.</p>
+          <span class="step-num">Step 02</span>
+          <h4>Put Down Roots</h4>
+          <p>Submit your application and $100 non-refundable fee. We review your credentials and verify compliance within 24&ndash;48 hours.</p>
         </div>
         <div class="step-card">
           <div class="step-icon">
@@ -760,9 +794,9 @@ tr:hover { background: var(--cream); }
               <path d="M32 37v-4"/>
             </svg>
           </div>
-          <span class="step-num">03</span>
-          <h4>Browse &amp; Order</h4>
-          <p>Access the wholesale catalog. Select fresh-harvested products, set quantities, and submit your order for approval.</p>
+          <span class="step-num">Step 03</span>
+          <h4>Choose Your Crop</h4>
+          <p>Browse the harvest catalog. Hand-pick your strains, set your quantities, and submit your order for fulfillment.</p>
         </div>
         <div class="step-card">
           <div class="step-icon">
@@ -776,9 +810,9 @@ tr:hover { background: var(--cream); }
               <path d="M12 24h16M12 32h10"/>
             </svg>
           </div>
-          <span class="step-num">04</span>
-          <h4>Farm to Door</h4>
-          <p>Ships with full COA docs and chain of custody. Tracked, insured, and compliant from our Maryland farms to your business.</p>
+          <span class="step-num">Step 04</span>
+          <h4>Harvest Delivered</h4>
+          <p>Your order ships with full COA documentation and chain of custody. Tracked, insured, straight from Maryland soil to your door.</p>
         </div>
       </div>
       <div class="text-center mt-3">
@@ -788,41 +822,41 @@ tr:hover { background: var(--cream); }
   </section>
 
   <!-- Featured Products -->
-  <section class="section-sm">
+  <section class="section-sm" style="background:var(--clr-bg-light);">
     <div class="container">
       <div class="text-center mb-4">
         <div class="sec-title" style="margin-bottom:30px;">
-          <span class="subtitle">Commercial Inventory</span>
-          <h2>Wholesale Catalog</h2>
+          <span class="subtitle">Rooted in Quality</span>
+          <h2>Fresh From the Field</h2>
         </div>
       </div>
       <div id="home-featured-products" class="grid grid-3">
         <p class="text-muted text-center">Loading products...</p>
       </div>
       <div class="text-center mt-4">
-        <button class="btn btn-dark" onclick="navigate('products')">View Full Catalog</button>
+        <button class="btn btn-dark" onclick="navigate('products')">Explore Full Harvest</button>
       </div>
     </div>
   </section>
 
   <!-- Membership Banner (Full-Width Separator) -->
   <section class="full-banner">
-    <div class="container" style="text-align:center;">
-      <h3>Invitation-Only Wholesale Buyers Club</h3>
-      <p style="max-width:700px;margin:16px auto 30px;color:rgba(255,255,255,.8);font-size:17px;line-height:1.7;">Hemp Life Farmers is an invitation-only wholesale buyers club. You must have a valid invitation code from an existing member to apply. $100 non-refundable application fee + $50/month membership. No refunds.</p>
-      <button class="btn btn-gold" onclick="navigate('membership')">Learn About Membership</button>
+    <div class="container" style="text-align:center;position:relative;">
+      <h3>Rooted in Trust, Grown by Invitation</h3>
+      <p style="max-width:700px;margin:16px auto 30px;color:rgba(255,255,255,.8);font-size:17px;line-height:1.7;">Hemp Life Farmers is a private growers circle — invitation-only. A trusted member must vouch for you before you can join. $100 non-refundable application fee + $50/month keeps the roots strong. No refunds.</p>
+      <button class="btn btn-gold" onclick="navigate('membership')">Join the Circle</button>
     </div>
   </section>
 
   <!-- Compliance Block -->
-  <section class="section-sm">
+  <section class="section-sm" style="background:var(--clr-surface);">
     <div class="container" style="text-align:center;max-width:800px;">
       <div class="sec-title" style="margin-bottom:20px;">
-        <span class="subtitle">Compliance</span>
-        <h2>Federally Compliant Under the 2018 Farm Bill</h2>
+        <span class="subtitle">Purity From the Ground Up</span>
+        <h2>Grown Clean, Tested Pure</h2>
       </div>
-      <p style="font-size:17px;color:var(--clr-text-muted);line-height:1.7;margin-bottom:30px;">All Hemp Life Farmers products are derived from hemp and contain no more than 0.3% &Delta;9-THC on a dry-weight basis. Every batch is tested by independent, ISO 17025 accredited laboratories with full chain-of-custody documentation.</p>
-      <button class="btn btn-dark" onclick="navigate('compliance')">View Certificates of Analysis</button>
+      <p style="font-size:17px;color:var(--clr-text-muted);line-height:1.8;margin-bottom:30px;">Every plant we grow honors the land it comes from. All products contain no more than 0.3% &Delta;9-THC on a dry-weight basis — fully compliant under the 2018 Farm Bill. Each harvest is tested by independent, ISO 17025 accredited labs with complete chain-of-custody documentation.</p>
+      <button class="btn btn-dark" onclick="navigate('compliance')">View Lab Reports</button>
     </div>
   </section>
 
@@ -2041,7 +2075,7 @@ tr:hover { background: var(--cream); }
       <!-- Brand -->
       <div class="footer-brand">
         <img src="images/logo.png" alt="Hemp Life Farmers">
-        <p>Premium, federally compliant wholesale hemp. 2018 Farm Bill compliant commercial supply for licensed partners.</p>
+        <p>Grown from the earth, delivered with integrity. Premium hemp cultivated in Maryland soil for licensed wholesale partners.</p>
       </div>
       <!-- Explore -->
       <div>
@@ -2075,7 +2109,7 @@ tr:hover { background: var(--cream); }
   </div>
   <div class="footer-bottom">
     <div class="container">
-      &copy; 2026 Hemp Life Farmers. B2B Wholesale Only. Not for sale to individuals under 21.
+      &copy; 2026 Hemp Life Farmers &mdash; Rooted in Maryland Soil. Wholesale Only. 21+ to enter.
     </div>
   </div>
 </footer>
