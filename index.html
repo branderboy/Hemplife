@@ -110,6 +110,10 @@ ul, ol { list-style: none; }
 .btn-secondary:hover { background-color: white; color: var(--clr-primary); transform: translateY(-2px); }
 .btn-danger { background: var(--barn-red); color: #fff; }
 .btn-danger:hover { background: #a04432; }
+.btn-soil { background-color: var(--soil); color: #fff; }
+.btn-soil:hover { background-color: var(--soil-light); transform: translateY(-2px); box-shadow: 0 10px 20px rgba(92,61,46,.25); }
+.btn-text { background: none; color: var(--soil); font-weight: 800; padding: 0; text-transform: uppercase; letter-spacing: 0.08em; border-bottom: 2px solid var(--clr-secondary); border-radius: 0; padding-bottom: 4px; }
+.btn-text:hover { color: var(--clr-primary); border-bottom-color: var(--clr-primary); }
 .btn-outline-light { background: rgba(255,255,255,.12); color: #fff; border: 1px solid rgba(255,255,255,.3); backdrop-filter: blur(6px); }
 .btn-outline-light:hover { background: #fff; color: var(--clr-primary); }
 .btn-sm { padding: 8px 18px; font-size: 12px; }
@@ -268,7 +272,7 @@ ul, ol { list-style: none; }
 
 /* ========== FULL-WIDTH BANNER ========== */
 .full-banner {
-  background: linear-gradient(135deg, var(--soil) 0%, #4A3020 50%, var(--bark) 100%);
+  background: linear-gradient(135deg, #1A3409 0%, var(--clr-primary) 50%, #2C4A1A 100%);
   color: #fff; padding: 80px 0; position: relative;
   border-top: 3px solid var(--clr-secondary);
   border-bottom: 3px solid var(--clr-secondary);
@@ -481,9 +485,9 @@ tr:hover { background: var(--cream); }
 
 /* ========== FOOTER ========== */
 .footer {
-  background-color: var(--soil); color: rgba(255,255,255,0.7);
+  background-color: #1A3409; color: rgba(255,255,255,0.7);
   padding: 80px 0 0; border-top: 4px solid var(--clr-secondary);
-  background-image: linear-gradient(180deg, var(--soil-light) 0%, var(--soil) 100%);
+  background-image: linear-gradient(180deg, var(--clr-primary) 0%, #1A3409 100%);
   position: relative;
 }
 .footer::before {
@@ -501,7 +505,7 @@ tr:hover { background: var(--cream); }
 .footer a:hover { color: var(--clr-secondary); padding-left: 5px; }
 .footer ul li { margin-bottom: 14px; }
 .footer-bottom {
-  background-color: var(--bark); padding: 25px 0; margin-top: 60px;
+  background-color: #0F2205; padding: 25px 0; margin-top: 60px;
   text-align: center; font-size: 13px; font-weight: 500;
   border-top: 1px solid rgba(255,255,255,0.08); position: relative;
 }
@@ -618,7 +622,7 @@ tr:hover { background: var(--cream); }
 <!-- ==================== AGE GATE ==================== -->
 <div id="age-gate">
   <div class="age-gate-modal">
-    <img src="images/logo.png" alt="Hemp Life Farmers">
+    <img src="images/logo.png?v=2" alt="Hemp Life Farmers">
     <h2>Welcome to Hemp Life Farmers</h2>
     <p>You must be 21 or older to enter this website. By proceeding, you confirm your age and that hemp products are legal in your jurisdiction.</p>
     <div class="age-gate-btns">
@@ -638,7 +642,7 @@ tr:hover { background: var(--cream); }
 <header class="header">
   <div class="container nav-container">
     <div class="brand" onclick="navigate('home')">
-      <img src="images/logo.png" alt="Hemp Life Farmers Supply">
+      <img src="images/logo.png?v=2" alt="Hemp Life Farmers Supply">
     </div>
     <button class="mobile-menu-btn" onclick="toggleMobileMenu()" aria-label="Menu">&#9776;</button>
     <nav class="nav-links" id="desktop-nav">
@@ -649,7 +653,7 @@ tr:hover { background: var(--cream); }
       <a href="#" class="nav-link" data-page="membership" onclick="navigate('membership'); return false;">Membership</a>
       <a href="#" class="nav-link" id="nav-login-link" data-page="login" onclick="navigate('login'); return false;">Login</a>
       <div class="header-btn">
-        <button class="btn btn-dark" onclick="navigate('apply')">Apply Now</button>
+        <button class="btn btn-gold" onclick="navigate('invite')">Invite Code</button>
       </div>
     </nav>
     <nav class="mobile-menu" id="mobile-menu">
@@ -659,7 +663,7 @@ tr:hover { background: var(--cream); }
       <a href="#" class="nav-link" onclick="navigate('shipping');closeMobileMenu(); return false;">Shipping</a>
       <a href="#" class="nav-link" onclick="navigate('membership');closeMobileMenu(); return false;">Membership</a>
       <a href="#" class="nav-link" id="mobile-login-link" onclick="navigate('login');closeMobileMenu(); return false;">Login</a>
-      <a href="#" class="nav-link" onclick="navigate('apply');closeMobileMenu(); return false;">Apply Now</a>
+      <a href="#" class="nav-link" onclick="navigate('invite');closeMobileMenu(); return false;">Invite Code</a>
     </nav>
   </div>
 </header>
@@ -689,7 +693,7 @@ tr:hover { background: var(--cream); }
         <p>Sun-grown, hand-cured, lab-verified hemp — cultivated in Maryland soil and delivered with complete chain-of-custody to licensed wholesale partners.</p>
         <div class="hero-btns">
           <button class="btn btn-gold" onclick="navigate('products')">Explore the Harvest</button>
-          <button class="btn btn-secondary" onclick="navigate('apply')">Join the Growers Circle</button>
+          <button class="btn btn-secondary" onclick="navigate('invite')">Enter Your Invite Code Here</button>
         </div>
         <div class="hero-trust-line">
           <span>Farm Bill Compliant</span>
@@ -733,7 +737,7 @@ tr:hover { background: var(--cream); }
             <li>Wholesale Quantities (1lb &ndash; 50lb+)</li>
             <li>Full Seed-to-Sale Chain of Custody</li>
           </ul>
-          <button class="btn btn-dark" style="margin-top: 40px;" onclick="navigate('apply')">Begin Your Journey</button>
+          <button class="btn btn-soil" style="margin-top: 40px;" onclick="navigate('apply')">Begin Your Journey</button>
         </div>
       </div>
     </div>
@@ -762,7 +766,6 @@ tr:hover { background: var(--cream); }
               <path d="M32 14c2-5 8-10 14-10-1 6-6 12-14 14"/>
             </svg>
           </div>
-          <span class="step-num">Step 01</span>
           <h4>Plant the Seed</h4>
           <p>Get an invitation from a trusted member. Every partnership starts with a personal connection — roots before branches.</p>
         </div>
@@ -779,7 +782,6 @@ tr:hover { background: var(--cream); }
               <path d="M28 48l4 4 8-10"/>
             </svg>
           </div>
-          <span class="step-num">Step 02</span>
           <h4>Put Down Roots</h4>
           <p>Submit your application and $100 non-refundable fee. We review your credentials and verify compliance within 24&ndash;48 hours.</p>
         </div>
@@ -794,7 +796,6 @@ tr:hover { background: var(--cream); }
               <path d="M32 37v-4"/>
             </svg>
           </div>
-          <span class="step-num">Step 03</span>
           <h4>Choose Your Crop</h4>
           <p>Browse the harvest catalog. Hand-pick your strains, set your quantities, and submit your order for fulfillment.</p>
         </div>
@@ -810,34 +811,16 @@ tr:hover { background: var(--cream); }
               <path d="M12 24h16M12 32h10"/>
             </svg>
           </div>
-          <span class="step-num">Step 04</span>
           <h4>Harvest Delivered</h4>
           <p>Your order ships with full COA documentation and chain of custody. Tracked, insured, straight from Maryland soil to your door.</p>
         </div>
       </div>
       <div class="text-center mt-3">
-        <button class="btn btn-gold" onclick="navigate('apply')">Start Your Application</button>
+        <button class="btn btn-text" onclick="navigate('apply')">Start Your Application &rarr;</button>
       </div>
     </div>
   </section>
 
-  <!-- Featured Products -->
-  <section class="section-sm" style="background:var(--clr-bg-light);">
-    <div class="container">
-      <div class="text-center mb-4">
-        <div class="sec-title" style="margin-bottom:30px;">
-          <span class="subtitle">Rooted in Quality</span>
-          <h2>Fresh From the Field</h2>
-        </div>
-      </div>
-      <div id="home-featured-products" class="grid grid-3">
-        <p class="text-muted text-center">Loading products...</p>
-      </div>
-      <div class="text-center mt-4">
-        <button class="btn btn-dark" onclick="navigate('products')">Explore Full Harvest</button>
-      </div>
-    </div>
-  </section>
 
   <!-- Membership Banner (Full-Width Separator) -->
   <section class="full-banner">
@@ -856,7 +839,7 @@ tr:hover { background: var(--cream); }
         <h2>Grown Clean, Tested Pure</h2>
       </div>
       <p style="font-size:17px;color:var(--clr-text-muted);line-height:1.8;margin-bottom:30px;">Every plant we grow honors the land it comes from. All products contain no more than 0.3% &Delta;9-THC on a dry-weight basis — fully compliant under the 2018 Farm Bill. Each harvest is tested by independent, ISO 17025 accredited labs with complete chain-of-custody documentation.</p>
-      <button class="btn btn-dark" onclick="navigate('compliance')">View Lab Reports</button>
+      <button class="btn btn-text" onclick="navigate('compliance')">View Lab Reports &rarr;</button>
     </div>
   </section>
 
@@ -874,24 +857,19 @@ tr:hover { background: var(--cream); }
 
     <!-- Membership Wall — shown to non-members -->
     <div id="products-wall" style="display:none;">
-      <div style="text-align:center;padding:60px 20px;max-width:600px;margin:0 auto;">
-        <img src="images/logo.png" alt="Hemp Life Farmers" style="width:120px;height:120px;border-radius:50%;margin:0 auto 24px;display:block;">
-        <h2 style="color:var(--green-dark);">Members Only Catalog</h2>
-        <p class="text-muted mt-2 mb-3">Our wholesale product catalog is exclusively available to approved members. You must have an active invitation and membership to view products and pricing.</p>
-        <div class="red-box mb-3" style="text-align:left;">
-          <strong>Access Requirements:</strong>
-          <ul style="margin:8px 0 0 20px;font-size:14px;">
-            <li>Valid invitation code from an existing member</li>
-            <li>Approved membership application</li>
-            <li>$100 non-refundable application fee paid</li>
-            <li>Active $50/month membership</li>
-          </ul>
+      <div class="invite-gate">
+        <img src="images/logo.png?v=2" alt="Hemp Life Farmers" style="width:100px;border-radius:50%;margin:0 auto 24px;display:block;">
+        <h2 style="color:var(--clr-text-main);">Members Only Catalog</h2>
+        <p class="text-muted mt-2 mb-3">Enter your invitation code to access wholesale products and pricing. No code, no access.</p>
+        <div class="form-group">
+          <input type="text" id="products-invite-input" placeholder="Enter Invitation Code" style="text-align:center;text-transform:uppercase;font-size:18px;letter-spacing:0.1em;">
         </div>
-        <div style="display:flex;gap:12px;justify-content:center;flex-wrap:wrap;">
-          <button class="btn btn-primary btn-lg" onclick="navigate('login')">Member Login &rarr;</button>
-          <button class="btn btn-gold btn-lg" onclick="navigate('apply')">Apply for Membership &rarr;</button>
+        <button class="btn btn-soil w-full" onclick="validateProductsInvite()">Verify &amp; View Catalog &rarr;</button>
+        <p id="products-invite-error" style="color:var(--barn-red);font-size:13px;margin-top:12px;display:none;">Invalid invitation code. Please try again.</p>
+        <div style="margin-top:24px;padding-top:20px;border-top:1px solid var(--border);">
+          <p class="text-muted" style="font-size:13px;">Already a member? <a href="#" onclick="navigate('login');return false;">Log in here</a></p>
+          <p class="text-muted" style="font-size:13px;">Don't have a code? You must be invited by an existing member.</p>
         </div>
-        <p class="text-muted mt-3" style="font-size:12px;">Already have an invitation? <a href="#" onclick="navigate('apply');return false;">Apply here</a>.</p>
       </div>
     </div>
 
@@ -917,31 +895,55 @@ tr:hover { background: var(--cream); }
       <p>Transparency and compliance documentation for all products.</p>
     </div>
   </div>
-  <div class="container">
-    <!-- Lab Testing -->
-    <section class="mb-4">
-      <div class="card card-flat">
-        <h3>Independent Lab Testing</h3>
-        <p class="mt-2 text-muted">All Hemp Life Farmers products are tested by independent, ISO 17025 accredited laboratories. Testing includes cannabinoid potency profiling, terpene analysis, and comprehensive safety screening for heavy metals, pesticides, microbials, mycotoxins, residual solvents, and foreign matter. Test results are published as Certificates of Analysis (COAs) and available for download.</p>
+  <div class="container" style="max-width:960px;">
+
+    <!-- Lab Testing Intro -->
+    <section style="margin-bottom:60px;">
+      <div class="sec-title" style="margin-bottom:24px;">
+        <span class="subtitle">Third-Party Verified</span>
+        <h2>Independent Lab Testing</h2>
+      </div>
+      <p style="font-size:17px;line-height:1.8;color:var(--clr-text-muted);margin-bottom:24px;">Every product we sell is tested by independent, <strong style="color:var(--clr-text-main);">ISO 17025 accredited laboratories</strong>. We never test in-house — your trust demands outside eyes.</p>
+      <div class="grid grid-3" style="gap:16px;">
+        <div style="padding:20px;background:var(--green-pale);border-radius:12px;border-left:4px solid var(--green-mid);">
+          <h4 style="font-size:15px;margin-bottom:6px;">Potency Profiling</h4>
+          <p style="font-size:13px;color:var(--clr-text-muted);margin:0;line-height:1.6;">Cannabinoid breakdown including &Delta;9-THC, THCA, CBD, CBG, and total cannabinoids.</p>
+        </div>
+        <div style="padding:20px;background:var(--gold-pale);border-radius:12px;border-left:4px solid var(--gold);">
+          <h4 style="font-size:15px;margin-bottom:6px;">Terpene Analysis</h4>
+          <p style="font-size:13px;color:var(--clr-text-muted);margin:0;line-height:1.6;">Full terpene profiling to verify strain identity, aroma, and therapeutic properties.</p>
+        </div>
+        <div style="padding:20px;background:var(--soil-pale);border-radius:12px;border-left:4px solid var(--soil);">
+          <h4 style="font-size:15px;margin-bottom:6px;">Safety Screening</h4>
+          <p style="font-size:13px;color:var(--clr-text-muted);margin:0;line-height:1.6;">Heavy metals, pesticides, microbials, mycotoxins, residual solvents, and foreign matter.</p>
+        </div>
       </div>
     </section>
 
     <!-- COA Table -->
-    <section class="mb-4">
-      <h2 class="mb-3">Certificates of Analysis</h2>
+    <section style="margin-bottom:60px;">
+      <div class="sec-title" style="margin-bottom:24px;">
+        <span class="subtitle">Batch Documentation</span>
+        <h2>Certificates of Analysis</h2>
+      </div>
+      <p style="font-size:15px;color:var(--clr-text-muted);margin-bottom:24px;line-height:1.7;">Every batch ships with a downloadable COA. Click any row to view or download the full lab report.</p>
       <div class="table-wrap" id="coa-table-container">
         <p class="text-muted">Loading COA data...</p>
       </div>
     </section>
 
     <!-- Chain of Custody -->
-    <section class="mb-4">
-      <h2 class="mb-3">Chain of Custody</h2>
-      <p class="text-muted mb-3">Hemp Life Farmers maintains complete chain-of-custody documentation from cultivation through delivery. This includes cultivation origin, processing facility, handling, storage, and audit records.</p>
+    <section style="margin-bottom:60px;">
+      <div class="sec-title" style="margin-bottom:24px;">
+        <span class="subtitle">Seed to Sale</span>
+        <h2>Chain of Custody</h2>
+      </div>
+      <p style="font-size:15px;color:var(--clr-text-muted);margin-bottom:24px;line-height:1.7;">We document every hand that touches your product — from the field where it grew to the facility where it ships. Full transparency, no gaps.</p>
       <div id="coc-info" class="grid grid-2">
         <p class="text-muted">Loading chain of custody data...</p>
       </div>
     </section>
+
   </div>
   <div style="height:60px"></div>
 </div>
@@ -1012,6 +1014,23 @@ tr:hover { background: var(--cream); }
     </div>
   </div>
   <div class="container">
+
+    <!-- Invite Code Gate for Membership -->
+    <div id="membership-invite-gate" class="invite-gate">
+      <img src="images/logo.png?v=2" alt="Hemp Life Farmers" style="width:100px;border-radius:50%;margin:0 auto 24px;display:block;">
+      <h2 style="color:var(--clr-text-main);">Enter Your Invitation Code</h2>
+      <p class="text-muted mt-2 mb-3">Membership details are only visible to invited partners. Enter your code below to view pricing and apply.</p>
+      <div class="form-group">
+        <input type="text" id="membership-invite-input" placeholder="Enter Invitation Code" style="text-align:center;text-transform:uppercase;font-size:18px;letter-spacing:0.1em;">
+      </div>
+      <button class="btn btn-soil w-full" onclick="validateMembershipInvite()">Verify &amp; Continue &rarr;</button>
+      <p id="membership-invite-error" style="color:var(--barn-red);font-size:13px;margin-top:12px;display:none;">Invalid invitation code. Please try again.</p>
+      <p class="text-muted mt-3" style="font-size:13px;">Don't have a code? You must be invited by an existing member. <a href="#" onclick="navigate('contact');return false;">Contact us</a></p>
+    </div>
+
+    <!-- Membership Content (hidden until code verified) -->
+    <div id="membership-content" style="display:none;">
+
     <!-- 3 Steps -->
     <div class="steps-grid">
       <div class="card text-center">
@@ -1058,7 +1077,7 @@ tr:hover { background: var(--cream); }
         <li>New product early access</li>
         <li>Personal referral codes to invite others</li>
       </ul>
-      <button class="btn btn-primary btn-lg w-full mt-3" onclick="navigate('apply')">Apply Now &mdash; Invitation Code Required &rarr;</button>
+      <button class="btn btn-soil btn-lg w-full mt-3" onclick="navigate('apply')">Apply Now &mdash; Invitation Code Required &rarr;</button>
     </div>
 
     <!-- No Refunds -->
@@ -1068,37 +1087,19 @@ tr:hover { background: var(--cream); }
     </div>
 
     <!-- Payment Methods -->
-    <div class="text-center mt-4 mb-3">
-      <h2>Accepted Payment Methods</h2>
+    <div style="max-width:560px;margin:40px auto 0;">
+      <h3 style="margin-bottom:20px;">Accepted Payment Methods</h3>
+      <ul style="list-style:none;padding:0;margin:0;">
+        <li style="display:flex;justify-content:space-between;align-items:center;padding:14px 0;border-bottom:1px solid var(--border);"><strong>ACH Bank Transfer</strong><span class="text-muted" style="font-size:14px;">Preferred method</span></li>
+        <li style="display:flex;justify-content:space-between;align-items:center;padding:14px 0;border-bottom:1px solid var(--border);"><strong>Wire Transfer</strong><span class="text-muted" style="font-size:14px;">Domestic wire</span></li>
+        <li style="display:flex;justify-content:space-between;align-items:center;padding:14px 0;border-bottom:1px solid var(--border);"><strong>CashApp</strong><span class="text-muted" style="font-size:14px;">$HempLifeFarmers</span></li>
+        <li style="display:flex;justify-content:space-between;align-items:center;padding:14px 0;border-bottom:1px solid var(--border);"><strong>Zelle</strong><span class="text-muted" style="font-size:14px;">payments@hemplifefarmers.com</span></li>
+        <li style="display:flex;justify-content:space-between;align-items:center;padding:14px 0;border-bottom:1px solid var(--border);"><strong>Money Order / Cashier's Check</strong><span class="text-muted" style="font-size:14px;">Mail to business address</span></li>
+      </ul>
+      <p class="text-muted mt-3" style="font-size:13px;font-weight:700;">NO PayPal &middot; NO Venmo &middot; NO credit cards &middot; NO crypto</p>
     </div>
-    <div class="payment-grid">
-      <div class="card payment-card">
-        <div class="payment-icon">&#127974;</div>
-        <h4>ACH Bank Transfer</h4>
-        <p>Preferred method</p>
-      </div>
-      <div class="card payment-card">
-        <div class="payment-icon">&#127974;</div>
-        <h4>Wire Transfer</h4>
-        <p>Domestic wire</p>
-      </div>
-      <div class="card payment-card">
-        <div class="payment-icon">&#128241;</div>
-        <h4>CashApp</h4>
-        <p>$HempLifeFarmers</p>
-      </div>
-      <div class="card payment-card">
-        <div class="payment-icon">&#128241;</div>
-        <h4>Zelle</h4>
-        <p>payments@hemplifefarmers.com</p>
-      </div>
-      <div class="card payment-card">
-        <div class="payment-icon">&#9993;</div>
-        <h4>Money Order / Cashier's Check</h4>
-        <p>Mail to business address</p>
-      </div>
-    </div>
-    <p class="text-center text-muted mt-3" style="font-size:14px;">&#128683; NO PayPal &middot; NO Venmo &middot; NO standard credit cards &middot; NO crypto</p>
+
+    </div><!-- close membership-content -->
   </div>
   <div style="height:60px"></div>
 </div>
@@ -1310,7 +1311,7 @@ tr:hover { background: var(--cream); }
       </div>
 
       <div class="text-center">
-        <button class="btn btn-primary" onclick="navigate('home')">Return to Home</button>
+        <button class="btn btn-text" onclick="navigate('home')">Return to Home &rarr;</button>
         <button class="btn btn-secondary" onclick="navigate('products')" style="margin-left:12px;">View Products</button>
       </div>
     </div>
@@ -1323,7 +1324,7 @@ tr:hover { background: var(--cream); }
 <div id="page-login" class="page">
   <div class="container" style="padding-top:40px;">
     <div class="login-card">
-      <img src="images/logo.png" alt="Hemp Life Farmers">
+      <img src="images/logo.png?v=2" alt="Hemp Life Farmers">
       <h2>Member Login</h2>
       <p class="text-muted mb-3">Access your wholesale account.</p>
       <div class="form-group"><label>Email Address</label><input type="email" id="login-email" placeholder="you@business.com"></div>
@@ -2018,7 +2019,7 @@ tr:hover { background: var(--cream); }
         <div class="form-group"><label>Message *</label><textarea id="contact-message" placeholder="How can we help?"></textarea></div>
         <div class="checkbox-group"><input type="checkbox" id="contact-age" required><label for="contact-age">I am 21 years of age or older.</label></div>
         <div class="checkbox-group"><input type="checkbox" id="contact-terms" required><label for="contact-terms">I agree to the <a href="#" onclick="navigate('terms');return false;">Terms of Service</a> and <a href="#" onclick="navigate('disclaimer');return false;">Legal Disclaimer</a>.</label></div>
-        <button class="btn btn-primary w-full mt-2" onclick="submitContactForm()">Send Inquiry &rarr;</button>
+        <button class="btn btn-soil w-full mt-2" onclick="submitContactForm()">Send Inquiry &rarr;</button>
       </div>
     </div>
     <div class="gold-box mt-4 text-center">All buyers are tracked by invitation code and name. No unverified customers.</div>
@@ -2030,7 +2031,7 @@ tr:hover { background: var(--cream); }
 <div id="page-thankyou" class="page">
   <div class="container" style="padding-top:60px;">
     <div style="max-width:640px;margin:0 auto;text-align:center;">
-      <img src="images/logo.png" alt="Hemp Life Farmers" style="width:80px;height:80px;border-radius:50%;margin:0 auto 24px;">
+      <img src="images/logo.png?v=2" alt="Hemp Life Farmers" style="width:80px;height:80px;border-radius:50%;margin:0 auto 24px;">
       <h1>Thank You</h1>
       <p class="text-muted mb-4" style="font-size:18px;">Your inquiry has been received. We will respond within 1&ndash;2 business days.</p>
 
@@ -2060,10 +2061,83 @@ tr:hover { background: var(--cream); }
       </div>
 
       <div>
-        <button class="btn btn-primary" onclick="navigate('home')">Return to Home</button>
+        <button class="btn btn-text" onclick="navigate('home')">Return to Home &rarr;</button>
         <button class="btn btn-secondary" onclick="navigate('products')" style="margin-left:12px;">View Products</button>
       </div>
     </div>
+  </div>
+  <div style="height:60px"></div>
+</div>
+
+<!-- ==================== PAGE: INVITE CODE ==================== -->
+<div id="page-invite" class="page">
+  <div class="page-header">
+    <div class="container">
+      <h1>Invitation Code</h1>
+      <p>How to get in — and what happens if you don't have one.</p>
+    </div>
+  </div>
+  <div class="container" style="max-width:800px;">
+
+    <!-- The Gate -->
+    <section style="text-align:center;margin-bottom:60px;">
+      <div class="sec-title" style="margin-bottom:20px;">
+        <span class="subtitle">Private Access Only</span>
+        <h2>No Code, No Entry.</h2>
+      </div>
+      <p style="font-size:18px;color:var(--clr-text-muted);line-height:1.8;max-width:640px;margin:0 auto;">Hemp Life Farmers is a closed wholesale network. Every door — products, pricing, membership, ordering — requires a valid invitation code. There are no exceptions and no workarounds. If you don't have a code, you cannot get in.</p>
+    </section>
+
+    <!-- What Is It -->
+    <section style="margin-bottom:50px;">
+      <h3 style="margin-bottom:16px;">What Is an Invitation Code?</h3>
+      <p style="font-size:16px;color:var(--clr-text-muted);line-height:1.8;">An invitation code is a unique key in the format <strong style="color:var(--clr-text-main);font-family:monospace;font-size:17px;">HLF-INV-XXXX</strong> assigned to each verified member. It's the only way to unlock access to our wholesale catalog, membership details, and application process. Codes are non-transferable and tracked to the member who issued them.</p>
+    </section>
+
+    <!-- How to Get One -->
+    <section style="margin-bottom:50px;">
+      <h3 style="margin-bottom:16px;">How Do I Get a Code?</h3>
+      <div style="background:var(--clr-surface);border:1px solid var(--clr-border);border-radius:14px;padding:32px;">
+        <ol style="list-style:none;padding:0;margin:0;counter-reset:steps;">
+          <li style="display:flex;gap:20px;align-items:flex-start;margin-bottom:24px;">
+            <span style="flex-shrink:0;width:40px;height:40px;background:var(--green-pale);color:var(--green-dark);border-radius:50%;display:flex;align-items:center;justify-content:center;font-family:Outfit,sans-serif;font-weight:800;font-size:16px;">1</span>
+            <div><strong style="display:block;margin-bottom:4px;font-size:16px;">Know an existing member</strong><span style="color:var(--clr-text-muted);font-size:15px;line-height:1.7;">Codes are only given out by current, active Hemp Life Farmers members. You need a real relationship with someone already inside.</span></div>
+          </li>
+          <li style="display:flex;gap:20px;align-items:flex-start;margin-bottom:24px;">
+            <span style="flex-shrink:0;width:40px;height:40px;background:var(--gold-pale);color:var(--gold);border-radius:50%;display:flex;align-items:center;justify-content:center;font-family:Outfit,sans-serif;font-weight:800;font-size:16px;">2</span>
+            <div><strong style="display:block;margin-bottom:4px;font-size:16px;">They share their invite code with you</strong><span style="color:var(--clr-text-muted);font-size:15px;line-height:1.7;">Each member receives a limited number of codes. When they vouch for you, they give you their code directly.</span></div>
+          </li>
+          <li style="display:flex;gap:20px;align-items:flex-start;">
+            <span style="flex-shrink:0;width:40px;height:40px;background:var(--soil-pale);color:var(--soil);border-radius:50%;display:flex;align-items:center;justify-content:center;font-family:Outfit,sans-serif;font-weight:800;font-size:16px;">3</span>
+            <div><strong style="display:block;margin-bottom:4px;font-size:16px;">Enter it anywhere on our site</strong><span style="color:var(--clr-text-muted);font-size:15px;line-height:1.7;">Use the code on the Products page, Membership page, or Application page to unlock access. One code opens all doors.</span></div>
+          </li>
+        </ol>
+      </div>
+    </section>
+
+    <!-- What If I Don't Have One -->
+    <section style="margin-bottom:50px;">
+      <h3 style="margin-bottom:16px;">What If I Don't Have a Code?</h3>
+      <div class="red-box">
+        <p style="font-size:16px;line-height:1.8;margin:0;"><strong>You cannot access Hemp Life Farmers without an invitation code.</strong> We do not sell codes. We do not accept cold inquiries. We do not have a waitlist. This is by design — our network is built on trust between partners who know and vouch for each other.</p>
+      </div>
+    </section>
+
+    <!-- Enter Code CTA -->
+    <section style="text-align:center;margin-bottom:60px;">
+      <div style="background:var(--clr-surface);border:2px solid var(--clr-secondary);border-radius:16px;padding:40px;">
+        <h3 style="margin-bottom:8px;">Already Have a Code?</h3>
+        <p class="text-muted" style="margin-bottom:24px;">Enter it below to unlock full access.</p>
+        <div style="max-width:360px;margin:0 auto;">
+          <div class="form-group" style="margin-bottom:16px;">
+            <input type="text" id="invite-page-input" placeholder="HLF-INV-XXXX" style="text-align:center;text-transform:uppercase;font-size:20px;letter-spacing:0.12em;">
+          </div>
+          <button class="btn btn-soil w-full" onclick="validateInvitePageCode()">Verify Code &amp; Enter &rarr;</button>
+          <p id="invite-page-error" style="color:var(--barn-red);font-size:13px;margin-top:12px;display:none;">Invalid code. Format: HLF-INV-XXXX</p>
+        </div>
+      </div>
+    </section>
+
   </div>
   <div style="height:60px"></div>
 </div>
@@ -2074,7 +2148,7 @@ tr:hover { background: var(--cream); }
     <div class="footer-grid">
       <!-- Brand -->
       <div class="footer-brand">
-        <img src="images/logo.png" alt="Hemp Life Farmers">
+        <img src="images/logo.png?v=2" alt="Hemp Life Farmers">
         <p>Grown from the earth, delivered with integrity. Premium hemp cultivated in Maryland soil for licensed wholesale partners.</p>
       </div>
       <!-- Explore -->
@@ -2134,7 +2208,7 @@ function navigate(pageName) {
   var validPages = [
     'home','products','compliance','shipping','membership',
     'apply','login','dashboard','admin','disclaimer',
-    'terms','privacy','contact','thankyou'
+    'terms','privacy','contact','thankyou','invite'
   ];
 
   if (validPages.indexOf(pageName) === -1) {
@@ -2438,7 +2512,7 @@ function renderHomeFeatured() {
     var imgClass = p.product_type === 'Extract' ? 'extract-bg' : 'flower-bg';
     html += '<div class="product-card">';
     html += '<div class="product-img ' + imgClass + '">';
-    html += '<img src="images/logo.png" alt="" style="width:80px;opacity:.2;">';
+    html += '<img src="images/logo.png?v=2" alt="" style="width:80px;opacity:.2;">';
     html += '<span class="product-badge">' + escHtml(p.product_type) + '</span>';
     html += '<span class="product-badge" style="left:auto;right:20px;background:var(--clr-secondary);color:var(--clr-primary);">' + escHtml(p.cultivation_method) + '</span>';
     html += '</div>';
@@ -2447,7 +2521,7 @@ function renderHomeFeatured() {
     html += '<p class="product-meta">' + escHtml(p.sku) + '</p>';
     html += '<p class="product-desc">' + escHtml(p.short_description) + '</p>';
     html += '<p style="font-family:Outfit,sans-serif;font-weight:800;font-size:18px;color:var(--clr-primary);margin-bottom:16px;">From ' + formatCurrency(p.price_per_lb) + '/lb</p>';
-    html += '<button class="btn btn-dark" style="width:100%;padding:14px;" onclick="navigate(\'products\')">View Details</button>';
+    html += '<button class="btn btn-soil" style="width:100%;padding:14px;" onclick="navigate(\'products\')">View Details</button>';
     html += '</div></div>';
   }
   container.innerHTML = html;
@@ -2475,7 +2549,7 @@ function renderProductCatalog() {
 
     /* Image */
     html += '<div class="product-img ' + imgClass + '">';
-    html += '<img src="images/logo.png" alt="" style="width:80px;opacity:.2;">';
+    html += '<img src="images/logo.png?v=2" alt="" style="width:80px;opacity:.2;">';
     html += '<span class="product-badge">' + escHtml(p.product_type || p.product_category) + '</span>';
     html += '<span class="product-badge" style="left:auto;right:20px;background:var(--clr-secondary);color:var(--clr-primary);">' + escHtml(p.cultivation_method) + '</span>';
     if (p.featured === 'TRUE') html += '<span class="product-badge" style="top:auto;bottom:20px;background:var(--clr-secondary);color:var(--clr-primary);">Featured</span>';
@@ -2553,7 +2627,7 @@ function renderProductCatalog() {
 
     /* Action buttons */
     html += '<div class="product-actions">';
-    html += '<button class="btn btn-dark" onclick="navigate(\'compliance\')">View COA</button>';
+    html += '<button class="btn btn-soil" onclick="navigate(\'compliance\')">View COA</button>';
     html += '<button class="btn" style="border:2px solid var(--clr-primary);color:var(--clr-primary);background:#fff;" onclick="requestInvoice(\'' + escAttr(p.sku) + '\')">Request Invoice</button>';
     html += '</div>';
 
@@ -2697,6 +2771,57 @@ function validateInviteCode() {
     }
   } else {
     alert('Invalid invitation code. Codes follow the format: HLF-INV-XXXX');
+  }
+}
+
+function validateProductsInvite() {
+  var input = document.getElementById('products-invite-input');
+  var err = document.getElementById('products-invite-error');
+  if (!input) return;
+  var code = input.value.trim().toUpperCase();
+  var pattern = /^HLF-INV-[A-Z0-9]{4}$/;
+  if (pattern.test(code)) {
+    if (err) err.style.display = 'none';
+    sessionStorage.setItem('inviteCode', code);
+    var wall = document.getElementById('products-wall');
+    var catalog = document.getElementById('products-catalog-section');
+    if (wall) wall.style.display = 'none';
+    if (catalog) catalog.style.display = 'block';
+  } else {
+    if (err) err.style.display = 'block';
+  }
+}
+
+function validateMembershipInvite() {
+  var input = document.getElementById('membership-invite-input');
+  var err = document.getElementById('membership-invite-error');
+  if (!input) return;
+  var code = input.value.trim().toUpperCase();
+  var pattern = /^HLF-INV-[A-Z0-9]{4}$/;
+  if (pattern.test(code)) {
+    if (err) err.style.display = 'none';
+    sessionStorage.setItem('inviteCode', code);
+    var gate = document.getElementById('membership-invite-gate');
+    var content = document.getElementById('membership-content');
+    if (gate) gate.style.display = 'none';
+    if (content) content.style.display = 'block';
+  } else {
+    if (err) err.style.display = 'block';
+  }
+}
+
+function validateInvitePageCode() {
+  var input = document.getElementById('invite-page-input');
+  var err = document.getElementById('invite-page-error');
+  if (!input) return;
+  var code = input.value.trim().toUpperCase();
+  var pattern = /^HLF-INV-[A-Z0-9]{4}$/;
+  if (pattern.test(code)) {
+    if (err) err.style.display = 'none';
+    sessionStorage.setItem('inviteCode', code);
+    navigate('apply');
+  } else {
+    if (err) err.style.display = 'block';
   }
 }
 
