@@ -284,10 +284,15 @@ ul, ol { list-style: none; }
 
 /* ========== STEP CARDS (How It Works) ========== */
 .step-card { text-align: center; padding: 30px 20px; }
+.step-icon {
+  width: 72px; height: 72px; margin: 0 auto 12px;
+  color: var(--clr-primary);
+}
+.step-icon svg { width: 100%; height: 100%; }
 .step-num {
   display: block; font-family: 'Outfit', sans-serif; font-weight: 900;
-  font-size: 48px; color: var(--clr-secondary); line-height: 1;
-  margin-bottom: 16px; opacity: 0.6;
+  font-size: 14px; color: var(--clr-secondary); letter-spacing: 0.15em;
+  text-transform: uppercase; margin-bottom: 10px;
 }
 .step-card h4 {
   color: var(--clr-primary); font-size: 18px; margin-bottom: 10px;
@@ -709,21 +714,66 @@ tr:hover { background: var(--cream); }
       </div>
       <div class="grid grid-4">
         <div class="step-card">
+          <div class="step-icon">
+            <!-- Hemp leaf icon (line art) -->
+            <svg viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M32 58V30"/>
+              <path d="M32 30c-4-8-16-14-24-14 0 10 8 20 24 22"/>
+              <path d="M32 30c4-8 16-14 24-14 0 10-8 20-24 22"/>
+              <path d="M32 22c-3-6-12-12-20-12 1 8 8 16 20 18"/>
+              <path d="M32 22c3-6 12-12 20-12-1 8-8 16-20 18"/>
+              <path d="M32 14c-2-5-8-10-14-10 1 6 6 12 14 14"/>
+              <path d="M32 14c2-5 8-10 14-10-1 6-6 12-14 14"/>
+            </svg>
+          </div>
           <span class="step-num">01</span>
           <h4>Get Invited</h4>
           <p>Receive an invitation code from an existing Hemp Life Farmers member. This is an exclusive invite-only buyers club.</p>
         </div>
         <div class="step-card">
+          <div class="step-icon">
+            <!-- Clipboard/document icon (line art) -->
+            <svg viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+              <rect x="14" y="8" width="36" height="48" rx="3"/>
+              <path d="M24 4h16v8H24z"/>
+              <rect x="24" y="4" width="16" height="8" rx="2"/>
+              <line x1="22" y1="24" x2="42" y2="24"/>
+              <line x1="22" y1="32" x2="42" y2="32"/>
+              <line x1="22" y1="40" x2="34" y2="40"/>
+              <path d="M28 48l4 4 8-10"/>
+            </svg>
+          </div>
           <span class="step-num">02</span>
           <h4>Apply &amp; Pay</h4>
           <p>Submit your application with a $100 non-refundable fee. Agree to compliance terms. Reviewed within 24&ndash;48 hours.</p>
         </div>
         <div class="step-card">
+          <div class="step-icon">
+            <!-- CBD dropper icon (line art) -->
+            <svg viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M26 8h12v10l4 6v24a6 6 0 01-6 6h-8a6 6 0 01-6-6V24l4-6V8z"/>
+              <line x1="26" y1="14" x2="38" y2="14"/>
+              <path d="M22 30h20"/>
+              <ellipse cx="32" cy="42" rx="4" ry="5"/>
+              <path d="M32 37v-4"/>
+            </svg>
+          </div>
           <span class="step-num">03</span>
           <h4>Browse &amp; Order</h4>
           <p>Access the wholesale catalog. Select fresh-harvested products, set quantities, and submit your order for approval.</p>
         </div>
         <div class="step-card">
+          <div class="step-icon">
+            <!-- Delivery truck icon (line art) -->
+            <svg viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+              <rect x="4" y="16" width="36" height="28" rx="2"/>
+              <path d="M40 28h12l8 10v6H40V28z"/>
+              <circle cx="16" cy="48" r="5"/>
+              <circle cx="50" cy="48" r="5"/>
+              <line x1="21" y1="48" x2="45" y2="48"/>
+              <path d="M12 24h16M12 32h10"/>
+            </svg>
+          </div>
           <span class="step-num">04</span>
           <h4>Farm to Door</h4>
           <p>Ships with full COA docs and chain of custody. Tracked, insured, and compliant from our Maryland farms to your business.</p>
