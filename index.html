@@ -622,7 +622,7 @@ tr:hover { background: var(--cream); }
 <!-- ==================== AGE GATE ==================== -->
 <div id="age-gate">
   <div class="age-gate-modal">
-    <img src="images/logo.png" alt="Hemp Life Farmers">
+    <img src="images/logo.png?v=2" alt="Hemp Life Farmers">
     <h2>Welcome to Hemp Life Farmers</h2>
     <p>You must be 21 or older to enter this website. By proceeding, you confirm your age and that hemp products are legal in your jurisdiction.</p>
     <div class="age-gate-btns">
@@ -642,7 +642,7 @@ tr:hover { background: var(--cream); }
 <header class="header">
   <div class="container nav-container">
     <div class="brand" onclick="navigate('home')">
-      <img src="images/logo.png" alt="Hemp Life Farmers Supply">
+      <img src="images/logo.png?v=2" alt="Hemp Life Farmers Supply">
     </div>
     <button class="mobile-menu-btn" onclick="toggleMobileMenu()" aria-label="Menu">&#9776;</button>
     <nav class="nav-links" id="desktop-nav">
@@ -858,7 +858,7 @@ tr:hover { background: var(--cream); }
     <!-- Membership Wall — shown to non-members -->
     <div id="products-wall" style="display:none;">
       <div class="invite-gate">
-        <img src="images/logo.png" alt="Hemp Life Farmers" style="width:100px;border-radius:50%;margin:0 auto 24px;display:block;">
+        <img src="images/logo.png?v=2" alt="Hemp Life Farmers" style="width:100px;border-radius:50%;margin:0 auto 24px;display:block;">
         <h2 style="color:var(--clr-text-main);">Members Only Catalog</h2>
         <p class="text-muted mt-2 mb-3">Enter your invitation code to access wholesale products and pricing. No code, no access.</p>
         <div class="form-group">
@@ -1017,7 +1017,7 @@ tr:hover { background: var(--cream); }
 
     <!-- Invite Code Gate for Membership -->
     <div id="membership-invite-gate" class="invite-gate">
-      <img src="images/logo.png" alt="Hemp Life Farmers" style="width:100px;border-radius:50%;margin:0 auto 24px;display:block;">
+      <img src="images/logo.png?v=2" alt="Hemp Life Farmers" style="width:100px;border-radius:50%;margin:0 auto 24px;display:block;">
       <h2 style="color:var(--clr-text-main);">Enter Your Invitation Code</h2>
       <p class="text-muted mt-2 mb-3">Membership details are only visible to invited partners. Enter your code below to view pricing and apply.</p>
       <div class="form-group">
@@ -1324,7 +1324,7 @@ tr:hover { background: var(--cream); }
 <div id="page-login" class="page">
   <div class="container" style="padding-top:40px;">
     <div class="login-card">
-      <img src="images/logo.png" alt="Hemp Life Farmers">
+      <img src="images/logo.png?v=2" alt="Hemp Life Farmers">
       <h2>Member Login</h2>
       <p class="text-muted mb-3">Access your wholesale account.</p>
       <div class="form-group"><label>Email Address</label><input type="email" id="login-email" placeholder="you@business.com"></div>
@@ -2031,7 +2031,7 @@ tr:hover { background: var(--cream); }
 <div id="page-thankyou" class="page">
   <div class="container" style="padding-top:60px;">
     <div style="max-width:640px;margin:0 auto;text-align:center;">
-      <img src="images/logo.png" alt="Hemp Life Farmers" style="width:80px;height:80px;border-radius:50%;margin:0 auto 24px;">
+      <img src="images/logo.png?v=2" alt="Hemp Life Farmers" style="width:80px;height:80px;border-radius:50%;margin:0 auto 24px;">
       <h1>Thank You</h1>
       <p class="text-muted mb-4" style="font-size:18px;">Your inquiry has been received. We will respond within 1&ndash;2 business days.</p>
 
@@ -2148,7 +2148,7 @@ tr:hover { background: var(--cream); }
     <div class="footer-grid">
       <!-- Brand -->
       <div class="footer-brand">
-        <img src="images/logo.png" alt="Hemp Life Farmers">
+        <img src="images/logo.png?v=2" alt="Hemp Life Farmers">
         <p>Grown from the earth, delivered with integrity. Premium hemp cultivated in Maryland soil for licensed wholesale partners.</p>
       </div>
       <!-- Explore -->
@@ -2512,7 +2512,7 @@ function renderHomeFeatured() {
     var imgClass = p.product_type === 'Extract' ? 'extract-bg' : 'flower-bg';
     html += '<div class="product-card">';
     html += '<div class="product-img ' + imgClass + '">';
-    html += '<img src="images/logo.png" alt="" style="width:80px;opacity:.2;">';
+    html += '<img src="images/logo.png?v=2" alt="" style="width:80px;opacity:.2;">';
     html += '<span class="product-badge">' + escHtml(p.product_type) + '</span>';
     html += '<span class="product-badge" style="left:auto;right:20px;background:var(--clr-secondary);color:var(--clr-primary);">' + escHtml(p.cultivation_method) + '</span>';
     html += '</div>';
@@ -2549,7 +2549,7 @@ function renderProductCatalog() {
 
     /* Image */
     html += '<div class="product-img ' + imgClass + '">';
-    html += '<img src="images/logo.png" alt="" style="width:80px;opacity:.2;">';
+    html += '<img src="images/logo.png?v=2" alt="" style="width:80px;opacity:.2;">';
     html += '<span class="product-badge">' + escHtml(p.product_type || p.product_category) + '</span>';
     html += '<span class="product-badge" style="left:auto;right:20px;background:var(--clr-secondary);color:var(--clr-primary);">' + escHtml(p.cultivation_method) + '</span>';
     if (p.featured === 'TRUE') html += '<span class="product-badge" style="top:auto;bottom:20px;background:var(--clr-secondary);color:var(--clr-primary);">Featured</span>';
