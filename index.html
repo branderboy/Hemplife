@@ -7,6 +7,8 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Nunito+Sans:wght@400;600;700&display=swap" rel="stylesheet">
+    <!-- Trust & credibility icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous">
     <style>
 /* ========== CSS VARIABLES ========== */
 :root {
@@ -183,13 +185,20 @@ ul, ol { list-style: none; }
 
 /* ========== HERO ========== */
 .hero {
-  position: relative; background: linear-gradient(135deg, var(--green-dark) 0%, #1a3a0e 50%, #2a4a18 100%);
+  position: relative;
+  background: linear-gradient(160deg, #1a3a0e 0%, #2d5016 30%, #3a6b1e 60%, #2a4a18 100%);
   padding: 80px 0 100px; overflow: hidden; min-height: 80vh; display: flex; align-items: center;
 }
 .hero::before {
   content: ''; position: absolute; inset: 0;
-  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.08'/%3E%3C/svg%3E");
-  opacity: 0.5; pointer-events: none;
+  background-image:
+    url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='5' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.06'/%3E%3C/svg%3E");
+  opacity: 0.6; pointer-events: none;
+}
+.hero::after {
+  content: ''; position: absolute; bottom: 0; left: 0; right: 0; height: 120px;
+  background: linear-gradient(to top, rgba(26,58,14,.6), transparent);
+  pointer-events: none;
 }
 .hero-content { position: relative; z-index: 2; text-align: center; }
 .hero-logo { width: 100px; height: 100px; border-radius: 50%; margin: 0 auto 24px; filter: drop-shadow(0 8px 24px rgba(0,0,0,.4)); }
@@ -387,7 +396,6 @@ tr:hover { background: var(--cream); }
 
 /* ========== ADMIN TABS ========== */
 .admin-tab-content { display: none; }
-.admin-tab-content:first-of-type { display: block; }
 .admin-product-card {
   background: var(--surface); border: 1px solid var(--border); border-radius: 10px;
   padding: 20px; margin-bottom: 16px; display: grid; grid-template-columns: 1fr;
@@ -413,6 +421,110 @@ tr:hover { background: var(--cream); }
 }
 @media (max-width: 640px) {
   .order-product-row { grid-template-columns: 1fr; }
+}
+
+/* ========== TRUST ENHANCEMENTS ========== */
+
+/* Trust seal bar — runs under nav */
+.trust-seal-bar {
+  background: var(--green-dark); color: rgba(255,255,255,.85); text-align: center;
+  padding: 6px 16px; font-size: 11px; font-weight: 700; letter-spacing: .06em;
+  text-transform: uppercase; display: flex; justify-content: center; gap: 24px;
+  flex-wrap: wrap;
+}
+.trust-seal-bar i { color: var(--gold); margin-right: 4px; }
+
+/* Compliance ribbon on hero */
+.compliance-ribbon {
+  background: rgba(0,0,0,.35); backdrop-filter: blur(8px); border-radius: 12px;
+  padding: 16px 28px; margin: 32px auto 0; max-width: 700px;
+  display: flex; justify-content: center; gap: 28px; flex-wrap: wrap;
+}
+.compliance-ribbon-item {
+  display: flex; align-items: center; gap: 8px; font-size: 13px; color: rgba(255,255,255,.9);
+  font-weight: 600;
+}
+.compliance-ribbon-item i { color: var(--gold); font-size: 16px; }
+
+/* Trust badges section */
+.trust-badges-row {
+  display: flex; justify-content: center; align-items: center; gap: 40px;
+  flex-wrap: wrap; padding: 20px 0;
+}
+.trust-badge-item {
+  display: flex; flex-direction: column; align-items: center; gap: 6px;
+  font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: .06em;
+  color: var(--text-muted); text-align: center;
+}
+.trust-badge-icon {
+  width: 56px; height: 56px; border-radius: 50%; display: flex; align-items: center;
+  justify-content: center; font-size: 22px; border: 2px solid var(--border);
+  background: var(--surface); color: var(--green-dark); box-shadow: 0 2px 8px rgba(0,0,0,.06);
+}
+
+/* Verified banner for compliance pages */
+.verified-banner {
+  background: linear-gradient(90deg, var(--green-dark), var(--green-mid));
+  color: #fff; border-radius: 10px; padding: 20px 28px; display: flex;
+  align-items: center; gap: 16px; margin-bottom: 28px;
+}
+.verified-banner i { font-size: 28px; color: var(--gold); }
+.verified-banner p { font-size: 14px; line-height: 1.5; }
+
+/* Enhanced page headers with border */
+.page-header {
+  padding: 48px 0 32px; text-align: center;
+  border-bottom: 3px solid var(--green-dark);
+  margin-bottom: 32px;
+}
+
+/* Secure checkout style for order form */
+.secure-header {
+  display: flex; align-items: center; gap: 8px; font-size: 12px;
+  color: var(--green-dark); font-weight: 700; margin-bottom: 12px;
+  padding: 8px 14px; background: var(--green-pale); border-radius: 6px;
+  text-transform: uppercase; letter-spacing: .04em;
+}
+.secure-header i { font-size: 14px; }
+
+/* SSL/Security notice */
+.security-notice {
+  display: flex; align-items: center; gap: 6px; font-size: 11px;
+  color: var(--text-muted); padding: 8px 0;
+}
+.security-notice i { color: var(--green-mid); }
+
+/* Enhanced footer trust section */
+.footer-trust-bar {
+  background: rgba(255,255,255,.05); border-radius: 8px; padding: 20px;
+  margin-bottom: 28px; display: flex; justify-content: center; gap: 32px;
+  flex-wrap: wrap;
+}
+.footer-trust-item {
+  display: flex; align-items: center; gap: 8px; font-size: 12px;
+  color: rgba(255,255,255,.6); font-weight: 600;
+}
+.footer-trust-item i { color: var(--gold); font-size: 16px; }
+
+/* Geo-block overlay */
+#geo-block-overlay {
+  display: none; position: fixed; inset: 0; background: rgba(20,20,16,.95);
+  z-index: 10001; align-items: center; justify-content: center; padding: 24px;
+}
+.geo-block-modal {
+  background: var(--surface); border-radius: 14px; padding: 48px;
+  max-width: 520px; width: 100%; text-align: center;
+  box-shadow: 0 24px 80px rgba(0,0,0,.5);
+}
+.geo-block-modal i { font-size: 48px; color: var(--barn-red); margin-bottom: 16px; }
+
+/* Smooth hover for trust cards */
+.trust-card {
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+.trust-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 24px rgba(42,42,34,.1);
 }
     </style>
 </head>
@@ -471,6 +583,29 @@ tr:hover { background: var(--cream); }
   </div>
 </header>
 
+<!-- Trust Seal Bar -->
+<div class="trust-seal-bar">
+  <span><i class="fa-solid fa-shield-halved"></i> 2018 Farm Bill Compliant</span>
+  <span><i class="fa-solid fa-flask-vial"></i> ISO 17025 Lab Tested</span>
+  <span><i class="fa-solid fa-lock"></i> Secure &amp; Encrypted</span>
+  <span><i class="fa-solid fa-file-contract"></i> Full Chain of Custody</span>
+  <span><i class="fa-solid fa-truck-fast"></i> Licensed &amp; Insured Shipping</span>
+</div>
+
+<!-- Geo-Block Overlay -->
+<div id="geo-block-overlay">
+  <div class="geo-block-modal">
+    <i class="fa-solid fa-location-crosshairs"></i>
+    <h2 style="color:var(--barn-red);">Service Unavailable in Your Area</h2>
+    <p class="text-muted mt-2 mb-3">Hemp Life Farmers does not service your location. We are unable to accept orders or memberships from your area due to regional regulations.</p>
+    <div class="red-box" style="text-align:left;">
+      <strong>Why am I seeing this?</strong>
+      <p style="font-size:13px;margin-top:6px;">Your detected location falls within a restricted service area. This may be due to state or local hemp regulations.</p>
+    </div>
+    <p class="text-muted mt-3" style="font-size:12px;">If you believe this is an error, please contact us at <strong>support@hemplifefarmers.com</strong></p>
+  </div>
+</div>
+
 <!-- ==================== PAGE: HOME ==================== -->
 <div id="page-home" class="page active">
 
@@ -479,9 +614,9 @@ tr:hover { background: var(--cream); }
     <div class="container">
       <div class="hero-content">
         <img src="images/logo.png" alt="Hemp Life Farmers" class="hero-logo">
-        <div class="hero-badge">Invitation Only &middot; 2018 Farm Bill Compliant</div>
-        <h1>Federally Compliant Hemp Flower &amp; Extracts</h1>
-        <p class="hero-subtitle">Invitation-only wholesale buyers club. Lab-verified, chain-of-custody documented.</p>
+        <div class="hero-badge"><i class="fa-solid fa-seedling" style="margin-right:6px;"></i> Grown in Maryland &middot; Invitation Only &middot; Farm Bill Compliant</div>
+        <h1>Farm-Fresh, Federally Compliant Hemp Flower &amp; Extracts</h1>
+        <p class="hero-subtitle">From our licensed Maryland farms to your business. Small-batch cultivated, lab-verified, chain-of-custody documented wholesale hemp.</p>
         <div class="hero-pills">
           <span class="pill">&check; &Delta;9 THC &le; 0.3%</span>
           <span class="pill">&check; Third-Party Lab Tested</span>
@@ -492,6 +627,14 @@ tr:hover { background: var(--cream); }
         <div class="hero-ctas">
           <button class="btn btn-gold btn-lg" onclick="navigate('apply')">Apply for Membership &rarr;</button>
           <button class="btn btn-outline-light btn-lg" onclick="navigate('compliance')">View COAs</button>
+        </div>
+
+        <!-- Compliance Ribbon -->
+        <div class="compliance-ribbon">
+          <div class="compliance-ribbon-item"><i class="fa-solid fa-seedling"></i> Farm-to-Door Verified</div>
+          <div class="compliance-ribbon-item"><i class="fa-solid fa-vial-circle-check"></i> Every Batch Lab Tested</div>
+          <div class="compliance-ribbon-item"><i class="fa-solid fa-scale-balanced"></i> &le;0.3% &Delta;9-THC</div>
+          <div class="compliance-ribbon-item"><i class="fa-solid fa-handshake"></i> Licensed B2B Only</div>
         </div>
       </div>
     </div>
@@ -507,24 +650,52 @@ tr:hover { background: var(--cream); }
     <div class="container">
       <div class="grid grid-4">
         <div class="trust-card card card-flat">
-          <div class="trust-icon">&#129514;</div>
-          <h4>Lab-Verified</h4>
-          <p>Every batch independently tested by ISO-accredited laboratories.</p>
+          <div class="trust-icon"><i class="fa-solid fa-microscope" style="color:var(--green-dark);"></i></div>
+          <h4>Lab-Verified Purity</h4>
+          <p>Every harvest batch independently tested by ISO 17025 accredited laboratories. Full COA documentation provided.</p>
         </div>
         <div class="trust-card card card-flat">
-          <div class="trust-icon">&#128203;</div>
-          <h4>Chain of Custody</h4>
-          <p>Full documentation from cultivation through delivery.</p>
+          <div class="trust-icon"><i class="fa-solid fa-wheat-awn" style="color:var(--green-dark);"></i></div>
+          <h4>Farm-to-Door Tracking</h4>
+          <p>Complete chain of custody from our Maryland farms through processing, packaging, and delivery to your door.</p>
         </div>
         <div class="trust-card card card-flat">
-          <div class="trust-icon">&#128230;</div>
-          <h4>Wholesale Only</h4>
-          <p>Minimum 1 lb orders for licensed businesses.</p>
+          <div class="trust-icon"><i class="fa-solid fa-tractor" style="color:var(--green-dark);"></i></div>
+          <h4>Freshly Harvested</h4>
+          <p>Small-batch cultivated on licensed Maryland farms. Hand-trimmed and cured for optimal quality and freshness.</p>
         </div>
         <div class="trust-card card card-flat">
-          <div class="trust-icon">&#9878;&#65039;</div>
-          <h4>Compliant Operations</h4>
-          <p>All products &le;0.3% &Delta;9-THC per 2018 Farm Bill.</p>
+          <div class="trust-icon"><i class="fa-solid fa-shield-halved" style="color:var(--green-dark);"></i></div>
+          <h4>Federally Compliant</h4>
+          <p>All products &le;0.3% &Delta;9-THC on a dry-weight basis per the 2018 Farm Bill. Six-panel safety testing on every lot.</p>
+        </div>
+      </div>
+
+      <!-- Trust Badges Row -->
+      <div class="trust-badges-row mt-4">
+        <div class="trust-badge-item">
+          <div class="trust-badge-icon"><i class="fa-solid fa-certificate"></i></div>
+          <span>2018 Farm Bill</span>
+        </div>
+        <div class="trust-badge-item">
+          <div class="trust-badge-icon"><i class="fa-solid fa-flask-vial"></i></div>
+          <span>ISO 17025 Labs</span>
+        </div>
+        <div class="trust-badge-item">
+          <div class="trust-badge-icon"><i class="fa-solid fa-leaf"></i></div>
+          <span>Maryland Grown</span>
+        </div>
+        <div class="trust-badge-item">
+          <div class="trust-badge-icon"><i class="fa-solid fa-file-shield"></i></div>
+          <span>Full COA Docs</span>
+        </div>
+        <div class="trust-badge-item">
+          <div class="trust-badge-icon"><i class="fa-solid fa-lock"></i></div>
+          <span>Secure Platform</span>
+        </div>
+        <div class="trust-badge-item">
+          <div class="trust-badge-icon"><i class="fa-solid fa-truck-field"></i></div>
+          <span>Insured Shipping</span>
         </div>
       </div>
     </div>
@@ -539,28 +710,24 @@ tr:hover { background: var(--cream); }
       </div>
       <div class="grid grid-4">
         <div style="text-align:center;padding:20px;">
-          <div style="width:64px;height:64px;border-radius:50%;background:var(--gold);color:#fff;font-size:28px;font-weight:800;display:flex;align-items:center;justify-content:center;margin:0 auto 16px;">1</div>
-          <div style="font-size:32px;margin-bottom:8px;">&#128273;</div>
+          <div style="width:72px;height:72px;border-radius:50%;background:var(--green-dark);color:var(--gold);font-size:26px;display:flex;align-items:center;justify-content:center;margin:0 auto 16px;box-shadow:0 4px 16px rgba(45,80,22,.3);"><i class="fa-solid fa-key"></i></div>
           <h4 style="color:var(--green-dark);">Get Invited</h4>
-          <p class="text-muted" style="font-size:13px;margin-top:6px;">Receive an invitation code from an existing Hemp Life Farmers member. This is an invite-only buyers club.</p>
+          <p class="text-muted" style="font-size:13px;margin-top:6px;">Receive an invitation code from an existing Hemp Life Farmers member. This is an exclusive invite-only buyers club.</p>
         </div>
         <div style="text-align:center;padding:20px;">
-          <div style="width:64px;height:64px;border-radius:50%;background:var(--gold);color:#fff;font-size:28px;font-weight:800;display:flex;align-items:center;justify-content:center;margin:0 auto 16px;">2</div>
-          <div style="font-size:32px;margin-bottom:8px;">&#128203;</div>
+          <div style="width:72px;height:72px;border-radius:50%;background:var(--green-dark);color:var(--gold);font-size:26px;display:flex;align-items:center;justify-content:center;margin:0 auto 16px;box-shadow:0 4px 16px rgba(45,80,22,.3);"><i class="fa-solid fa-file-signature"></i></div>
           <h4 style="color:var(--green-dark);">Apply &amp; Pay</h4>
-          <p class="text-muted" style="font-size:13px;margin-top:6px;">Submit your application with a $100 non-refundable fee. Agree to all compliance and legal terms. Admin reviews within 24&ndash;48 hrs.</p>
+          <p class="text-muted" style="font-size:13px;margin-top:6px;">Submit your application with a $100 non-refundable fee. Agree to compliance terms. Reviewed within 24&ndash;48 hours.</p>
         </div>
         <div style="text-align:center;padding:20px;">
-          <div style="width:64px;height:64px;border-radius:50%;background:var(--gold);color:#fff;font-size:28px;font-weight:800;display:flex;align-items:center;justify-content:center;margin:0 auto 16px;">3</div>
-          <div style="font-size:32px;margin-bottom:8px;">&#128230;</div>
+          <div style="width:72px;height:72px;border-radius:50%;background:var(--green-dark);color:var(--gold);font-size:26px;display:flex;align-items:center;justify-content:center;margin:0 auto 16px;box-shadow:0 4px 16px rgba(45,80,22,.3);"><i class="fa-solid fa-basket-shopping"></i></div>
           <h4 style="color:var(--green-dark);">Browse &amp; Order</h4>
-          <p class="text-muted" style="font-size:13px;margin-top:6px;">Once approved, access the wholesale catalog. Select products, set quantities, and submit your order for admin approval.</p>
+          <p class="text-muted" style="font-size:13px;margin-top:6px;">Access the wholesale catalog. Select fresh-harvested products, set quantities, and submit your order for approval.</p>
         </div>
         <div style="text-align:center;padding:20px;">
-          <div style="width:64px;height:64px;border-radius:50%;background:var(--gold);color:#fff;font-size:28px;font-weight:800;display:flex;align-items:center;justify-content:center;margin:0 auto 16px;">4</div>
-          <div style="font-size:32px;margin-bottom:8px;">&#128666;</div>
-          <h4 style="color:var(--green-dark);">Receive &amp; Verify</h4>
-          <p class="text-muted" style="font-size:13px;margin-top:6px;">Orders ship with full compliance docs and COAs. Chain of custody documented from farm to your door. $50/mo membership keeps access active.</p>
+          <div style="width:72px;height:72px;border-radius:50%;background:var(--green-dark);color:var(--gold);font-size:26px;display:flex;align-items:center;justify-content:center;margin:0 auto 16px;box-shadow:0 4px 16px rgba(45,80,22,.3);"><i class="fa-solid fa-truck-field"></i></div>
+          <h4 style="color:var(--green-dark);">Farm to Your Door</h4>
+          <p class="text-muted" style="font-size:13px;margin-top:6px;">Ships with full COA docs and chain of custody. Tracked, insured, and compliant from our Maryland farms to your business.</p>
         </div>
       </div>
       <div class="text-center mt-3">
@@ -1138,6 +1305,7 @@ tr:hover { background: var(--cream); }
       <!-- Place Order Form (hidden by default) -->
       <div id="place-order-form" style="display:none;" class="mt-3">
         <div class="card" style="border:2px solid var(--gold);">
+          <div class="secure-header"><i class="fa-solid fa-lock"></i> Secure Order Form &mdash; Encrypted &amp; Protected</div>
           <div style="display:flex;justify-content:space-between;align-items:center;" class="mb-3">
             <h3 style="margin:0;">Place New Order</h3>
             <button class="btn btn-sm btn-secondary" onclick="hidePlaceOrderForm()">&times; Cancel</button>
@@ -1853,9 +2021,17 @@ tr:hover { background: var(--cream); }
         </ul>
       </div>
     </div>
+    <!-- Footer Trust Bar -->
+    <div class="footer-trust-bar">
+      <div class="footer-trust-item"><i class="fa-solid fa-shield-halved"></i> Farm Bill Compliant</div>
+      <div class="footer-trust-item"><i class="fa-solid fa-flask-vial"></i> Lab Tested</div>
+      <div class="footer-trust-item"><i class="fa-solid fa-seedling"></i> Maryland Grown</div>
+      <div class="footer-trust-item"><i class="fa-solid fa-lock"></i> Encrypted &amp; Secure</div>
+      <div class="footer-trust-item"><i class="fa-solid fa-truck-field"></i> Insured Delivery</div>
+    </div>
     <div class="footer-bottom">
-      <span>&copy; 2025 Hemp Life Farmers. All rights reserved.</span>
-      <span>Products contain &le;0.3% &Delta;9-THC. Not for sale under 21. Invitation only. No refunds.</span>
+      <span>&copy; 2025 Hemp Life Farmers. All rights reserved. Maryland, USA.</span>
+      <span>Products contain &le;0.3% &Delta;9-THC. Not for sale under 21. Invitation only. All sales final. No refunds.</span>
     </div>
   </div>
 </footer>
@@ -2316,7 +2492,7 @@ function renderProductCatalog() {
     /* Action buttons */
     html += '<div style="display:flex;gap:10px;flex-wrap:wrap;">';
     html += '<button onclick="navigate(\'compliance\')" style="background:#2d5016;color:#fff;border:none;padding:8px 16px;border-radius:6px;cursor:pointer;font-size:.85rem;">View COA</button>';
-    html += '<button onclick="requestInvoice(\'' + escAttr(row.sku) + '\')" style="background:#fff;color:#2d5016;border:2px solid #2d5016;padding:8px 16px;border-radius:6px;cursor:pointer;font-size:.85rem;">Request Invoice</button>';
+    html += '<button onclick="requestInvoice(\'' + escAttr(p.sku) + '\')" style="background:#fff;color:#2d5016;border:2px solid #2d5016;padding:8px 16px;border-radius:6px;cursor:pointer;font-size:.85rem;">Request Invoice</button>';
     html += '</div>';
 
     html += '</div></div>'; /* close padding div and card */
@@ -2671,44 +2847,38 @@ function memberLogout() {
 /* ----------------------------------------------------------
    12. DASHBOARD
    ---------------------------------------------------------- */
-function switchDashTab(tabName) {
-  var tabs = document.querySelectorAll('.dash-tab-content');
+function switchDashTab(tabName, btn) {
+  var tabs = document.querySelectorAll('#page-dashboard .dash-tab-content');
   for (var i = 0; i < tabs.length; i++) {
     tabs[i].style.display = 'none';
   }
   var target = document.getElementById('tab-' + tabName);
   if (target) target.style.display = 'block';
 
-  var btns = document.querySelectorAll('.dash-tab-btn');
+  var btns = document.querySelectorAll('#page-dashboard .dash-tab-btn');
   for (var j = 0; j < btns.length; j++) {
     btns[j].classList.remove('active');
   }
-  /* Mark the clicked button */
-  if (event && event.target) {
-    event.target.classList.add('active');
-  }
+  if (btn) btn.classList.add('active');
 }
 
 function populateDashboard() {
-  /* Member info */
-  var nameEl = document.getElementById('dash-member-name');
+  /* Member info — use correct HTML element IDs */
+  var nameEl = document.getElementById('member-name-display');
   if (nameEl) nameEl.textContent = sessionStorage.getItem('memberName') || 'Member';
 
-  var emailEl = document.getElementById('dash-member-email');
-  if (emailEl) emailEl.textContent = sessionStorage.getItem('memberEmail') || '';
-
-  var sinceEl = document.getElementById('dash-member-since');
+  var sinceEl = document.getElementById('dash-since');
   if (sinceEl) sinceEl.textContent = formatDate(sessionStorage.getItem('memberSince'));
 
-  var statusEl = document.getElementById('dash-member-status');
+  var statusEl = document.getElementById('dash-status');
   if (statusEl) {
     var status = sessionStorage.getItem('memberStatus') || 'active';
     statusEl.textContent = status.charAt(0).toUpperCase() + status.slice(1);
-    statusEl.style.color = status === 'active' ? '#16a34a' : '#b91c1c';
+    statusEl.className = status === 'active' ? 'status-active' : 'status-suspended';
   }
 
   /* Demo order history */
-  var ordersBody = document.getElementById('dash-orders-body');
+  var ordersBody = document.getElementById('orders-tbody');
   if (ordersBody) {
     var orders = [
       { id: 'ORD-2025-0042', date: '2025-11-15', items: 'Premium THCA Hemp Flower (5 lbs)', total: '$8,250.00', status: 'Delivered' },
@@ -2731,7 +2901,7 @@ function populateDashboard() {
   }
 
   /* Demo billing history */
-  var billingBody = document.getElementById('dash-billing-body');
+  var billingBody = document.getElementById('billing-tbody');
   if (billingBody) {
     var billing = [
       { date: '2025-01-15', desc: 'Membership Application Fee', amount: '$100.00', status: 'Paid' },
@@ -2761,7 +2931,7 @@ function populateDashboard() {
   }
 
   /* Invitation codes table */
-  var invBody = document.getElementById('dash-invite-codes-body');
+  var invBody = document.getElementById('invite-codes-tbody');
   if (invBody) {
     var codes = [
       { code: 'HLF-INV-7291', created: '2025-11-01', sentTo: 'john@example.com', status: 'Used', usedBy: 'John Doe' },
@@ -2787,7 +2957,7 @@ function populateDashboard() {
 /* Generate new invitation code */
 function generateInviteCode() {
   var code = 'HLF-INV-' + Math.floor(1000 + Math.random() * 9000);
-  var invBody = document.getElementById('dash-invite-codes-body');
+  var invBody = document.getElementById('invite-codes-tbody');
   if (invBody) {
     var today = new Date().toISOString().slice(0, 10);
     var newRow = '<tr style="border-bottom:1px solid #e5e7eb;background:#f0fdf4;">';
@@ -3073,6 +3243,7 @@ function importCSVProducts() {
   }
   productData = window._pendingCSVData;
   renderAllProductViews();
+  renderAdminProducts();
 
   var resultsContainer = document.getElementById('csv-results');
   if (resultsContainer) {
@@ -3106,7 +3277,7 @@ function closeMobileMenu() {
    15. CONTACT FORM
    ---------------------------------------------------------- */
 function submitContactForm() {
-  var requiredFields = ['contact-name', 'contact-email', 'contact-subject', 'contact-message'];
+  var requiredFields = ['contact-name', 'contact-email', 'contact-type', 'contact-message'];
   for (var i = 0; i < requiredFields.length; i++) {
     var el = document.getElementById(requiredFields[i]);
     if (!el || !el.value.trim()) {
@@ -3178,15 +3349,10 @@ document.addEventListener('DOMContentLoaded', function() {
   }
 
   /* Wire up billing/shipping toggle */
-  var billShipCb = document.getElementById('billing-same-as-shipping');
+  var billShipCb = document.getElementById('app-billing-same');
   if (billShipCb) {
     billShipCb.addEventListener('change', toggleShippingFields);
   }
-});
-
-window.addEventListener('hashchange', function() {
-  var hash = window.location.hash.replace('#', '');
-  if (hash) navigate(hash);
 });
 
 /* ----------------------------------------------------------
@@ -3438,11 +3604,11 @@ function adminLogout() {
 }
 
 function switchAdminTab(tabName, btn) {
-  var tabs = document.querySelectorAll('.admin-tab-content');
+  var tabs = document.querySelectorAll('#page-admin .admin-tab-content');
   for (var i = 0; i < tabs.length; i++) tabs[i].style.display = 'none';
   var target = document.getElementById('admin-tab-' + tabName);
   if (target) target.style.display = 'block';
-  var btns = document.querySelectorAll('.dash-tabs .dash-tab-btn');
+  var btns = document.querySelectorAll('#page-admin .dash-tabs .dash-tab-btn');
   for (var j = 0; j < btns.length; j++) btns[j].classList.remove('active');
   if (btn) btn.classList.add('active');
 }
@@ -3452,6 +3618,10 @@ function populateAdminDashboard() {
   renderAdminOrders();
   renderAdminProducts();
   renderAdminInviteCodes();
+  // Show first tab on load (CSS :first-of-type doesn't work due to sibling divs)
+  switchAdminTab('members');
+  var firstBtn = document.querySelector('#page-admin .dash-tabs .dash-tab-btn');
+  if (firstBtn) firstBtn.classList.add('active');
 }
 
 /* --- Members Management --- */
@@ -3468,6 +3638,7 @@ function renderAdminMembers(filter, search) {
   var html = '';
   for (var i = 0; i < filtered.length; i++) {
     var m = filtered[i];
+    var origIdx = adminMembers.indexOf(m);
     var statusBadge = m.status === 'active' ? 'badge-green' : (m.status === 'pending' ? 'badge-gold' : (m.status === 'suspended' ? 'badge-red' : 'badge-red'));
     html += '<tr>';
     html += '<td>' + escHtml(m.name) + '</td>';
@@ -3479,14 +3650,14 @@ function renderAdminMembers(filter, search) {
     html += '<td><span class="badge ' + statusBadge + '">' + m.status + '</span></td>';
     html += '<td style="white-space:nowrap;">';
     if (m.status === 'pending') {
-      html += '<button class="btn btn-sm btn-primary" onclick="adminApproveMember(' + i + ')" style="padding:4px 10px;font-size:11px;">Approve</button> ';
-      html += '<button class="btn btn-sm btn-danger" onclick="adminDenyMember(' + i + ')" style="padding:4px 10px;font-size:11px;">Deny</button>';
+      html += '<button class="btn btn-sm btn-primary" onclick="adminApproveMember(' + origIdx + ')" style="padding:4px 10px;font-size:11px;">Approve</button> ';
+      html += '<button class="btn btn-sm btn-danger" onclick="adminDenyMember(' + origIdx + ')" style="padding:4px 10px;font-size:11px;">Deny</button>';
     } else if (m.status === 'active') {
-      html += '<button class="btn btn-sm btn-danger" onclick="adminSuspendMember(' + i + ')" style="padding:4px 10px;font-size:11px;">Suspend</button> ';
-      html += '<button class="btn btn-sm btn-secondary" onclick="adminRemoveMember(' + i + ')" style="padding:4px 10px;font-size:11px;">Remove</button>';
+      html += '<button class="btn btn-sm btn-danger" onclick="adminSuspendMember(' + origIdx + ')" style="padding:4px 10px;font-size:11px;">Suspend</button> ';
+      html += '<button class="btn btn-sm btn-secondary" onclick="adminRemoveMember(' + origIdx + ')" style="padding:4px 10px;font-size:11px;">Remove</button>';
     } else if (m.status === 'suspended') {
-      html += '<button class="btn btn-sm btn-primary" onclick="adminReactivateMember(' + i + ')" style="padding:4px 10px;font-size:11px;">Reactivate</button> ';
-      html += '<button class="btn btn-sm btn-secondary" onclick="adminRemoveMember(' + i + ')" style="padding:4px 10px;font-size:11px;">Remove</button>';
+      html += '<button class="btn btn-sm btn-primary" onclick="adminReactivateMember(' + origIdx + ')" style="padding:4px 10px;font-size:11px;">Reactivate</button> ';
+      html += '<button class="btn btn-sm btn-secondary" onclick="adminRemoveMember(' + origIdx + ')" style="padding:4px 10px;font-size:11px;">Remove</button>';
     }
     html += '</td></tr>';
   }
@@ -3551,6 +3722,7 @@ function renderAdminOrders(filter, search) {
   var html = '';
   for (var i = 0; i < filtered.length; i++) {
     var o = filtered[i];
+    var origIdx = adminOrders.indexOf(o);
     html += '<tr>';
     html += '<td style="font-family:monospace;font-size:12px;">' + escHtml(o.id) + '</td>';
     html += '<td>' + escHtml(o.memberName) + '</td>';
@@ -3561,7 +3733,7 @@ function renderAdminOrders(filter, search) {
     html += '<td>' + escHtml(o.date) + '</td>';
     html += '<td><span class="badge ' + (statusBadges[o.status] || 'badge-gold') + '">' + (statusLabels[o.status] || o.status) + '</span></td>';
     html += '<td style="white-space:nowrap;">';
-    html += '<select class="admin-status-select" onchange="adminUpdateOrderStatus(' + i + ', this.value)">';
+    html += '<select class="admin-status-select" onchange="adminUpdateOrderStatus(' + origIdx + ', this.value)">';
     var allStatuses = ['pending_review','approved','processing','shipped','delivered','canceled'];
     for (var s = 0; s < allStatuses.length; s++) {
       html += '<option value="' + allStatuses[s] + '"' + (o.status === allStatuses[s] ? ' selected' : '') + '>' + (statusLabels[allStatuses[s]] || allStatuses[s]) + '</option>';
@@ -4036,5 +4208,7 @@ function escAttr(str) {
 </script>
 <!-- API client — connects to Neon/Express backend when available, falls back to demo mode -->
 <script src="api-client.js"></script>
+<!-- Geo-blocker — whitelist-only IP geolocation check -->
+<script src="geo-blocker.js"></script>
 </body>
 </html>
