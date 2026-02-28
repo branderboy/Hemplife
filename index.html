@@ -653,7 +653,7 @@ tr:hover { background: var(--cream); }
       <a href="#" class="nav-link" data-page="membership" onclick="navigate('membership'); return false;">Membership</a>
       <a href="#" class="nav-link" id="nav-login-link" data-page="login" onclick="navigate('login'); return false;">Login</a>
       <div class="header-btn">
-        <button class="btn btn-dark" onclick="navigate('apply')">Apply Now</button>
+        <button class="btn btn-gold" onclick="navigate('invite')">Invite Code</button>
       </div>
     </nav>
     <nav class="mobile-menu" id="mobile-menu">
@@ -663,7 +663,7 @@ tr:hover { background: var(--cream); }
       <a href="#" class="nav-link" onclick="navigate('shipping');closeMobileMenu(); return false;">Shipping</a>
       <a href="#" class="nav-link" onclick="navigate('membership');closeMobileMenu(); return false;">Membership</a>
       <a href="#" class="nav-link" id="mobile-login-link" onclick="navigate('login');closeMobileMenu(); return false;">Login</a>
-      <a href="#" class="nav-link" onclick="navigate('apply');closeMobileMenu(); return false;">Apply Now</a>
+      <a href="#" class="nav-link" onclick="navigate('invite');closeMobileMenu(); return false;">Invite Code</a>
     </nav>
   </div>
 </header>
@@ -693,7 +693,7 @@ tr:hover { background: var(--cream); }
         <p>Sun-grown, hand-cured, lab-verified hemp — cultivated in Maryland soil and delivered with complete chain-of-custody to licensed wholesale partners.</p>
         <div class="hero-btns">
           <button class="btn btn-gold" onclick="navigate('products')">Explore the Harvest</button>
-          <button class="btn btn-secondary" onclick="navigate('apply')">Enter Your Invite Code Here</button>
+          <button class="btn btn-secondary" onclick="navigate('invite')">Enter Your Invite Code Here</button>
         </div>
         <div class="hero-trust-line">
           <span>Farm Bill Compliant</span>
@@ -2069,6 +2069,79 @@ tr:hover { background: var(--cream); }
   <div style="height:60px"></div>
 </div>
 
+<!-- ==================== PAGE: INVITE CODE ==================== -->
+<div id="page-invite" class="page">
+  <div class="page-header">
+    <div class="container">
+      <h1>Invitation Code</h1>
+      <p>How to get in — and what happens if you don't have one.</p>
+    </div>
+  </div>
+  <div class="container" style="max-width:800px;">
+
+    <!-- The Gate -->
+    <section style="text-align:center;margin-bottom:60px;">
+      <div class="sec-title" style="margin-bottom:20px;">
+        <span class="subtitle">Private Access Only</span>
+        <h2>No Code, No Entry.</h2>
+      </div>
+      <p style="font-size:18px;color:var(--clr-text-muted);line-height:1.8;max-width:640px;margin:0 auto;">Hemp Life Farmers is a closed wholesale network. Every door — products, pricing, membership, ordering — requires a valid invitation code. There are no exceptions and no workarounds. If you don't have a code, you cannot get in.</p>
+    </section>
+
+    <!-- What Is It -->
+    <section style="margin-bottom:50px;">
+      <h3 style="margin-bottom:16px;">What Is an Invitation Code?</h3>
+      <p style="font-size:16px;color:var(--clr-text-muted);line-height:1.8;">An invitation code is a unique key in the format <strong style="color:var(--clr-text-main);font-family:monospace;font-size:17px;">HLF-INV-XXXX</strong> assigned to each verified member. It's the only way to unlock access to our wholesale catalog, membership details, and application process. Codes are non-transferable and tracked to the member who issued them.</p>
+    </section>
+
+    <!-- How to Get One -->
+    <section style="margin-bottom:50px;">
+      <h3 style="margin-bottom:16px;">How Do I Get a Code?</h3>
+      <div style="background:var(--clr-surface);border:1px solid var(--clr-border);border-radius:14px;padding:32px;">
+        <ol style="list-style:none;padding:0;margin:0;counter-reset:steps;">
+          <li style="display:flex;gap:20px;align-items:flex-start;margin-bottom:24px;">
+            <span style="flex-shrink:0;width:40px;height:40px;background:var(--green-pale);color:var(--green-dark);border-radius:50%;display:flex;align-items:center;justify-content:center;font-family:Outfit,sans-serif;font-weight:800;font-size:16px;">1</span>
+            <div><strong style="display:block;margin-bottom:4px;font-size:16px;">Know an existing member</strong><span style="color:var(--clr-text-muted);font-size:15px;line-height:1.7;">Codes are only given out by current, active Hemp Life Farmers members. You need a real relationship with someone already inside.</span></div>
+          </li>
+          <li style="display:flex;gap:20px;align-items:flex-start;margin-bottom:24px;">
+            <span style="flex-shrink:0;width:40px;height:40px;background:var(--gold-pale);color:var(--gold);border-radius:50%;display:flex;align-items:center;justify-content:center;font-family:Outfit,sans-serif;font-weight:800;font-size:16px;">2</span>
+            <div><strong style="display:block;margin-bottom:4px;font-size:16px;">They share their invite code with you</strong><span style="color:var(--clr-text-muted);font-size:15px;line-height:1.7;">Each member receives a limited number of codes. When they vouch for you, they give you their code directly.</span></div>
+          </li>
+          <li style="display:flex;gap:20px;align-items:flex-start;">
+            <span style="flex-shrink:0;width:40px;height:40px;background:var(--soil-pale);color:var(--soil);border-radius:50%;display:flex;align-items:center;justify-content:center;font-family:Outfit,sans-serif;font-weight:800;font-size:16px;">3</span>
+            <div><strong style="display:block;margin-bottom:4px;font-size:16px;">Enter it anywhere on our site</strong><span style="color:var(--clr-text-muted);font-size:15px;line-height:1.7;">Use the code on the Products page, Membership page, or Application page to unlock access. One code opens all doors.</span></div>
+          </li>
+        </ol>
+      </div>
+    </section>
+
+    <!-- What If I Don't Have One -->
+    <section style="margin-bottom:50px;">
+      <h3 style="margin-bottom:16px;">What If I Don't Have a Code?</h3>
+      <div class="red-box">
+        <p style="font-size:16px;line-height:1.8;margin:0;"><strong>You cannot access Hemp Life Farmers without an invitation code.</strong> We do not sell codes. We do not accept cold inquiries. We do not have a waitlist. This is by design — our network is built on trust between partners who know and vouch for each other.</p>
+      </div>
+    </section>
+
+    <!-- Enter Code CTA -->
+    <section style="text-align:center;margin-bottom:60px;">
+      <div style="background:var(--clr-surface);border:2px solid var(--clr-secondary);border-radius:16px;padding:40px;">
+        <h3 style="margin-bottom:8px;">Already Have a Code?</h3>
+        <p class="text-muted" style="margin-bottom:24px;">Enter it below to unlock full access.</p>
+        <div style="max-width:360px;margin:0 auto;">
+          <div class="form-group" style="margin-bottom:16px;">
+            <input type="text" id="invite-page-input" placeholder="HLF-INV-XXXX" style="text-align:center;text-transform:uppercase;font-size:20px;letter-spacing:0.12em;">
+          </div>
+          <button class="btn btn-soil w-full" onclick="validateInvitePageCode()">Verify Code &amp; Enter &rarr;</button>
+          <p id="invite-page-error" style="color:var(--barn-red);font-size:13px;margin-top:12px;display:none;">Invalid code. Format: HLF-INV-XXXX</p>
+        </div>
+      </div>
+    </section>
+
+  </div>
+  <div style="height:60px"></div>
+</div>
+
 <!-- ==================== FOOTER ==================== -->
 <footer class="footer">
   <div class="container">
@@ -2135,7 +2208,7 @@ function navigate(pageName) {
   var validPages = [
     'home','products','compliance','shipping','membership',
     'apply','login','dashboard','admin','disclaimer',
-    'terms','privacy','contact','thankyou'
+    'terms','privacy','contact','thankyou','invite'
   ];
 
   if (validPages.indexOf(pageName) === -1) {
@@ -2732,6 +2805,21 @@ function validateMembershipInvite() {
     var content = document.getElementById('membership-content');
     if (gate) gate.style.display = 'none';
     if (content) content.style.display = 'block';
+  } else {
+    if (err) err.style.display = 'block';
+  }
+}
+
+function validateInvitePageCode() {
+  var input = document.getElementById('invite-page-input');
+  var err = document.getElementById('invite-page-error');
+  if (!input) return;
+  var code = input.value.trim().toUpperCase();
+  var pattern = /^HLF-INV-[A-Z0-9]{4}$/;
+  if (pattern.test(code)) {
+    if (err) err.style.display = 'none';
+    sessionStorage.setItem('inviteCode', code);
+    navigate('apply');
   } else {
     if (err) err.style.display = 'block';
   }
