@@ -105,7 +105,7 @@ ul, ol { list-style: none; }
 .btn-dark { background-color: var(--clr-primary); color: #fff; }
 .btn-dark:hover { background-color: var(--clr-secondary); color: var(--clr-primary); }
 .btn-gold { background-color: var(--clr-secondary); color: var(--clr-primary); }
-.btn-gold:hover { background-color: white; color: var(--clr-primary); transform: translateY(-2px); box-shadow: 0 10px 20px rgba(197,165,90,.3); }
+.btn-gold:hover { background-color: var(--gold-light); color: var(--clr-primary); transform: translateY(-2px); box-shadow: 0 10px 20px rgba(197,165,90,.3); }
 .btn-secondary { background-color: rgba(255,255,255,0.1); color: white; backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); border: 1px solid rgba(255,255,255,0.2); }
 .btn-secondary:hover { background-color: white; color: var(--clr-primary); transform: translateY(-2px); }
 .btn-danger { background: var(--barn-red); color: #fff; }
@@ -653,7 +653,7 @@ tr:hover { background: var(--cream); }
       <a href="#" class="nav-link" data-page="membership" onclick="navigate('membership'); return false;">Membership</a>
       <a href="#" class="nav-link" id="nav-login-link" data-page="login" onclick="navigate('login'); return false;">Login</a>
       <div class="header-btn">
-        <button class="btn btn-gold" onclick="navigate('invite')">Invite Code</button>
+        <button class="btn btn-gold" onclick="navigate('invite')">Enter Invite Code</button>
       </div>
     </nav>
     <nav class="mobile-menu" id="mobile-menu">
@@ -663,7 +663,7 @@ tr:hover { background: var(--cream); }
       <a href="#" class="nav-link" onclick="navigate('shipping');closeMobileMenu(); return false;">Shipping</a>
       <a href="#" class="nav-link" onclick="navigate('membership');closeMobileMenu(); return false;">Membership</a>
       <a href="#" class="nav-link" id="mobile-login-link" onclick="navigate('login');closeMobileMenu(); return false;">Login</a>
-      <a href="#" class="nav-link" onclick="navigate('invite');closeMobileMenu(); return false;">Invite Code</a>
+      <a href="#" class="nav-link" onclick="navigate('invite');closeMobileMenu(); return false;">Enter Invite Code</a>
     </nav>
   </div>
 </header>
