@@ -530,6 +530,45 @@ tr:hover { background: var(--cream); }
     </div>
   </section>
 
+  <!-- How It Works Process -->
+  <section class="section-sm" style="background:var(--surface);border-top:1px solid var(--border);border-bottom:1px solid var(--border);">
+    <div class="container">
+      <div class="text-center mb-4">
+        <h2>How It Works</h2>
+        <p class="text-muted">From invitation to delivery in 4 simple steps</p>
+      </div>
+      <div class="grid grid-4">
+        <div style="text-align:center;padding:20px;">
+          <div style="width:64px;height:64px;border-radius:50%;background:var(--gold);color:#fff;font-size:28px;font-weight:800;display:flex;align-items:center;justify-content:center;margin:0 auto 16px;">1</div>
+          <div style="font-size:32px;margin-bottom:8px;">&#128273;</div>
+          <h4 style="color:var(--green-dark);">Get Invited</h4>
+          <p class="text-muted" style="font-size:13px;margin-top:6px;">Receive an invitation code from an existing Hemp Life Farmers member. This is an invite-only buyers club.</p>
+        </div>
+        <div style="text-align:center;padding:20px;">
+          <div style="width:64px;height:64px;border-radius:50%;background:var(--gold);color:#fff;font-size:28px;font-weight:800;display:flex;align-items:center;justify-content:center;margin:0 auto 16px;">2</div>
+          <div style="font-size:32px;margin-bottom:8px;">&#128203;</div>
+          <h4 style="color:var(--green-dark);">Apply &amp; Pay</h4>
+          <p class="text-muted" style="font-size:13px;margin-top:6px;">Submit your application with a $100 non-refundable fee. Agree to all compliance and legal terms. Admin reviews within 24&ndash;48 hrs.</p>
+        </div>
+        <div style="text-align:center;padding:20px;">
+          <div style="width:64px;height:64px;border-radius:50%;background:var(--gold);color:#fff;font-size:28px;font-weight:800;display:flex;align-items:center;justify-content:center;margin:0 auto 16px;">3</div>
+          <div style="font-size:32px;margin-bottom:8px;">&#128230;</div>
+          <h4 style="color:var(--green-dark);">Browse &amp; Order</h4>
+          <p class="text-muted" style="font-size:13px;margin-top:6px;">Once approved, access the wholesale catalog. Select products, set quantities, and submit your order for admin approval.</p>
+        </div>
+        <div style="text-align:center;padding:20px;">
+          <div style="width:64px;height:64px;border-radius:50%;background:var(--gold);color:#fff;font-size:28px;font-weight:800;display:flex;align-items:center;justify-content:center;margin:0 auto 16px;">4</div>
+          <div style="font-size:32px;margin-bottom:8px;">&#128666;</div>
+          <h4 style="color:var(--green-dark);">Receive &amp; Verify</h4>
+          <p class="text-muted" style="font-size:13px;margin-top:6px;">Orders ship with full compliance docs and COAs. Chain of custody documented from farm to your door. $50/mo membership keeps access active.</p>
+        </div>
+      </div>
+      <div class="text-center mt-3">
+        <button class="btn btn-gold" onclick="navigate('apply')">Start Your Application &rarr;</button>
+      </div>
+    </div>
+  </section>
+
   <!-- Featured Products -->
   <section class="section-sm">
     <div class="container">
@@ -579,13 +618,40 @@ tr:hover { background: var(--cream); }
     </div>
   </div>
   <div class="container">
-    <div class="gold-box mb-4">
-      <strong>Members Only:</strong> Pricing and ordering available to approved members only. You must have an active membership to place orders.
-      <span id="products-member-cta"> <a href="#" onclick="navigate('apply');return false;" style="font-weight:700;">Apply for membership</a> or <a href="#" onclick="navigate('login');return false;" style="font-weight:700;">log in</a> to get started.</span>
+
+    <!-- Membership Wall — shown to non-members -->
+    <div id="products-wall" style="display:none;">
+      <div style="text-align:center;padding:60px 20px;max-width:600px;margin:0 auto;">
+        <img src="images/logo.png" alt="Hemp Life Farmers" style="width:120px;height:120px;border-radius:50%;margin:0 auto 24px;display:block;">
+        <h2 style="color:var(--green-dark);">Members Only Catalog</h2>
+        <p class="text-muted mt-2 mb-3">Our wholesale product catalog is exclusively available to approved members. You must have an active invitation and membership to view products and pricing.</p>
+        <div class="red-box mb-3" style="text-align:left;">
+          <strong>Access Requirements:</strong>
+          <ul style="margin:8px 0 0 20px;font-size:14px;">
+            <li>Valid invitation code from an existing member</li>
+            <li>Approved membership application</li>
+            <li>$100 non-refundable application fee paid</li>
+            <li>Active $50/month membership</li>
+          </ul>
+        </div>
+        <div style="display:flex;gap:12px;justify-content:center;flex-wrap:wrap;">
+          <button class="btn btn-primary btn-lg" onclick="navigate('login')">Member Login &rarr;</button>
+          <button class="btn btn-gold btn-lg" onclick="navigate('apply')">Apply for Membership &rarr;</button>
+        </div>
+        <p class="text-muted mt-3" style="font-size:12px;">Already have an invitation? <a href="#" onclick="navigate('apply');return false;">Apply here</a>.</p>
+      </div>
     </div>
-    <div id="product-catalog" class="grid grid-2">
-      <p class="text-muted text-center">Loading products...</p>
+
+    <!-- Catalog — shown only to logged-in members -->
+    <div id="products-catalog-section" style="display:none;">
+      <div class="gold-box mb-4">
+        <strong>Members Only:</strong> You are viewing the wholesale catalog. All orders require admin approval before processing.
+      </div>
+      <div id="product-catalog" class="grid grid-2">
+        <p class="text-muted text-center">Loading products...</p>
+      </div>
     </div>
+
   </div>
   <div style="height:60px"></div>
 </div>
@@ -849,10 +915,22 @@ tr:hover { background: var(--cream); }
               <option value="">Select State...</option>
               <option value="AL">Alabama</option><option value="AK">Alaska</option><option value="AZ">Arizona</option><option value="AR">Arkansas</option><option value="CA">California</option><option value="CO">Colorado</option><option value="CT">Connecticut</option><option value="DE">Delaware</option><option value="FL">Florida</option><option value="GA">Georgia</option><option value="HI">Hawaii</option><option value="ID">Idaho</option><option value="IL">Illinois</option><option value="IN">Indiana</option><option value="IA">Iowa</option><option value="KS">Kansas</option><option value="KY">Kentucky</option><option value="LA">Louisiana</option><option value="ME">Maine</option><option value="MD">Maryland</option><option value="MA">Massachusetts</option><option value="MI">Michigan</option><option value="MN">Minnesota</option><option value="MS">Mississippi</option><option value="MO">Missouri</option><option value="MT">Montana</option><option value="NE">Nebraska</option><option value="NV">Nevada</option><option value="NH">New Hampshire</option><option value="NJ">New Jersey</option><option value="NM">New Mexico</option><option value="NY">New York</option><option value="NC">North Carolina</option><option value="ND">North Dakota</option><option value="OH">Ohio</option><option value="OK">Oklahoma</option><option value="OR">Oregon</option><option value="PA">Pennsylvania</option><option value="RI">Rhode Island</option><option value="SC">South Carolina</option><option value="SD">South Dakota</option><option value="TN">Tennessee</option><option value="TX">Texas</option><option value="UT">Utah</option><option value="VT">Vermont</option><option value="VA">Virginia</option><option value="WA">Washington</option><option value="WV">West Virginia</option><option value="WI">Wisconsin</option><option value="WY">Wyoming</option>
             </select>
-            <span id="state-warning" class="hidden" style="color:var(--barn-red);font-size:13px;font-weight:700;margin-top:4px;display:none;">&#9888; This state may have restrictions on hemp products. Some products may not be available.</span>
+            <span id="state-warning" style="display:none;color:#fff;background:var(--barn-red);font-size:13px;font-weight:700;padding:8px 12px;border-radius:6px;margin-top:6px;">
+              &#10007; APPLICATION BLOCKED — We cannot accept applications from this state. Hemp product restrictions prevent us from doing business in your state.
+            </span>
           </div>
         </div>
         <div class="form-group"><label>ZIP Code *</label><input type="text" id="app-zip" required></div>
+        <div class="red-box mt-2">
+          <strong>States We Cannot Deliver To:</strong>
+          <p style="margin-top:6px;font-size:13px;">We are unable to ship or accept applications from the following states due to state-level hemp restrictions:</p>
+          <div style="margin-top:8px;display:flex;gap:8px;flex-wrap:wrap;" id="apply-restricted-states-tags">
+            <span style="background:var(--barn-red);color:#fff;padding:4px 14px;border-radius:14px;font-size:13px;font-weight:600;">Idaho (ID)</span>
+            <span style="background:var(--barn-red);color:#fff;padding:4px 14px;border-radius:14px;font-size:13px;font-weight:600;">Oregon (OR)</span>
+            <span style="background:var(--barn-red);color:#fff;padding:4px 14px;border-radius:14px;font-size:13px;font-weight:600;">South Dakota (SD)</span>
+          </div>
+          <p style="margin-top:8px;font-size:12px;color:var(--text-muted);">If your state is listed above, your application will be automatically rejected. This list is updated based on current state legislation.</p>
+        </div>
         <div class="checkbox-group">
           <input type="checkbox" id="app-billing-same" checked onchange="toggleShippingFields()">
           <label for="app-billing-same">Billing address is the same as shipping address</label>
@@ -1240,7 +1318,7 @@ tr:hover { background: var(--cream); }
     <div id="admin-tab-members" class="admin-tab-content">
       <div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px;" class="mb-3">
         <h3>Member Management</h3>
-        <div style="display:flex;gap:8px;align-items:center;">
+        <div style="display:flex;gap:8px;align-items:center;flex-wrap:wrap;">
           <input type="text" id="admin-member-search" placeholder="Search members..." style="padding:8px 14px;border:1px solid var(--border);border-radius:6px;font-size:13px;width:220px;" oninput="filterAdminMembers()">
           <select id="admin-member-filter" style="padding:8px 12px;border:1px solid var(--border);border-radius:6px;font-size:13px;" onchange="filterAdminMembers()">
             <option value="all">All Status</option>
@@ -1260,6 +1338,31 @@ tr:hover { background: var(--cream); }
         </table>
       </div>
       <p class="text-muted mt-2" style="font-size:12px;">Total: <span id="admin-members-count">0</span> members</p>
+
+      <!-- Admin Invite Code Generator -->
+      <div class="card card-flat mt-4" style="border:2px solid var(--gold);">
+        <h4 style="margin-bottom:12px;">Generate Invitation Codes</h4>
+        <p class="text-muted mb-3" style="font-size:13px;">Create invitation codes to give to prospective members. Only users with a valid code can apply.</p>
+        <div style="display:flex;gap:12px;align-items:end;flex-wrap:wrap;">
+          <div class="form-group" style="margin:0;">
+            <label style="font-size:12px;">Number of codes</label>
+            <select id="admin-code-qty" style="padding:8px;width:80px;">
+              <option>1</option><option>3</option><option>5</option><option>10</option>
+            </select>
+          </div>
+          <button class="btn btn-sm btn-gold" onclick="adminGenerateCodes()">Generate Codes</button>
+        </div>
+        <div id="admin-generated-codes" class="mt-3"></div>
+        <div class="mt-3">
+          <h5 style="margin-bottom:8px;">All Invitation Codes</h5>
+          <div class="table-wrap">
+            <table>
+              <thead><tr><th>Code</th><th>Created</th><th>Status</th><th>Used By</th></tr></thead>
+              <tbody id="admin-invite-codes-tbody"></tbody>
+            </table>
+          </div>
+        </div>
+      </div>
     </div>
 
     <!-- Admin Tab: Orders Management -->
@@ -1853,6 +1956,9 @@ function navigate(pageName) {
   if (pageName === 'admin') {
     populateAdminDashboard();
   }
+  if (pageName === 'products') {
+    updateProductsWall();
+  }
   if (pageName === 'apply') {
     autoFillInviteCode();
   }
@@ -2054,22 +2160,7 @@ function renderAllProductViews() {
   renderChainOfCustody();
 }
 
-/* ----------------------------------------------------------
-   UTILITY: collect restricted states into a Set
-   ---------------------------------------------------------- */
-function buildRestrictedStatesSet() {
-  restrictedStatesSet = new Set();
-  for (var i = 0; i < productData.length; i++) {
-    var rs = productData[i].restricted_states;
-    if (rs) {
-      var parts = rs.split(',');
-      for (var j = 0; j < parts.length; j++) {
-        var s = parts[j].trim().toUpperCase();
-        if (s) restrictedStatesSet.add(s);
-      }
-    }
-  }
-}
+/* buildRestrictedStatesSet is defined in section 23 (Restricted States) */
 
 /* ----------------------------------------------------------
    5. PRODUCT RENDERING
@@ -2091,17 +2182,23 @@ function renderHomeFeatured() {
     var p = featured[i];
     var thcVal = parseFloat(p.delta9_thc_pct) || 0;
     var compliant = thcVal <= 0.3;
-    html += '<div class="featured-card" style="border-left:3px solid #2d5016;padding:1.25rem;margin-bottom:1rem;background:#fff;border-radius:6px;box-shadow:0 1px 4px rgba(0,0,0,.08);">';
-    html += '<span class="type-badge" style="display:inline-block;background:#2d5016;color:#fff;padding:2px 10px;border-radius:12px;font-size:.75rem;margin-bottom:.5rem;">' + escHtml(p.product_type) + '</span>';
-    html += '<h4 style="margin:.25rem 0;">' + escHtml(p.product_name) + '</h4>';
-    html += '<p style="font-size:.8rem;color:#666;margin:0 0 .35rem;">' + escHtml(p.sku) + ' &middot; ' + escHtml(p.cultivation_method) + '</p>';
+    var featGrad = getProductGradient(p.product_type, p.product_category);
+    html += '<div class="featured-card" style="border-radius:10px;overflow:hidden;background:#fff;box-shadow:0 2px 10px rgba(0,0,0,.1);margin-bottom:1rem;">';
+    html += '<div style="background:' + featGrad + ';height:120px;display:flex;align-items:center;justify-content:center;position:relative;">';
+    html += '<img src="images/logo.png" alt="" style="width:60px;height:60px;border-radius:50%;opacity:.3;">';
+    html += '<span style="position:absolute;top:10px;left:10px;background:rgba(0,0,0,.5);color:#fff;padding:2px 10px;border-radius:12px;font-size:.7rem;">' + escHtml(p.product_type) + '</span>';
+    html += '<span style="position:absolute;bottom:10px;right:10px;background:rgba(45,80,22,.85);color:#fff;padding:3px 12px;border-radius:12px;font-size:.75rem;font-weight:700;">' + escHtml(p.cultivation_method) + '</span>';
+    html += '</div>';
+    html += '<div style="padding:1rem;">';
+    html += '<h4 style="margin:0 0 .25rem;">' + escHtml(p.product_name) + '</h4>';
+    html += '<p style="font-size:.8rem;color:#666;margin:0 0 .35rem;">' + escHtml(p.sku) + '</p>';
     html += '<p style="font-size:.85rem;margin:0 0 .5rem;">' + escHtml(p.short_description) + '</p>';
     html += '<p style="font-weight:700;color:#2d5016;margin:0 0 .5rem;">From ' + formatCurrency(p.price_per_lb) + '/lb</p>';
     if (!compliant) {
       html += '<span style="background:#b91c1c;color:#fff;padding:2px 8px;border-radius:4px;font-size:.75rem;">COMPLIANCE ALERT</span> ';
     }
     html += '<button onclick="navigate(\'products\')" style="background:none;border:none;color:#2d5016;font-weight:600;cursor:pointer;padding:0;font-size:.9rem;">View Details &rarr;</button>';
-    html += '</div>';
+    html += '</div></div>';
   }
   container.innerHTML = html;
 }
@@ -2127,17 +2224,13 @@ function renderProductCatalog() {
       html += '<div style="background:#b91c1c;color:#fff;padding:8px 16px;font-weight:700;font-size:.85rem;">COMPLIANCE ALERT — Delta-9 THC exceeds 0.3% federal limit</div>';
     }
 
-    /* Image placeholder */
-    var gradients = {
-      'THCA Flower': 'linear-gradient(135deg,#2d5016,#4a7c28)',
-      'CBD Flower': 'linear-gradient(135deg,#1a5276,#2e86c1)',
-      'Extract': 'linear-gradient(135deg,#7d5a00,#d4a017)',
-      'Concentrates': 'linear-gradient(135deg,#7d5a00,#d4a017)',
-      'Pre-Roll': 'linear-gradient(135deg,#5b2c6f,#8e44ad)'
-    };
-    var grad = gradients[p.product_type] || gradients[p.product_category] || 'linear-gradient(135deg,#333,#666)';
-    html += '<div style="background:' + grad + ';height:160px;display:flex;align-items:center;justify-content:center;color:#fff;font-size:1.1rem;font-weight:600;letter-spacing:.5px;">';
-    html += escHtml(p.product_type || p.product_category);
+    /* Image placeholder with logo watermark */
+    var grad = getProductGradient(p.product_type, p.product_category);
+    html += '<div style="background:' + grad + ';height:180px;display:flex;align-items:center;justify-content:center;position:relative;">';
+    html += '<img src="images/logo.png" alt="" style="width:80px;height:80px;border-radius:50%;opacity:.25;">';
+    html += '<span style="position:absolute;top:12px;left:12px;background:rgba(0,0,0,.5);color:#fff;padding:3px 12px;border-radius:12px;font-size:.75rem;">' + escHtml(p.product_type || p.product_category) + '</span>';
+    html += '<span style="position:absolute;top:12px;right:12px;background:rgba(45,80,22,.85);color:#fff;padding:3px 12px;border-radius:12px;font-size:.75rem;font-weight:700;">' + escHtml(p.cultivation_method) + '</span>';
+    if (p.featured === 'TRUE') html += '<span style="position:absolute;bottom:12px;left:12px;background:var(--gold);color:#fff;padding:2px 10px;border-radius:12px;font-size:.7rem;font-weight:700;">FEATURED</span>';
     html += '</div>';
 
     html += '<div style="padding:1.25rem;">';
@@ -2476,11 +2569,16 @@ function checkStateRestriction() {
   var warning = document.getElementById('state-warning');
   if (!stateEl || !warning) return;
   var val = stateEl.value.trim().toUpperCase();
-  if (val && restrictedStatesSet.has(val)) {
+  /* Use hard-coded list + any from products */
+  var blocked = RESTRICTED_STATES.indexOf(val) !== -1 || restrictedStatesSet.has(val);
+  if (val && blocked) {
     warning.style.display = 'block';
-    warning.textContent = 'Warning: ' + val + ' has restrictions on certain hemp products. Some products may not be available.';
+    var submitBtn = document.querySelector('#application-form .btn-primary');
+    if (submitBtn) { submitBtn.disabled = true; submitBtn.textContent = 'Application Blocked — Restricted State'; }
   } else {
     warning.style.display = 'none';
+    var submitBtn2 = document.querySelector('#application-form .btn-primary');
+    if (submitBtn2) { submitBtn2.disabled = false; submitBtn2.textContent = 'Submit Application & View Payment Instructions'; }
   }
 }
 
@@ -3353,6 +3451,7 @@ function populateAdminDashboard() {
   renderAdminMembers();
   renderAdminOrders();
   renderAdminProducts();
+  renderAdminInviteCodes();
 }
 
 /* --- Members Management --- */
@@ -3796,6 +3895,20 @@ function cancelClientOrder(orderId, btn) {
 /* ----------------------------------------------------------
    21. MEMBERSHIP ENFORCEMENT
    ---------------------------------------------------------- */
+/* Products page wall — toggle catalog vs wall based on login */
+function updateProductsWall() {
+  var wall = document.getElementById('products-wall');
+  var catalog = document.getElementById('products-catalog-section');
+  if (!wall || !catalog) return;
+  if (sessionStorage.getItem('memberLoggedIn') && sessionStorage.getItem('memberStatus') === 'active') {
+    wall.style.display = 'none';
+    catalog.style.display = 'block';
+  } else {
+    wall.style.display = 'block';
+    catalog.style.display = 'none';
+  }
+}
+
 /* Products page "Request Invoice" buttons check membership */
 function requestInvoice(sku) {
   if (!sessionStorage.getItem('memberLoggedIn')) {
@@ -3809,6 +3922,98 @@ function requestInvoice(sku) {
   }
   navigate('dashboard');
   setTimeout(function() { showPlaceOrderForm(); }, 100);
+}
+
+/* ----------------------------------------------------------
+   22. ADMIN INVITE CODE MANAGEMENT
+   ---------------------------------------------------------- */
+var adminInviteCodes = [
+  { code: 'HLF-INV-7742', created: '2024-12-01', status: 'Used', usedBy: 'Demo Member' },
+  { code: 'HLF-INV-8821', created: '2025-01-15', status: 'Used', usedBy: 'Jane Rodriguez' },
+  { code: 'HLF-INV-3321', created: '2025-02-10', status: 'Used', usedBy: 'Robert Chen' },
+  { code: 'HLF-INV-4456', created: '2025-02-20', status: 'Used', usedBy: 'Sarah Williams' },
+  { code: 'HLF-INV-5567', created: '2025-01-05', status: 'Used', usedBy: 'Mike Thompson' },
+  { code: 'HLF-INV-9934', created: '2025-03-01', status: 'Available', usedBy: '' }
+];
+
+function adminGenerateCodes() {
+  var qty = parseInt(document.getElementById('admin-code-qty').value) || 1;
+  var newCodes = [];
+  var today = new Date().toISOString().slice(0,10);
+  for (var i = 0; i < qty; i++) {
+    var code = 'HLF-INV-' + Math.floor(1000 + Math.random() * 9000);
+    adminInviteCodes.push({ code: code, created: today, status: 'Available', usedBy: '' });
+    newCodes.push(code);
+  }
+  renderAdminInviteCodes();
+  var codesDisplay = document.getElementById('admin-generated-codes');
+  if (codesDisplay) {
+    var html = '<div style="background:var(--green-pale);border:1px solid var(--green-mid);border-radius:8px;padding:16px;">';
+    html += '<strong style="color:var(--green-dark);">Generated ' + qty + ' new code(s):</strong><br>';
+    for (var j = 0; j < newCodes.length; j++) {
+      html += '<code style="display:inline-block;background:#fff;padding:4px 12px;border-radius:4px;margin:4px;font-size:14px;font-weight:700;letter-spacing:1px;">' + newCodes[j] + '</code> ';
+    }
+    html += '<p class="text-muted mt-2" style="font-size:12px;">Share these codes with prospective members. Each code can be used once.</p>';
+    html += '</div>';
+    codesDisplay.innerHTML = html;
+  }
+}
+
+function renderAdminInviteCodes() {
+  var tbody = document.getElementById('admin-invite-codes-tbody');
+  if (!tbody) return;
+  var html = '';
+  for (var i = adminInviteCodes.length - 1; i >= 0; i--) {
+    var c = adminInviteCodes[i];
+    var badge = c.status === 'Used' ? 'badge-green' : 'badge-gold';
+    html += '<tr>';
+    html += '<td style="font-family:monospace;font-weight:700;letter-spacing:.5px;">' + escHtml(c.code) + '</td>';
+    html += '<td>' + escHtml(c.created) + '</td>';
+    html += '<td><span class="badge ' + badge + '">' + c.status + '</span></td>';
+    html += '<td>' + (c.usedBy || '&mdash;') + '</td>';
+    html += '</tr>';
+  }
+  tbody.innerHTML = html;
+}
+
+/* ----------------------------------------------------------
+   23. RESTRICTED STATES — HARD LIST
+   ---------------------------------------------------------- */
+/* Explicit list of states where we CANNOT deliver.
+   These are checked on signup AND on order placement. */
+var RESTRICTED_STATES = ['ID','OR','SD'];
+
+var RESTRICTED_STATE_NAMES = {
+  ID: 'Idaho', OR: 'Oregon', SD: 'South Dakota'
+};
+
+/* Override buildRestrictedStatesSet to use the hard list */
+var _origBuildRestricted = typeof buildRestrictedStatesSet === 'function' ? buildRestrictedStatesSet : null;
+function buildRestrictedStatesSet() {
+  restrictedStatesSet = new Set(RESTRICTED_STATES);
+  /* Also add any from product data */
+  for (var i = 0; i < productData.length; i++) {
+    var rs = productData[i].restricted_states;
+    if (rs) {
+      var parts = rs.split(',');
+      for (var j = 0; j < parts.length; j++) {
+        var s = parts[j].trim().toUpperCase();
+        if (s) restrictedStatesSet.add(s);
+      }
+    }
+  }
+}
+
+/* Gradient for product type images */
+function getProductGradient(type, category) {
+  var gradients = {
+    'THCA Flower': 'linear-gradient(135deg,#2d5016 0%,#4a7c28 50%,#6ba33c 100%)',
+    'CBD Flower': 'linear-gradient(135deg,#1a5276 0%,#2e86c1 50%,#5dade2 100%)',
+    'Extract': 'linear-gradient(135deg,#7d5a00 0%,#d4a017 50%,#f0c040 100%)',
+    'Concentrates': 'linear-gradient(135deg,#7d5a00 0%,#d4a017 50%,#f0c040 100%)',
+    'Pre-Roll': 'linear-gradient(135deg,#5b2c6f 0%,#8e44ad 50%,#bb8fce 100%)'
+  };
+  return gradients[type] || gradients[category] || 'linear-gradient(135deg,#2d5016 0%,#4a7c28 50%,#6ba33c 100%)';
 }
 
 function escHtml(str) {
