@@ -190,7 +190,7 @@ ul, ol { list-style: none; }
 }
 .nav-container { display: flex; align-items: center; justify-content: space-between; height: 100px; }
 .brand { display: flex; align-items: center; gap: 16px; cursor: pointer; }
-.brand img { height: 70px; width: auto; filter: drop-shadow(0 4px 6px rgba(0,0,0,0.1)); }
+.brand img { height: 100px; width: auto; filter: drop-shadow(0 4px 6px rgba(0,0,0,0.1)); }
 .brand-text { display: flex; flex-direction: column; }
 .brand-name { font-family: 'Outfit', sans-serif; color: var(--clr-primary); font-size: 26px; font-weight: 900; letter-spacing: -0.02em; }
 .brand-sub { font-family: 'Outfit', sans-serif; font-size: 11px; font-weight: 800; text-transform: uppercase; letter-spacing: 0.15em; color: var(--clr-secondary); margin-top: 2px; }
@@ -581,11 +581,7 @@ tr:hover { background: var(--cream); }
 <header class="header">
   <div class="container nav-container">
     <div class="brand" onclick="navigate('home')">
-      <img src="images/logo.png" alt="Logo">
-      <div class="brand-text">
-        <span class="brand-name">Hemp Life</span>
-        <span class="brand-sub">Farmers Supply</span>
-      </div>
+      <img src="images/logo.png" alt="Hemp Life Farmers Supply">
     </div>
     <button class="mobile-menu-btn" onclick="toggleMobileMenu()" aria-label="Menu">&#9776;</button>
     <nav class="nav-links" id="desktop-nav">
@@ -633,7 +629,6 @@ tr:hover { background: var(--cream); }
     <div class="container hero-layout">
       <!-- Left: Bold Typography -->
       <div class="hero-content">
-        <img src="images/logo.png" alt="Logo" class="hero-logo">
         <h1>Commercial <br><span style="color: var(--clr-secondary);">Hemp Supply.</span></h1>
         <p>Lab-verified, chain-of-custody documented THCA &amp; CBD products tailored exclusively for licensed wholesale partners. Direct from the farm to your facility.</p>
         <div class="hero-btns">
