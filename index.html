@@ -110,6 +110,10 @@ ul, ol { list-style: none; }
 .btn-secondary:hover { background-color: white; color: var(--clr-primary); transform: translateY(-2px); }
 .btn-danger { background: var(--barn-red); color: #fff; }
 .btn-danger:hover { background: #a04432; }
+.btn-soil { background-color: var(--soil); color: #fff; }
+.btn-soil:hover { background-color: var(--soil-light); transform: translateY(-2px); box-shadow: 0 10px 20px rgba(92,61,46,.25); }
+.btn-text { background: none; color: var(--soil); font-weight: 800; padding: 0; text-transform: uppercase; letter-spacing: 0.08em; border-bottom: 2px solid var(--clr-secondary); border-radius: 0; padding-bottom: 4px; }
+.btn-text:hover { color: var(--clr-primary); border-bottom-color: var(--clr-primary); }
 .btn-outline-light { background: rgba(255,255,255,.12); color: #fff; border: 1px solid rgba(255,255,255,.3); backdrop-filter: blur(6px); }
 .btn-outline-light:hover { background: #fff; color: var(--clr-primary); }
 .btn-sm { padding: 8px 18px; font-size: 12px; }
@@ -733,7 +737,7 @@ tr:hover { background: var(--cream); }
             <li>Wholesale Quantities (1lb &ndash; 50lb+)</li>
             <li>Full Seed-to-Sale Chain of Custody</li>
           </ul>
-          <button class="btn btn-dark" style="margin-top: 40px;" onclick="navigate('apply')">Begin Your Journey</button>
+          <button class="btn btn-soil" style="margin-top: 40px;" onclick="navigate('apply')">Begin Your Journey</button>
         </div>
       </div>
     </div>
@@ -812,7 +816,7 @@ tr:hover { background: var(--cream); }
         </div>
       </div>
       <div class="text-center mt-3">
-        <button class="btn btn-gold" onclick="navigate('apply')">Start Your Application</button>
+        <button class="btn btn-text" onclick="navigate('apply')">Start Your Application &rarr;</button>
       </div>
     </div>
   </section>
@@ -830,7 +834,7 @@ tr:hover { background: var(--cream); }
         <p class="text-muted text-center">Loading products...</p>
       </div>
       <div class="text-center mt-4">
-        <button class="btn btn-dark" onclick="navigate('products')">Explore Full Harvest</button>
+        <button class="btn btn-soil" onclick="navigate('products')">Explore Full Harvest</button>
       </div>
     </div>
   </section>
@@ -852,7 +856,7 @@ tr:hover { background: var(--cream); }
         <h2>Grown Clean, Tested Pure</h2>
       </div>
       <p style="font-size:17px;color:var(--clr-text-muted);line-height:1.8;margin-bottom:30px;">Every plant we grow honors the land it comes from. All products contain no more than 0.3% &Delta;9-THC on a dry-weight basis — fully compliant under the 2018 Farm Bill. Each harvest is tested by independent, ISO 17025 accredited labs with complete chain-of-custody documentation.</p>
-      <button class="btn btn-dark" onclick="navigate('compliance')">View Lab Reports</button>
+      <button class="btn btn-text" onclick="navigate('compliance')">View Lab Reports &rarr;</button>
     </div>
   </section>
 
@@ -884,7 +888,7 @@ tr:hover { background: var(--cream); }
           </ul>
         </div>
         <div style="display:flex;gap:12px;justify-content:center;flex-wrap:wrap;">
-          <button class="btn btn-primary btn-lg" onclick="navigate('login')">Member Login &rarr;</button>
+          <button class="btn btn-soil btn-lg" onclick="navigate('login')">Member Login &rarr;</button>
           <button class="btn btn-gold btn-lg" onclick="navigate('apply')">Apply for Membership &rarr;</button>
         </div>
         <p class="text-muted mt-3" style="font-size:12px;">Already have an invitation? <a href="#" onclick="navigate('apply');return false;">Apply here</a>.</p>
@@ -1054,7 +1058,7 @@ tr:hover { background: var(--cream); }
         <li>New product early access</li>
         <li>Personal referral codes to invite others</li>
       </ul>
-      <button class="btn btn-primary btn-lg w-full mt-3" onclick="navigate('apply')">Apply Now &mdash; Invitation Code Required &rarr;</button>
+      <button class="btn btn-soil btn-lg w-full mt-3" onclick="navigate('apply')">Apply Now &mdash; Invitation Code Required &rarr;</button>
     </div>
 
     <!-- No Refunds -->
@@ -1306,7 +1310,7 @@ tr:hover { background: var(--cream); }
       </div>
 
       <div class="text-center">
-        <button class="btn btn-primary" onclick="navigate('home')">Return to Home</button>
+        <button class="btn btn-text" onclick="navigate('home')">Return to Home &rarr;</button>
         <button class="btn btn-secondary" onclick="navigate('products')" style="margin-left:12px;">View Products</button>
       </div>
     </div>
@@ -2014,7 +2018,7 @@ tr:hover { background: var(--cream); }
         <div class="form-group"><label>Message *</label><textarea id="contact-message" placeholder="How can we help?"></textarea></div>
         <div class="checkbox-group"><input type="checkbox" id="contact-age" required><label for="contact-age">I am 21 years of age or older.</label></div>
         <div class="checkbox-group"><input type="checkbox" id="contact-terms" required><label for="contact-terms">I agree to the <a href="#" onclick="navigate('terms');return false;">Terms of Service</a> and <a href="#" onclick="navigate('disclaimer');return false;">Legal Disclaimer</a>.</label></div>
-        <button class="btn btn-primary w-full mt-2" onclick="submitContactForm()">Send Inquiry &rarr;</button>
+        <button class="btn btn-soil w-full mt-2" onclick="submitContactForm()">Send Inquiry &rarr;</button>
       </div>
     </div>
     <div class="gold-box mt-4 text-center">All buyers are tracked by invitation code and name. No unverified customers.</div>
@@ -2056,7 +2060,7 @@ tr:hover { background: var(--cream); }
       </div>
 
       <div>
-        <button class="btn btn-primary" onclick="navigate('home')">Return to Home</button>
+        <button class="btn btn-text" onclick="navigate('home')">Return to Home &rarr;</button>
         <button class="btn btn-secondary" onclick="navigate('products')" style="margin-left:12px;">View Products</button>
       </div>
     </div>
@@ -2443,7 +2447,7 @@ function renderHomeFeatured() {
     html += '<p class="product-meta">' + escHtml(p.sku) + '</p>';
     html += '<p class="product-desc">' + escHtml(p.short_description) + '</p>';
     html += '<p style="font-family:Outfit,sans-serif;font-weight:800;font-size:18px;color:var(--clr-primary);margin-bottom:16px;">From ' + formatCurrency(p.price_per_lb) + '/lb</p>';
-    html += '<button class="btn btn-dark" style="width:100%;padding:14px;" onclick="navigate(\'products\')">View Details</button>';
+    html += '<button class="btn btn-soil" style="width:100%;padding:14px;" onclick="navigate(\'products\')">View Details</button>';
     html += '</div></div>';
   }
   container.innerHTML = html;
@@ -2549,7 +2553,7 @@ function renderProductCatalog() {
 
     /* Action buttons */
     html += '<div class="product-actions">';
-    html += '<button class="btn btn-dark" onclick="navigate(\'compliance\')">View COA</button>';
+    html += '<button class="btn btn-soil" onclick="navigate(\'compliance\')">View COA</button>';
     html += '<button class="btn" style="border:2px solid var(--clr-primary);color:var(--clr-primary);background:#fff;" onclick="requestInvoice(\'' + escAttr(p.sku) + '\')">Request Invoice</button>';
     html += '</div>';
 
