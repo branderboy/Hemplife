@@ -197,7 +197,7 @@ ul, ol { list-style: none; }
   border-bottom: 1px solid var(--clr-border);
 }
 .nav-container { display: flex; align-items: center; justify-content: space-between; height: 100px; }
-.brand { display: flex; align-items: center; gap: 16px; cursor: pointer; }
+.brand { display: flex; align-items: center; gap: 16px; cursor: pointer; margin-right: 32px; }
 .brand img { height: 100px; width: auto; filter: drop-shadow(0 4px 6px rgba(0,0,0,0.1)); }
 .brand-text { display: flex; flex-direction: column; }
 .brand-name { font-family: 'Outfit', sans-serif; color: var(--clr-primary); font-size: 26px; font-weight: 900; letter-spacing: -0.02em; }
@@ -485,9 +485,9 @@ tr:hover { background: var(--cream); }
 
 /* ========== FOOTER ========== */
 .footer {
-  background-color: #1A3409; color: rgba(255,255,255,0.7);
+  background-color: #3E2A1A; color: rgba(255,255,255,0.7);
   padding: 80px 0 0; border-top: 4px solid var(--clr-secondary);
-  background-image: linear-gradient(180deg, var(--clr-primary) 0%, #1A3409 100%);
+  background-image: linear-gradient(180deg, #5C3D2E 0%, #3E2A1A 100%);
   position: relative;
 }
 .footer::before {
@@ -499,13 +499,13 @@ tr:hover { background: var(--cream); }
 @media (min-width: 768px) { .footer-grid { grid-template-columns: repeat(2, 1fr); } }
 @media (min-width: 1024px) { .footer-grid { grid-template-columns: 1.5fr 1fr 1fr 1fr; } }
 .footer h4 { color: var(--clr-secondary); font-family: 'Outfit'; font-size: 18px; margin-bottom: 25px; text-transform: uppercase; letter-spacing: 0.1em; }
-.footer-brand img { width: 120px; margin-bottom: 25px; }
+.footer-brand img { width: 120px; margin-bottom: 25px; filter: brightness(0) invert(1); }
 .footer-brand p { font-size: 15px; line-height: 1.7; font-weight: 500; }
 .footer a { color: rgba(255,255,255,0.65); font-weight: 600; font-size: 15px; transition: all .2s; }
 .footer a:hover { color: var(--clr-secondary); padding-left: 5px; }
 .footer ul li { margin-bottom: 14px; }
 .footer-bottom {
-  background-color: #0F2205; padding: 25px 0; margin-top: 60px;
+  background-color: #2A1A0E; padding: 25px 0; margin-top: 60px;
   text-align: center; font-size: 13px; font-weight: 500;
   border-top: 1px solid rgba(255,255,255,0.08); position: relative;
 }
