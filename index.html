@@ -384,6 +384,36 @@ tr:hover { background: var(--cream); }
 .compliance-alert { background: var(--barn-red); color: #fff; padding: 8px 16px; font-weight: 700; font-size: 13px; border-radius: 6px 6px 0 0; }
 .referral-link-box { background: var(--cream); border: 1px solid var(--border); border-radius: 8px; padding: 16px; display: flex; align-items: center; gap: 12px; margin: 12px 0; }
 .referral-link-box code { flex: 1; font-size: 13px; word-break: break-all; }
+
+/* ========== ADMIN TABS ========== */
+.admin-tab-content { display: none; }
+.admin-tab-content:first-of-type { display: block; }
+.admin-product-card {
+  background: var(--surface); border: 1px solid var(--border); border-radius: 10px;
+  padding: 20px; margin-bottom: 16px; display: grid; grid-template-columns: 1fr;
+  gap: 16px; align-items: start;
+}
+@media (min-width: 768px) {
+  .admin-product-card { grid-template-columns: 100px 1fr auto; }
+}
+.admin-product-thumb {
+  width: 100px; height: 80px; border-radius: 6px; display: flex; align-items: center;
+  justify-content: center; font-size: 24px; color: rgba(255,255,255,.7);
+}
+.admin-product-info h4 { margin-bottom: 4px; }
+.admin-product-info p { font-size: 13px; color: var(--text-muted); margin-bottom: 2px; }
+.admin-product-actions { display: flex; gap: 8px; flex-wrap: wrap; align-items: flex-start; }
+.admin-status-select {
+  padding: 4px 8px; border: 1px solid var(--border); border-radius: 4px;
+  font-size: 12px; font-weight: 600;
+}
+.order-product-row {
+  display: grid; grid-template-columns: 1fr 100px 100px auto; gap: 12px;
+  align-items: end; margin-bottom: 12px;
+}
+@media (max-width: 640px) {
+  .order-product-row { grid-template-columns: 1fr; }
+}
     </style>
 </head>
 <body>
@@ -549,7 +579,10 @@ tr:hover { background: var(--cream); }
     </div>
   </div>
   <div class="container">
-    <div class="gold-box mb-4">Pricing and ordering available to approved members only. You must have an active membership to place orders.</div>
+    <div class="gold-box mb-4">
+      <strong>Members Only:</strong> Pricing and ordering available to approved members only. You must have an active membership to place orders.
+      <span id="products-member-cta"> <a href="#" onclick="navigate('apply');return false;" style="font-weight:700;">Apply for membership</a> or <a href="#" onclick="navigate('login');return false;" style="font-weight:700;">log in</a> to get started.</span>
+    </div>
     <div id="product-catalog" class="grid grid-2">
       <p class="text-muted text-center">Loading products...</p>
     </div>
@@ -968,6 +1001,11 @@ tr:hover { background: var(--cream); }
       <button class="btn btn-primary w-full" onclick="memberLogin()">Log In &rarr;</button>
       <p class="text-muted mt-3" style="font-size:13px;"><a href="#">Forgot password?</a></p>
       <p class="text-muted mt-2" style="font-size:13px;">Don't have an account? <a href="#" onclick="navigate('apply');return false;">Apply for membership</a></p>
+      <div style="border-top:1px solid var(--border);margin-top:20px;padding-top:16px;">
+        <p class="text-muted" style="font-size:11px;">Demo Logins:</p>
+        <p class="text-muted" style="font-size:11px;">Member: demo@hemplifefarmers.com / demo2025</p>
+        <p class="text-muted" style="font-size:11px;">Admin: admin@hemplifefarmers.com / admin2025</p>
+      </div>
     </div>
   </div>
 </div>
@@ -977,7 +1015,7 @@ tr:hover { background: var(--cream); }
   <div class="page-header">
     <div class="container">
       <h1>Welcome back, <span id="member-name-display">Member</span></h1>
-      <p>Manage your wholesale account, orders, and referrals.</p>
+      <p>Manage your wholesale account, orders, and referrals. <button class="btn btn-sm btn-secondary" onclick="memberLogout()" style="margin-left:12px;">Log Out</button></p>
     </div>
   </div>
   <div class="container">
@@ -1002,17 +1040,71 @@ tr:hover { background: var(--cream); }
 
     <!-- Tab: Orders -->
     <div id="tab-orders" class="dash-tab-content active">
-      <div class="table-wrap">
+      <div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px;" class="mb-3">
+        <h3 style="margin:0;">My Orders</h3>
+        <button class="btn btn-sm btn-primary" onclick="showPlaceOrderForm()">+ Place New Order</button>
+      </div>
+
+      <!-- Order History Table -->
+      <div class="table-wrap" id="client-orders-table">
         <table>
-          <thead><tr><th>Order #</th><th>Date</th><th>Products</th><th>Qty</th><th>Total</th><th>Status</th><th>COA</th></tr></thead>
+          <thead><tr><th>Order #</th><th>Date</th><th>Products</th><th>Qty</th><th>Total</th><th>Status</th><th>Actions</th></tr></thead>
           <tbody id="orders-tbody">
-            <tr><td>HLF-0001</td><td>Feb 15, 2025</td><td>Premium THCA Flower (Indoor)</td><td>5 lb</td><td>$8,250.00</td><td><span class="badge badge-green">Shipped</span></td><td><a href="#">&#128229;</a></td></tr>
-            <tr><td>HLF-0002</td><td>Mar 1, 2025</td><td>CBD Hemp Flower (Outdoor)</td><td>10 lb</td><td>$5,000.00</td><td><span class="badge badge-gold">Processing</span></td><td><a href="#">&#128229;</a></td></tr>
-            <tr><td>HLF-0003</td><td>Mar 10, 2025</td><td>THCA Flower (Greenhouse)</td><td>3 lb</td><td>$3,600.00</td><td><span class="badge badge-blue">Pending Review</span></td><td><a href="#">&#128229;</a></td></tr>
+            <tr><td>HLF-0001</td><td>Feb 15, 2025</td><td>Premium THCA Flower (Indoor)</td><td>5 lb</td><td>$8,250.00</td><td><span class="badge badge-green">Shipped</span></td><td><a href="#">&#128229; COA</a></td></tr>
+            <tr><td>HLF-0002</td><td>Mar 1, 2025</td><td>CBD Hemp Flower (Outdoor)</td><td>10 lb</td><td>$5,000.00</td><td><span class="badge badge-gold">Processing</span></td><td><a href="#">&#128229; COA</a></td></tr>
+            <tr><td>HLF-0003</td><td>Mar 10, 2025</td><td>THCA Flower (Greenhouse)</td><td>3 lb</td><td>$3,600.00</td><td><span class="badge badge-blue">Pending Review</span></td><td><button class="btn btn-sm btn-danger" onclick="cancelClientOrder('HLF-0003', this)">Cancel</button></td></tr>
           </tbody>
         </table>
       </div>
-      <button class="btn btn-secondary mt-3" onclick="navigate('contact')">Place New Order (Request Invoice) &rarr;</button>
+
+      <!-- Place Order Form (hidden by default) -->
+      <div id="place-order-form" style="display:none;" class="mt-3">
+        <div class="card" style="border:2px solid var(--gold);">
+          <div style="display:flex;justify-content:space-between;align-items:center;" class="mb-3">
+            <h3 style="margin:0;">Place New Order</h3>
+            <button class="btn btn-sm btn-secondary" onclick="hidePlaceOrderForm()">&times; Cancel</button>
+          </div>
+          <p class="text-muted mb-3">Select products and quantities. All orders are invoice-based and require admin approval. Payment instructions will be provided after order submission.</p>
+
+          <div id="order-product-rows"></div>
+          <button class="btn btn-sm btn-secondary mt-2 mb-3" onclick="addOrderProductRow()">+ Add Another Product</button>
+
+          <div class="form-row">
+            <div class="form-group">
+              <label>Preferred Payment Method</label>
+              <select id="order-payment-method">
+                <option>ACH Bank Transfer</option>
+                <option>Wire Transfer</option>
+                <option>CashApp</option>
+                <option>Zelle</option>
+                <option>Money Order</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label>Shipping State</label>
+              <input type="text" id="order-ship-state" readonly style="background:var(--green-pale);">
+            </div>
+          </div>
+          <div class="form-group"><label>Order Notes (optional)</label><textarea id="order-notes" style="min-height:60px;" placeholder="Special instructions, preferred ship date, etc."></textarea></div>
+
+          <div class="gold-box mb-3">
+            <strong>Order Summary</strong>
+            <div id="order-summary-lines" class="mt-2"></div>
+            <div style="border-top:1px solid var(--gold-light);margin-top:8px;padding-top:8px;font-weight:700;font-size:18px;" id="order-total-display">Total: $0.00</div>
+          </div>
+
+          <div class="red-box mb-3">
+            <strong>No Refunds:</strong> All product orders are final once approved and shipped. No refunds, credits, or chargebacks.
+          </div>
+
+          <div class="checkbox-group mb-3">
+            <input type="checkbox" id="order-agree-terms">
+            <label for="order-agree-terms">I understand this order is subject to admin approval, all sales are final, and no refunds will be issued.</label>
+          </div>
+
+          <button class="btn btn-primary btn-lg w-full" onclick="submitClientOrder()">Submit Order for Review &rarr;</button>
+        </div>
+      </div>
     </div>
 
     <!-- Tab: Billing -->
@@ -1128,58 +1220,179 @@ tr:hover { background: var(--cream); }
 
 <!-- ==================== PAGE: ADMIN ==================== -->
 <div id="page-admin" class="page">
-  <div class="page-header">
+  <div class="page-header" style="background:var(--green-dark);padding:32px 0;">
     <div class="container">
-      <h1>Product Management</h1>
-      <p><span class="badge badge-red">Admin Access Only</span></p>
+      <h1 style="color:#fff;">Super Admin Dashboard</h1>
+      <p style="color:rgba(255,255,255,.7);">Manage members, orders, products, and site operations. <button class="btn btn-sm btn-outline-light" onclick="adminLogout()" style="margin-left:12px;">Log Out Admin</button></p>
     </div>
   </div>
-  <div class="container" style="max-width:900px;">
-    <div class="card card-flat mb-4">
-      <h3>CSV Product Upload</h3>
-      <p class="text-muted mt-2 mb-3">Upload a CSV file with product data. The file will be validated before import. Max 5MB, UTF-8 encoded.</p>
-      <div class="upload-zone" onclick="document.getElementById('csv-file-input').click()">
-        <input type="file" id="csv-file-input" accept=".csv" onchange="handleCSVUpload(event)">
-        <p style="font-size:36px;margin-bottom:12px;">&#128194;</p>
-        <p style="font-weight:700;">Click to Choose CSV File</p>
-        <p class="text-muted" style="font-size:13px;">.csv files only, max 5MB</p>
+  <div class="container">
+
+    <!-- Admin Tabs -->
+    <div class="dash-tabs" style="margin-top:24px;">
+      <button class="dash-tab-btn active" onclick="switchAdminTab('members', this)">Members</button>
+      <button class="dash-tab-btn" onclick="switchAdminTab('orders', this)">Orders</button>
+      <button class="dash-tab-btn" onclick="switchAdminTab('products', this)">Products</button>
+      <button class="dash-tab-btn" onclick="switchAdminTab('csv', this)">CSV Upload</button>
+    </div>
+
+    <!-- Admin Tab: Members Management -->
+    <div id="admin-tab-members" class="admin-tab-content">
+      <div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px;" class="mb-3">
+        <h3>Member Management</h3>
+        <div style="display:flex;gap:8px;align-items:center;">
+          <input type="text" id="admin-member-search" placeholder="Search members..." style="padding:8px 14px;border:1px solid var(--border);border-radius:6px;font-size:13px;width:220px;" oninput="filterAdminMembers()">
+          <select id="admin-member-filter" style="padding:8px 12px;border:1px solid var(--border);border-radius:6px;font-size:13px;" onchange="filterAdminMembers()">
+            <option value="all">All Status</option>
+            <option value="pending">Pending</option>
+            <option value="active">Active</option>
+            <option value="suspended">Suspended</option>
+            <option value="denied">Denied</option>
+          </select>
+        </div>
       </div>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr><th>Name</th><th>Business</th><th>Email</th><th>State</th><th>Invite Code</th><th>Applied</th><th>Status</th><th>Actions</th></tr>
+          </thead>
+          <tbody id="admin-members-tbody"></tbody>
+        </table>
+      </div>
+      <p class="text-muted mt-2" style="font-size:12px;">Total: <span id="admin-members-count">0</span> members</p>
     </div>
 
-    <div id="csv-preview" class="card card-flat mb-4" style="display:none;">
-      <h4 class="mb-2">Preview (first 5 rows)</h4>
-      <div class="table-wrap" id="csv-preview-table"></div>
+    <!-- Admin Tab: Orders Management -->
+    <div id="admin-tab-orders" class="admin-tab-content" style="display:none;">
+      <div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px;" class="mb-3">
+        <h3>Order Management</h3>
+        <div style="display:flex;gap:8px;align-items:center;">
+          <input type="text" id="admin-order-search" placeholder="Search orders..." style="padding:8px 14px;border:1px solid var(--border);border-radius:6px;font-size:13px;width:220px;" oninput="filterAdminOrders()">
+          <select id="admin-order-filter" style="padding:8px 12px;border:1px solid var(--border);border-radius:6px;font-size:13px;" onchange="filterAdminOrders()">
+            <option value="all">All Status</option>
+            <option value="pending_review">Pending Review</option>
+            <option value="approved">Approved</option>
+            <option value="processing">Processing</option>
+            <option value="shipped">Shipped</option>
+            <option value="delivered">Delivered</option>
+            <option value="canceled">Canceled</option>
+          </select>
+        </div>
+      </div>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr><th>Order #</th><th>Member</th><th>Products</th><th>Qty</th><th>Total</th><th>Payment</th><th>Date</th><th>Status</th><th>Actions</th></tr>
+          </thead>
+          <tbody id="admin-orders-tbody"></tbody>
+        </table>
+      </div>
+      <p class="text-muted mt-2" style="font-size:12px;">Total: <span id="admin-orders-count">0</span> orders</p>
     </div>
 
-    <div id="csv-validation" style="display:none;" class="mb-4"></div>
+    <!-- Admin Tab: Products Management -->
+    <div id="admin-tab-products" class="admin-tab-content" style="display:none;">
+      <div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px;" class="mb-3">
+        <h3>Product Management</h3>
+        <button class="btn btn-sm btn-primary" onclick="showAddProductModal()">+ Add Product</button>
+      </div>
+      <div id="admin-products-list"></div>
+    </div>
 
-    <button id="csv-import-btn" class="btn btn-primary w-full mb-4" disabled onclick="importCSVProducts()">Import Products</button>
-
-    <div id="csv-results" style="display:none;" class="mb-4"></div>
-
-    <div class="card card-flat">
-      <h4>CSV Schema Reference</h4>
-      <p class="text-muted mt-2" style="font-size:13px;">66 columns organized as: Core identity, Cultivation, Cannabinoids, Terpenes, Physical properties, Lab/compliance, Pricing, Packaging, Display, Chain of custody, Shipping restrictions, Tracking.</p>
+    <!-- Admin Tab: CSV Upload -->
+    <div id="admin-tab-csv" class="admin-tab-content" style="display:none;">
+      <h3 class="mb-3">CSV Product Import</h3>
+      <div class="card card-flat mb-4">
+        <p class="text-muted mb-3">Upload a CSV file with product data. The file will be validated before import. Max 5MB, UTF-8 encoded.</p>
+        <div class="upload-zone" onclick="document.getElementById('csv-file-input').click()">
+          <input type="file" id="csv-file-input" accept=".csv" onchange="handleCSVUpload(event)">
+          <p style="font-size:36px;margin-bottom:12px;">&#128194;</p>
+          <p style="font-weight:700;">Click to Choose CSV File</p>
+          <p class="text-muted" style="font-size:13px;">.csv files only, max 5MB</p>
+        </div>
+      </div>
+      <div id="csv-preview" class="card card-flat mb-4" style="display:none;">
+        <h4 class="mb-2">Preview (first 5 rows)</h4>
+        <div class="table-wrap" id="csv-preview-table"></div>
+      </div>
+      <div id="csv-validation" style="display:none;" class="mb-4"></div>
+      <button id="csv-import-btn" class="btn btn-primary w-full mb-4" disabled onclick="importCSVProducts()">Import Products</button>
+      <div id="csv-results" style="display:none;" class="mb-4"></div>
       <details class="mt-2">
-        <summary style="cursor:pointer;font-weight:700;font-size:14px;color:var(--green-dark);">View Full Column List</summary>
+        <summary style="cursor:pointer;font-weight:700;font-size:14px;color:var(--green-dark);">CSV Schema Reference (66 columns)</summary>
         <p class="text-muted mt-2" style="font-size:12px;line-height:1.8;">
           <strong>Core:</strong> sku, product_name, product_type, product_category, status<br>
           <strong>Cultivation:</strong> cultivation_method, cultivation_location, harvest_date, strain_name_internal<br>
           <strong>Cannabinoids:</strong> delta9_thc_pct, thca_pct, cbd_pct, cbg_pct, cbn_pct, total_cannabinoids_pct<br>
-          <strong>Terpenes:</strong> terpene_1_name, terpene_1_pct, terpene_2_name, terpene_2_pct, terpene_3_name, terpene_3_pct, total_terpenes_pct<br>
+          <strong>Terpenes:</strong> terpene_1_name/pct, terpene_2_name/pct, terpene_3_name/pct, total_terpenes_pct<br>
           <strong>Physical:</strong> appearance, aroma_profile, moisture_content_pct, trim_type, density<br>
-          <strong>Lab:</strong> coa_batch_number, coa_test_date, coa_lab_name, coa_lab_accreditation, coa_pdf_filename, heavy_metals_pass, pesticides_pass, microbials_pass, mycotoxins_pass, residual_solvents_pass, foreign_matter_pass, farm_bill_compliant<br>
+          <strong>Lab:</strong> coa_batch_number, coa_test_date, coa_lab_name, coa_lab_accreditation, coa_pdf_filename, 6 safety passes, farm_bill_compliant<br>
           <strong>Pricing:</strong> price_per_lb, price_5lb, price_10lb, min_order_lbs, inventory_lbs_available, inventory_status<br>
-          <strong>Packaging:</strong> packaging_type, shelf_life_days, storage_requirements, weight_per_unit_lbs, ships_from_state<br>
           <strong>Display:</strong> display_order, featured, short_description, long_description, product_image_filename, compliance_statement<br>
           <strong>Chain of Custody:</strong> coc_cultivation_origin, coc_processor, coc_handler, coc_storage_facility, coc_last_audit_date<br>
-          <strong>Shipping:</strong> restricted_states<br>
-          <strong>Tracking:</strong> date_added, last_updated, added_by, notes_internal
+          <strong>Shipping:</strong> restricted_states &middot; <strong>Tracking:</strong> date_added, last_updated, added_by, notes_internal
         </p>
       </details>
     </div>
+
   </div>
   <div style="height:60px"></div>
+</div>
+
+<!-- ==================== ADMIN: EDIT PRODUCT MODAL ==================== -->
+<div id="edit-product-modal" style="display:none;position:fixed;inset:0;background:rgba(20,20,16,.75);z-index:9999;overflow-y:auto;padding:24px;">
+  <div style="max-width:720px;margin:40px auto;background:var(--surface);border-radius:14px;padding:36px;box-shadow:0 24px 80px rgba(0,0,0,.3);">
+    <div style="display:flex;justify-content:space-between;align-items:center;" class="mb-3">
+      <h2 id="edit-product-title">Edit Product</h2>
+      <button class="btn btn-sm btn-secondary" onclick="closeEditProductModal()">&times; Close</button>
+    </div>
+    <div class="form-row">
+      <div class="form-group"><label>SKU *</label><input type="text" id="edit-sku"></div>
+      <div class="form-group"><label>Product Name *</label><input type="text" id="edit-product-name"></div>
+    </div>
+    <div class="form-row">
+      <div class="form-group"><label>Product Type</label><input type="text" id="edit-product-type" placeholder="e.g. THCA Flower"></div>
+      <div class="form-group"><label>Category</label><input type="text" id="edit-product-category" placeholder="e.g. Flower"></div>
+    </div>
+    <div class="form-row">
+      <div class="form-group"><label>Status</label>
+        <select id="edit-status"><option value="active">Active</option><option value="inactive">Inactive</option><option value="out_of_stock">Out of Stock</option></select>
+      </div>
+      <div class="form-group"><label>Featured</label>
+        <select id="edit-featured"><option value="TRUE">Yes</option><option value="FALSE">No</option></select>
+      </div>
+    </div>
+    <h4 class="mt-3 mb-2">Pricing &amp; Inventory</h4>
+    <div class="form-row">
+      <div class="form-group"><label>Price per lb ($)</label><input type="number" id="edit-price-lb" step="0.01"></div>
+      <div class="form-group"><label>Price 5 lb ($)</label><input type="number" id="edit-price-5lb" step="0.01"></div>
+    </div>
+    <div class="form-row">
+      <div class="form-group"><label>Price 10 lb ($)</label><input type="number" id="edit-price-10lb" step="0.01"></div>
+      <div class="form-group"><label>Inventory (lbs available)</label><input type="number" id="edit-inventory" step="0.01"></div>
+    </div>
+    <h4 class="mt-3 mb-2">Image</h4>
+    <div class="form-group"><label>Product Image Filename</label><input type="text" id="edit-product-image" placeholder="e.g. product-photo.jpg"></div>
+    <p class="text-muted" style="font-size:12px;">In production, this would be a file upload. For demo, enter a filename.</p>
+    <h4 class="mt-3 mb-2">Description</h4>
+    <div class="form-group"><label>Short Description</label><textarea id="edit-short-desc" style="min-height:60px;"></textarea></div>
+    <div class="form-group"><label>Long Description</label><textarea id="edit-long-desc" style="min-height:80px;"></textarea></div>
+    <h4 class="mt-3 mb-2">Compliance</h4>
+    <div class="form-row">
+      <div class="form-group"><label>&Delta;9 THC %</label><input type="number" id="edit-thc" step="0.01"></div>
+      <div class="form-group"><label>THCA %</label><input type="number" id="edit-thca" step="0.01"></div>
+    </div>
+    <div class="form-row">
+      <div class="form-group"><label>CBD %</label><input type="number" id="edit-cbd" step="0.01"></div>
+      <div class="form-group"><label>COA Batch #</label><input type="text" id="edit-coa-batch"></div>
+    </div>
+    <div class="form-group"><label>Restricted States (comma-separated codes)</label><input type="text" id="edit-restricted" placeholder="e.g. ID,OR,SD"></div>
+    <input type="hidden" id="edit-product-index" value="-1">
+    <div class="mt-3" style="display:flex;gap:12px;">
+      <button class="btn btn-primary" onclick="saveProductEdit()">Save Changes</button>
+      <button class="btn btn-secondary" onclick="closeEditProductModal()">Cancel</button>
+    </div>
+  </div>
 </div>
 
 <!-- ==================== PAGE: DISCLAIMER ==================== -->
@@ -1577,8 +1790,8 @@ function navigate(pageName) {
   }
 
   /* Guard: admin requires admin flag */
-  if (pageName === 'admin' && !sessionStorage.getItem('memberLoggedIn')) {
-    pageName = 'home';
+  if (pageName === 'admin' && !sessionStorage.getItem('isAdmin')) {
+    pageName = sessionStorage.getItem('memberLoggedIn') ? 'dashboard' : 'login';
   }
 
   /* Ensure product data is loaded for data-driven pages */
@@ -1636,6 +1849,9 @@ function navigate(pageName) {
   /* Page-specific init */
   if (pageName === 'dashboard') {
     populateDashboard();
+  }
+  if (pageName === 'admin') {
+    populateAdminDashboard();
   }
   if (pageName === 'apply') {
     autoFillInviteCode();
@@ -2007,7 +2223,7 @@ function renderProductCatalog() {
     /* Action buttons */
     html += '<div style="display:flex;gap:10px;flex-wrap:wrap;">';
     html += '<button onclick="navigate(\'compliance\')" style="background:#2d5016;color:#fff;border:none;padding:8px 16px;border-radius:6px;cursor:pointer;font-size:.85rem;">View COA</button>';
-    html += '<button onclick="navigate(\'contact\')" style="background:#fff;color:#2d5016;border:2px solid #2d5016;padding:8px 16px;border-radius:6px;cursor:pointer;font-size:.85rem;">Request Invoice</button>';
+    html += '<button onclick="requestInvoice(\'' + escAttr(row.sku) + '\')" style="background:#fff;color:#2d5016;border:2px solid #2d5016;padding:8px 16px;border-radius:6px;cursor:pointer;font-size:.85rem;">Request Invoice</button>';
     html += '</div>';
 
     html += '</div></div>'; /* close padding div and card */
@@ -2168,11 +2384,11 @@ function autoFillInviteCode() {
    10. APPLICATION FORM
    ---------------------------------------------------------- */
 function submitApplication() {
-  /* Required text fields */
+  /* Required text fields — match actual HTML form IDs */
   var requiredFields = [
-    'app-first-name', 'app-last-name', 'app-email', 'app-phone',
-    'app-business-name', 'app-business-type', 'app-ein',
-    'app-street', 'app-city', 'app-state', 'app-zip'
+    'app-name', 'app-business', 'app-email', 'app-phone',
+    'app-street', 'app-city', 'app-state', 'app-zip',
+    'app-invite-code', 'app-invited-by'
   ];
   for (var i = 0; i < requiredFields.length; i++) {
     var el = document.getElementById(requiredFields[i]);
@@ -2184,11 +2400,12 @@ function submitApplication() {
   }
 
   /* Validate the 9 required agreement checkboxes */
-  var checkboxes = document.querySelectorAll('#application-form input[type="checkbox"][required]');
-  for (var c = 0; c < checkboxes.length; c++) {
-    if (!checkboxes[c].checked) {
-      alert('You must agree to all terms and conditions before submitting. Please review and check all required boxes.');
-      checkboxes[c].focus();
+  var agreeIds = ['agree-age','agree-terms','agree-disclaimer','agree-privacy','agree-compliance','agree-app-fee','agree-monthly-fee','agree-no-refunds','agree-no-minors'];
+  for (var c = 0; c < agreeIds.length; c++) {
+    var cb = document.getElementById(agreeIds[c]);
+    if (!cb || !cb.checked) {
+      alert('You must agree to all terms and conditions before submitting. Please check: ' + agreeIds[c].replace('agree-', '').replace(/-/g, ' '));
+      if (cb) cb.focus();
       return;
     }
   }
@@ -2197,15 +2414,13 @@ function submitApplication() {
   var stateEl = document.getElementById('app-state');
   var selectedState = stateEl ? stateEl.value.trim().toUpperCase() : '';
   if (restrictedStatesSet.has(selectedState)) {
-    var warning = document.getElementById('state-restriction-warning');
+    var warning = document.getElementById('state-warning');
     if (warning) {
       warning.style.display = 'block';
-      warning.innerHTML = '<strong>We cannot ship to ' + escHtml(selectedState) + '.</strong> Your state has restrictions on certain hemp products. Please contact us for more information.';
+      warning.textContent = 'We cannot accept applications from ' + selectedState + '. This state has restrictions on hemp products.';
     }
+    alert('We cannot accept applications from restricted states (' + selectedState + ').');
     return;
-  } else {
-    var warning2 = document.getElementById('state-restriction-warning');
-    if (warning2) warning2.style.display = 'none';
   }
 
   /* Generate application reference */
@@ -2213,49 +2428,57 @@ function submitApplication() {
 
   /* Store in session */
   sessionStorage.setItem('appReference', refNum);
-  sessionStorage.setItem('appFirstName', document.getElementById('app-first-name').value);
-  sessionStorage.setItem('appLastName', document.getElementById('app-last-name').value);
+  sessionStorage.setItem('appName', document.getElementById('app-name').value);
   sessionStorage.setItem('appEmail', document.getElementById('app-email').value);
-  sessionStorage.setItem('appBusinessName', document.getElementById('app-business-name').value);
+  sessionStorage.setItem('appBusiness', document.getElementById('app-business').value);
+
+  /* Update ref number displays in payment instructions */
+  var refSpans = ['app-ref','pay-ref-ach','pay-ref-cash','pay-ref-zelle','pay-ref-mo'];
+  for (var r = 0; r < refSpans.length; r++) {
+    var span = document.getElementById(refSpans[r]);
+    if (span) span.textContent = refNum;
+  }
+
+  /* Add to admin members list as pending */
+  adminMembers.push({
+    id: 'MEM-' + String(Math.floor(100 + Math.random() * 900)),
+    name: document.getElementById('app-name').value,
+    business: document.getElementById('app-business').value,
+    email: document.getElementById('app-email').value,
+    state: selectedState,
+    inviteCode: document.getElementById('app-invite-code').value,
+    applied: new Date().toISOString().slice(0,10),
+    status: 'pending',
+    appFeePaid: false,
+    monthlyActive: false
+  });
 
   /* Show payment instructions, hide form */
   var form = document.getElementById('application-form');
   var payment = document.getElementById('payment-instructions');
   if (form) form.style.display = 'none';
-  if (payment) {
-    payment.style.display = 'block';
-    var refEl = document.getElementById('app-reference-number');
-    if (refEl) refEl.textContent = refNum;
-  }
+  if (payment) payment.style.display = 'block';
+
+  window.scrollTo(0, 0);
 }
 
 /* Billing / shipping toggle */
 function toggleShippingFields() {
-  var cb = document.getElementById('billing-same-as-shipping');
-  var shippingDiv = document.getElementById('shipping-address-fields');
+  var cb = document.getElementById('app-billing-same');
+  var shippingDiv = document.getElementById('shipping-fields');
   if (!cb || !shippingDiv) return;
-  if (cb.checked) {
-    shippingDiv.style.display = 'none';
-  } else {
-    shippingDiv.style.display = 'block';
-  }
+  shippingDiv.style.display = cb.checked ? 'none' : 'block';
 }
 
 /* State restriction live check on dropdown change */
 function checkStateRestriction() {
   var stateEl = document.getElementById('app-state');
-  var warning = document.getElementById('state-restriction-warning');
+  var warning = document.getElementById('state-warning');
   if (!stateEl || !warning) return;
   var val = stateEl.value.trim().toUpperCase();
   if (val && restrictedStatesSet.has(val)) {
     warning.style.display = 'block';
-    warning.innerHTML = '<strong>Warning:</strong> Your state (' + escHtml(val) + ') has restrictions on certain hemp products. Some or all products may not be available for shipment to your location.';
-    warning.style.background = '#7f1d1d';
-    warning.style.color = '#fff';
-    warning.style.padding = '10px 14px';
-    warning.style.borderRadius = '6px';
-    warning.style.marginTop = '6px';
-    warning.style.fontSize = '.85rem';
+    warning.textContent = 'Warning: ' + val + ' has restrictions on certain hemp products. Some products may not be available.';
   } else {
     warning.style.display = 'none';
   }
@@ -2271,8 +2494,23 @@ function memberLogin() {
   var e = email.value.trim();
   var p = password.value;
 
+  /* Admin login */
+  if (e === 'admin@hemplifefarmers.com' && p === 'admin2025') {
+    sessionStorage.setItem('memberLoggedIn', 'true');
+    sessionStorage.setItem('isAdmin', 'true');
+    sessionStorage.setItem('memberName', 'Admin');
+    sessionStorage.setItem('memberEmail', e);
+    sessionStorage.setItem('memberSince', '2024-01-01');
+    sessionStorage.setItem('memberStatus', 'active');
+    sessionStorage.setItem('personalRefCode', 'HLF-INV-ADMIN');
+    updateNavForMember();
+    navigate('admin');
+    return;
+  }
+  /* Member login */
   if (e === 'demo@hemplifefarmers.com' && p === 'demo2025') {
     sessionStorage.setItem('memberLoggedIn', 'true');
+    sessionStorage.removeItem('isAdmin');
     sessionStorage.setItem('memberName', 'Demo Member');
     sessionStorage.setItem('memberEmail', e);
     sessionStorage.setItem('memberSince', '2025-01-15');
@@ -2280,27 +2518,39 @@ function memberLogin() {
     sessionStorage.setItem('personalRefCode', 'HLF-INV-DEMO');
     updateNavForMember();
     navigate('dashboard');
-  } else {
-    alert('Invalid credentials.\n\nDemo login:\nEmail: demo@hemplifefarmers.com\nPassword: demo2025');
+    return;
   }
+  alert('Invalid credentials.\n\nDemo: demo@hemplifefarmers.com / demo2025\nAdmin: admin@hemplifefarmers.com / admin2025');
 }
 
 function updateNavForMember() {
   var loginLink = document.getElementById('nav-login-link');
   if (!loginLink) return;
   if (sessionStorage.getItem('memberLoggedIn')) {
-    loginLink.textContent = 'My Account';
-    loginLink.setAttribute('onclick', "navigate('dashboard')");
+    var isAdmin = sessionStorage.getItem('isAdmin');
+    if (isAdmin) {
+      loginLink.textContent = 'Admin';
+      loginLink.setAttribute('onclick', "navigate('admin')");
+    } else {
+      loginLink.textContent = 'My Account';
+      loginLink.setAttribute('onclick', "navigate('dashboard')");
+    }
     var mobileLoginLink = document.getElementById('mobile-login-link');
     if (mobileLoginLink) {
-      mobileLoginLink.textContent = 'My Account';
-      mobileLoginLink.setAttribute('onclick', "navigate('dashboard'); closeMobileMenu();");
+      if (isAdmin) {
+        mobileLoginLink.textContent = 'Admin';
+        mobileLoginLink.setAttribute('onclick', "navigate('admin'); closeMobileMenu();");
+      } else {
+        mobileLoginLink.textContent = 'My Account';
+        mobileLoginLink.setAttribute('onclick', "navigate('dashboard'); closeMobileMenu();");
+      }
     }
   }
 }
 
 function memberLogout() {
   sessionStorage.removeItem('memberLoggedIn');
+  sessionStorage.removeItem('isAdmin');
   sessionStorage.removeItem('memberName');
   sessionStorage.removeItem('memberEmail');
   sessionStorage.removeItem('memberSince');
@@ -3064,6 +3314,503 @@ function formatDate(dateStr) {
 /**
  * Escape HTML entities for safe DOM insertion.
  */
+/* ----------------------------------------------------------
+   19. SUPER ADMIN DASHBOARD
+   ---------------------------------------------------------- */
+
+/* Demo data stores */
+var adminMembers = [
+  { id: 'MEM-001', name: 'Demo Member', business: 'Demo Business LLC', email: 'demo@hemplifefarmers.com', state: 'MD', inviteCode: 'HLF-INV-7742', applied: '2025-01-10', status: 'active', appFeePaid: true, monthlyActive: true },
+  { id: 'MEM-002', name: 'Jane Rodriguez', business: 'Green Leaf Retail', email: 'jane@greenleaf.com', state: 'CA', inviteCode: 'HLF-INV-8821', applied: '2025-02-20', status: 'active', appFeePaid: true, monthlyActive: true },
+  { id: 'MEM-003', name: 'Robert Chen', business: 'Pacific Hemp Co', email: 'robert@pacifichemp.com', state: 'WA', inviteCode: 'HLF-INV-3321', applied: '2025-03-05', status: 'pending', appFeePaid: true, monthlyActive: false },
+  { id: 'MEM-004', name: 'Sarah Williams', business: 'Midwest Botanicals', email: 'sarah@mwbotanicals.com', state: 'IL', inviteCode: 'HLF-INV-4456', applied: '2025-03-12', status: 'pending', appFeePaid: false, monthlyActive: false },
+  { id: 'MEM-005', name: 'Mike Thompson', business: 'Mountain Wellness', email: 'mike@mountainwell.com', state: 'CO', inviteCode: 'HLF-INV-5567', applied: '2025-01-25', status: 'suspended', appFeePaid: true, monthlyActive: false }
+];
+
+var adminOrders = [
+  { id: 'HLF-0001', memberId: 'MEM-001', memberName: 'Demo Member', products: 'Premium THCA Flower (Indoor)', qty: '5 lb', total: 8250, payment: 'ACH', date: '2025-02-15', status: 'shipped' },
+  { id: 'HLF-0002', memberId: 'MEM-001', memberName: 'Demo Member', products: 'CBD Hemp Flower (Outdoor)', qty: '10 lb', total: 5000, payment: 'CashApp', date: '2025-03-01', status: 'processing' },
+  { id: 'HLF-0003', memberId: 'MEM-001', memberName: 'Demo Member', products: 'THCA Flower (Greenhouse)', qty: '3 lb', total: 3600, payment: 'ACH', date: '2025-03-10', status: 'pending_review' },
+  { id: 'HLF-0004', memberId: 'MEM-002', memberName: 'Jane Rodriguez', products: 'Hemp Extract Concentrate', qty: '2 lb', total: 4800, payment: 'Wire', date: '2025-03-08', status: 'approved' },
+  { id: 'HLF-0005', memberId: 'MEM-002', memberName: 'Jane Rodriguez', products: 'Premium THCA Flower (Indoor)', qty: '1 lb', total: 1800, payment: 'Zelle', date: '2025-03-15', status: 'pending_review' }
+];
+
+function adminLogout() {
+  memberLogout();
+}
+
+function switchAdminTab(tabName, btn) {
+  var tabs = document.querySelectorAll('.admin-tab-content');
+  for (var i = 0; i < tabs.length; i++) tabs[i].style.display = 'none';
+  var target = document.getElementById('admin-tab-' + tabName);
+  if (target) target.style.display = 'block';
+  var btns = document.querySelectorAll('.dash-tabs .dash-tab-btn');
+  for (var j = 0; j < btns.length; j++) btns[j].classList.remove('active');
+  if (btn) btn.classList.add('active');
+}
+
+function populateAdminDashboard() {
+  renderAdminMembers();
+  renderAdminOrders();
+  renderAdminProducts();
+}
+
+/* --- Members Management --- */
+function renderAdminMembers(filter, search) {
+  filter = filter || 'all';
+  search = (search || '').toLowerCase();
+  var tbody = document.getElementById('admin-members-tbody');
+  if (!tbody) return;
+  var filtered = adminMembers.filter(function(m) {
+    if (filter !== 'all' && m.status !== filter) return false;
+    if (search && m.name.toLowerCase().indexOf(search) === -1 && m.email.toLowerCase().indexOf(search) === -1 && m.business.toLowerCase().indexOf(search) === -1) return false;
+    return true;
+  });
+  var html = '';
+  for (var i = 0; i < filtered.length; i++) {
+    var m = filtered[i];
+    var statusBadge = m.status === 'active' ? 'badge-green' : (m.status === 'pending' ? 'badge-gold' : (m.status === 'suspended' ? 'badge-red' : 'badge-red'));
+    html += '<tr>';
+    html += '<td>' + escHtml(m.name) + '</td>';
+    html += '<td>' + escHtml(m.business) + '</td>';
+    html += '<td style="font-size:12px;">' + escHtml(m.email) + '</td>';
+    html += '<td>' + escHtml(m.state) + '</td>';
+    html += '<td style="font-family:monospace;font-size:12px;">' + escHtml(m.inviteCode) + '</td>';
+    html += '<td>' + escHtml(m.applied) + '</td>';
+    html += '<td><span class="badge ' + statusBadge + '">' + m.status + '</span></td>';
+    html += '<td style="white-space:nowrap;">';
+    if (m.status === 'pending') {
+      html += '<button class="btn btn-sm btn-primary" onclick="adminApproveMember(' + i + ')" style="padding:4px 10px;font-size:11px;">Approve</button> ';
+      html += '<button class="btn btn-sm btn-danger" onclick="adminDenyMember(' + i + ')" style="padding:4px 10px;font-size:11px;">Deny</button>';
+    } else if (m.status === 'active') {
+      html += '<button class="btn btn-sm btn-danger" onclick="adminSuspendMember(' + i + ')" style="padding:4px 10px;font-size:11px;">Suspend</button> ';
+      html += '<button class="btn btn-sm btn-secondary" onclick="adminRemoveMember(' + i + ')" style="padding:4px 10px;font-size:11px;">Remove</button>';
+    } else if (m.status === 'suspended') {
+      html += '<button class="btn btn-sm btn-primary" onclick="adminReactivateMember(' + i + ')" style="padding:4px 10px;font-size:11px;">Reactivate</button> ';
+      html += '<button class="btn btn-sm btn-secondary" onclick="adminRemoveMember(' + i + ')" style="padding:4px 10px;font-size:11px;">Remove</button>';
+    }
+    html += '</td></tr>';
+  }
+  tbody.innerHTML = html || '<tr><td colspan="8" class="text-center text-muted" style="padding:24px;">No members found.</td></tr>';
+  var countEl = document.getElementById('admin-members-count');
+  if (countEl) countEl.textContent = filtered.length;
+}
+
+function filterAdminMembers() {
+  var filter = document.getElementById('admin-member-filter');
+  var search = document.getElementById('admin-member-search');
+  renderAdminMembers(filter ? filter.value : 'all', search ? search.value : '');
+}
+
+function adminApproveMember(idx) {
+  if (confirm('Approve ' + adminMembers[idx].name + ' for active membership?')) {
+    adminMembers[idx].status = 'active';
+    adminMembers[idx].monthlyActive = true;
+    renderAdminMembers();
+  }
+}
+function adminDenyMember(idx) {
+  if (confirm('Deny application for ' + adminMembers[idx].name + '?')) {
+    adminMembers[idx].status = 'denied';
+    renderAdminMembers();
+  }
+}
+function adminSuspendMember(idx) {
+  if (confirm('Suspend membership for ' + adminMembers[idx].name + '? They will lose wholesale access.')) {
+    adminMembers[idx].status = 'suspended';
+    adminMembers[idx].monthlyActive = false;
+    renderAdminMembers();
+  }
+}
+function adminReactivateMember(idx) {
+  if (confirm('Reactivate membership for ' + adminMembers[idx].name + '?')) {
+    adminMembers[idx].status = 'active';
+    adminMembers[idx].monthlyActive = true;
+    renderAdminMembers();
+  }
+}
+function adminRemoveMember(idx) {
+  if (confirm('Permanently remove ' + adminMembers[idx].name + '? This cannot be undone.')) {
+    adminMembers.splice(idx, 1);
+    renderAdminMembers();
+  }
+}
+
+/* --- Orders Management --- */
+function renderAdminOrders(filter, search) {
+  filter = filter || 'all';
+  search = (search || '').toLowerCase();
+  var tbody = document.getElementById('admin-orders-tbody');
+  if (!tbody) return;
+  var filtered = adminOrders.filter(function(o) {
+    if (filter !== 'all' && o.status !== filter) return false;
+    if (search && o.id.toLowerCase().indexOf(search) === -1 && o.memberName.toLowerCase().indexOf(search) === -1) return false;
+    return true;
+  });
+  var statusLabels = { pending_review: 'Pending Review', approved: 'Approved', processing: 'Processing', shipped: 'Shipped', delivered: 'Delivered', canceled: 'Canceled' };
+  var statusBadges = { pending_review: 'badge-blue', approved: 'badge-gold', processing: 'badge-gold', shipped: 'badge-green', delivered: 'badge-green', canceled: 'badge-red' };
+  var html = '';
+  for (var i = 0; i < filtered.length; i++) {
+    var o = filtered[i];
+    html += '<tr>';
+    html += '<td style="font-family:monospace;font-size:12px;">' + escHtml(o.id) + '</td>';
+    html += '<td>' + escHtml(o.memberName) + '</td>';
+    html += '<td>' + escHtml(o.products) + '</td>';
+    html += '<td>' + escHtml(o.qty) + '</td>';
+    html += '<td>' + formatCurrency(o.total) + '</td>';
+    html += '<td>' + escHtml(o.payment) + '</td>';
+    html += '<td>' + escHtml(o.date) + '</td>';
+    html += '<td><span class="badge ' + (statusBadges[o.status] || 'badge-gold') + '">' + (statusLabels[o.status] || o.status) + '</span></td>';
+    html += '<td style="white-space:nowrap;">';
+    html += '<select class="admin-status-select" onchange="adminUpdateOrderStatus(' + i + ', this.value)">';
+    var allStatuses = ['pending_review','approved','processing','shipped','delivered','canceled'];
+    for (var s = 0; s < allStatuses.length; s++) {
+      html += '<option value="' + allStatuses[s] + '"' + (o.status === allStatuses[s] ? ' selected' : '') + '>' + (statusLabels[allStatuses[s]] || allStatuses[s]) + '</option>';
+    }
+    html += '</select>';
+    html += '</td></tr>';
+  }
+  tbody.innerHTML = html || '<tr><td colspan="9" class="text-center text-muted" style="padding:24px;">No orders found.</td></tr>';
+  var countEl = document.getElementById('admin-orders-count');
+  if (countEl) countEl.textContent = filtered.length;
+}
+
+function filterAdminOrders() {
+  var filter = document.getElementById('admin-order-filter');
+  var search = document.getElementById('admin-order-search');
+  renderAdminOrders(filter ? filter.value : 'all', search ? search.value : '');
+}
+
+function adminUpdateOrderStatus(idx, newStatus) {
+  adminOrders[idx].status = newStatus;
+  renderAdminOrders();
+}
+
+/* --- Products Management --- */
+function renderAdminProducts() {
+  var container = document.getElementById('admin-products-list');
+  if (!container) return;
+  if (productData.length === 0) {
+    container.innerHTML = '<p class="text-muted">No products loaded. Upload a CSV or wait for data to load.</p>';
+    return;
+  }
+  var html = '';
+  for (var i = 0; i < productData.length; i++) {
+    var p = productData[i];
+    var bgClass = (p.product_category || '').toLowerCase() === 'flower' ? 'flower-bg' : 'extract-bg';
+    var statusColor = p.status === 'active' ? 'var(--green-mid)' : 'var(--barn-red)';
+    html += '<div class="admin-product-card">';
+    html += '<div class="admin-product-thumb product-img ' + bgClass + '" style="border-radius:6px;font-size:20px;">' + (p.product_type === 'Extract' ? '&#129514;' : '&#127807;') + '</div>';
+    html += '<div class="admin-product-info">';
+    html += '<h4>' + escHtml(p.product_name) + '</h4>';
+    html += '<p><strong>SKU:</strong> ' + escHtml(p.sku) + ' &middot; <strong>Type:</strong> ' + escHtml(p.product_type) + ' &middot; <span style="color:' + statusColor + ';font-weight:700;">' + escHtml(p.status || 'active') + '</span></p>';
+    html += '<p><strong>Price:</strong> $' + escHtml(p.price_per_lb) + '/lb &middot; $' + escHtml(p.price_5lb) + '/5lb &middot; $' + escHtml(p.price_10lb) + '/10lb</p>';
+    html += '<p><strong>Inventory:</strong> ' + escHtml(p.inventory_lbs_available) + ' lbs &middot; <strong>THC:</strong> ' + escHtml(p.delta9_thc_pct) + '% &middot; <strong>THCA:</strong> ' + escHtml(p.thca_pct) + '%</p>';
+    html += '</div>';
+    html += '<div class="admin-product-actions">';
+    html += '<button class="btn btn-sm btn-primary" onclick="editProduct(' + i + ')">Edit</button>';
+    html += '<button class="btn btn-sm btn-danger" onclick="deleteProduct(' + i + ')">Delete</button>';
+    html += '</div>';
+    html += '</div>';
+  }
+  container.innerHTML = html;
+}
+
+function editProduct(idx) {
+  var p = productData[idx];
+  document.getElementById('edit-product-index').value = idx;
+  document.getElementById('edit-product-title').textContent = 'Edit: ' + p.product_name;
+  document.getElementById('edit-sku').value = p.sku || '';
+  document.getElementById('edit-product-name').value = p.product_name || '';
+  document.getElementById('edit-product-type').value = p.product_type || '';
+  document.getElementById('edit-product-category').value = p.product_category || '';
+  document.getElementById('edit-status').value = p.status || 'active';
+  document.getElementById('edit-featured').value = p.featured || 'FALSE';
+  document.getElementById('edit-price-lb').value = p.price_per_lb || '';
+  document.getElementById('edit-price-5lb').value = p.price_5lb || '';
+  document.getElementById('edit-price-10lb').value = p.price_10lb || '';
+  document.getElementById('edit-inventory').value = p.inventory_lbs_available || '';
+  document.getElementById('edit-product-image').value = p.product_image_filename || '';
+  document.getElementById('edit-short-desc').value = p.short_description || '';
+  document.getElementById('edit-long-desc').value = p.long_description || '';
+  document.getElementById('edit-thc').value = p.delta9_thc_pct || '';
+  document.getElementById('edit-thca').value = p.thca_pct || '';
+  document.getElementById('edit-cbd').value = p.cbd_pct || '';
+  document.getElementById('edit-coa-batch').value = p.coa_batch_number || '';
+  document.getElementById('edit-restricted').value = p.restricted_states || '';
+  document.getElementById('edit-product-modal').style.display = 'block';
+}
+
+function showAddProductModal() {
+  document.getElementById('edit-product-index').value = '-1';
+  document.getElementById('edit-product-title').textContent = 'Add New Product';
+  var fields = ['edit-sku','edit-product-name','edit-product-type','edit-product-category','edit-price-lb','edit-price-5lb','edit-price-10lb','edit-inventory','edit-product-image','edit-short-desc','edit-long-desc','edit-thc','edit-thca','edit-cbd','edit-coa-batch','edit-restricted'];
+  for (var i = 0; i < fields.length; i++) {
+    var el = document.getElementById(fields[i]);
+    if (el) el.value = '';
+  }
+  document.getElementById('edit-status').value = 'active';
+  document.getElementById('edit-featured').value = 'FALSE';
+  document.getElementById('edit-product-modal').style.display = 'block';
+}
+
+function closeEditProductModal() {
+  document.getElementById('edit-product-modal').style.display = 'none';
+}
+
+function saveProductEdit() {
+  var idx = parseInt(document.getElementById('edit-product-index').value);
+  var sku = document.getElementById('edit-sku').value.trim();
+  var name = document.getElementById('edit-product-name').value.trim();
+  if (!sku || !name) { alert('SKU and Product Name are required.'); return; }
+  var thcVal = parseFloat(document.getElementById('edit-thc').value);
+  if (!isNaN(thcVal) && thcVal > 0.3) { alert('COMPLIANCE BLOCK: Delta-9 THC cannot exceed 0.3%.'); return; }
+
+  var data = {
+    sku: sku,
+    product_name: name,
+    product_type: document.getElementById('edit-product-type').value.trim(),
+    product_category: document.getElementById('edit-product-category').value.trim(),
+    status: document.getElementById('edit-status').value,
+    featured: document.getElementById('edit-featured').value,
+    price_per_lb: document.getElementById('edit-price-lb').value,
+    price_5lb: document.getElementById('edit-price-5lb').value,
+    price_10lb: document.getElementById('edit-price-10lb').value,
+    inventory_lbs_available: document.getElementById('edit-inventory').value,
+    product_image_filename: document.getElementById('edit-product-image').value.trim(),
+    short_description: document.getElementById('edit-short-desc').value.trim(),
+    long_description: document.getElementById('edit-long-desc').value.trim(),
+    delta9_thc_pct: document.getElementById('edit-thc').value,
+    thca_pct: document.getElementById('edit-thca').value,
+    cbd_pct: document.getElementById('edit-cbd').value,
+    coa_batch_number: document.getElementById('edit-coa-batch').value.trim(),
+    restricted_states: document.getElementById('edit-restricted').value.trim(),
+    farm_bill_compliant: 'TRUE',
+    compliance_statement: 'All Hemp Life Farmers products are derived from hemp and contain \u22640.3% \u03949-THC on a dry-weight basis in compliance with the 2018 Farm Bill.'
+  };
+
+  if (idx >= 0 && idx < productData.length) {
+    /* Update existing — merge to preserve fields not in the edit form */
+    for (var key in data) { productData[idx][key] = data[key]; }
+  } else {
+    /* Add new product — set defaults for missing fields */
+    data.inventory_status = 'in_stock';
+    data.min_order_lbs = '1';
+    data.coa_test_date = new Date().toISOString().slice(0,10);
+    data.coa_lab_name = 'TBD';
+    data.coa_lab_accreditation = 'ISO 17025';
+    data.coa_pdf_filename = 'TBD';
+    data.heavy_metals_pass = 'TRUE'; data.pesticides_pass = 'TRUE'; data.microbials_pass = 'TRUE';
+    data.mycotoxins_pass = 'TRUE'; data.residual_solvents_pass = 'TRUE'; data.foreign_matter_pass = 'TRUE';
+    data.date_added = new Date().toISOString().slice(0,10);
+    data.last_updated = new Date().toISOString().slice(0,10);
+    data.display_order = String(productData.length + 1);
+    productData.push(data);
+  }
+
+  closeEditProductModal();
+  renderAllProductViews();
+  renderAdminProducts();
+  alert('Product saved successfully.');
+}
+
+function deleteProduct(idx) {
+  if (confirm('Delete "' + productData[idx].product_name + '"? This cannot be undone.')) {
+    productData.splice(idx, 1);
+    renderAllProductViews();
+    renderAdminProducts();
+  }
+}
+
+/* ----------------------------------------------------------
+   20. CLIENT ORDER SYSTEM
+   ---------------------------------------------------------- */
+var clientOrders = [];
+
+function showPlaceOrderForm() {
+  if (!sessionStorage.getItem('memberLoggedIn')) {
+    alert('You must be a logged-in member to place orders.');
+    navigate('login');
+    return;
+  }
+  if (sessionStorage.getItem('memberStatus') !== 'active') {
+    alert('Your membership must be active to place orders. Contact us for assistance.');
+    return;
+  }
+  document.getElementById('place-order-form').style.display = 'block';
+  document.getElementById('client-orders-table').style.display = 'none';
+  /* Set shipping state from member profile */
+  var stateField = document.getElementById('order-ship-state');
+  if (stateField) stateField.value = 'MD';
+  /* Add first product row */
+  var rows = document.getElementById('order-product-rows');
+  if (rows && rows.children.length === 0) addOrderProductRow();
+}
+
+function hidePlaceOrderForm() {
+  document.getElementById('place-order-form').style.display = 'none';
+  document.getElementById('client-orders-table').style.display = 'block';
+}
+
+function addOrderProductRow() {
+  var container = document.getElementById('order-product-rows');
+  if (!container) return;
+  var rowIdx = container.children.length;
+  var options = '<option value="">Select product...</option>';
+  for (var i = 0; i < productData.length; i++) {
+    var p = productData[i];
+    if (p.status !== 'active' || p.farm_bill_compliant !== 'TRUE') continue;
+    options += '<option value="' + i + '" data-price="' + (p.price_per_lb || 0) + '">' + escHtml(p.product_name) + ' ($' + escHtml(p.price_per_lb) + '/lb)</option>';
+  }
+  var rowHtml = '<div class="order-product-row" data-row="' + rowIdx + '">';
+  rowHtml += '<div class="form-group" style="margin:0;"><label style="font-size:11px;">Product</label><select class="order-product-select" onchange="recalcOrderTotal()">' + options + '</select></div>';
+  rowHtml += '<div class="form-group" style="margin:0;"><label style="font-size:11px;">Quantity (lbs)</label><input type="number" class="order-qty-input" min="1" value="1" onchange="recalcOrderTotal()" oninput="recalcOrderTotal()"></div>';
+  rowHtml += '<div class="form-group" style="margin:0;"><label style="font-size:11px;">Subtotal</label><input type="text" class="order-subtotal" readonly style="background:var(--cream);font-weight:700;" value="$0.00"></div>';
+  rowHtml += '<div style="padding-top:18px;"><button class="btn btn-sm btn-danger" onclick="removeOrderProductRow(this)" style="padding:6px 10px;">&times;</button></div>';
+  rowHtml += '</div>';
+  container.insertAdjacentHTML('beforeend', rowHtml);
+  recalcOrderTotal();
+}
+
+function removeOrderProductRow(btn) {
+  var row = btn.closest('.order-product-row');
+  if (row) row.remove();
+  recalcOrderTotal();
+}
+
+function recalcOrderTotal() {
+  var rows = document.querySelectorAll('.order-product-row');
+  var summaryLines = '';
+  var total = 0;
+  for (var i = 0; i < rows.length; i++) {
+    var select = rows[i].querySelector('.order-product-select');
+    var qtyInput = rows[i].querySelector('.order-qty-input');
+    var subtotalInput = rows[i].querySelector('.order-subtotal');
+    if (!select || !qtyInput || !subtotalInput) continue;
+    var prodIdx = parseInt(select.value);
+    var qty = parseInt(qtyInput.value) || 0;
+    if (isNaN(prodIdx) || prodIdx < 0 || !productData[prodIdx]) {
+      subtotalInput.value = '$0.00';
+      continue;
+    }
+    var p = productData[prodIdx];
+    var price = parseFloat(p.price_per_lb) || 0;
+    if (qty >= 10 && p.price_10lb) price = parseFloat(p.price_10lb);
+    else if (qty >= 5 && p.price_5lb) price = parseFloat(p.price_5lb);
+    var sub = price * qty;
+    subtotalInput.value = formatCurrency(sub);
+    total += sub;
+    summaryLines += '<div style="display:flex;justify-content:space-between;font-size:14px;"><span>' + escHtml(p.product_name) + ' x ' + qty + ' lb</span><span>' + formatCurrency(sub) + '</span></div>';
+  }
+  var summaryEl = document.getElementById('order-summary-lines');
+  if (summaryEl) summaryEl.innerHTML = summaryLines || '<p class="text-muted" style="font-size:13px;">No products selected.</p>';
+  var totalEl = document.getElementById('order-total-display');
+  if (totalEl) totalEl.textContent = 'Total: ' + formatCurrency(total);
+}
+
+function submitClientOrder() {
+  if (!sessionStorage.getItem('memberLoggedIn') || sessionStorage.getItem('memberStatus') !== 'active') {
+    alert('Active membership required to place orders.');
+    return;
+  }
+  /* Validate at least one product */
+  var rows = document.querySelectorAll('.order-product-row');
+  var orderItems = [];
+  var total = 0;
+  for (var i = 0; i < rows.length; i++) {
+    var select = rows[i].querySelector('.order-product-select');
+    var qtyInput = rows[i].querySelector('.order-qty-input');
+    var prodIdx = parseInt(select.value);
+    var qty = parseInt(qtyInput.value) || 0;
+    if (isNaN(prodIdx) || qty < 1) continue;
+    var p = productData[prodIdx];
+    var price = parseFloat(p.price_per_lb) || 0;
+    if (qty >= 10 && p.price_10lb) price = parseFloat(p.price_10lb);
+    else if (qty >= 5 && p.price_5lb) price = parseFloat(p.price_5lb);
+    orderItems.push({ product: p.product_name, sku: p.sku, qty: qty, price: price, subtotal: price * qty });
+    total += price * qty;
+  }
+  if (orderItems.length === 0) { alert('Please select at least one product.'); return; }
+
+  var agreeBox = document.getElementById('order-agree-terms');
+  if (!agreeBox || !agreeBox.checked) { alert('You must agree to the order terms.'); return; }
+
+  /* Create order */
+  var orderId = 'HLF-' + String(Math.floor(1000 + Math.random() * 9000));
+  var today = new Date().toISOString().slice(0,10);
+  var paymentMethod = document.getElementById('order-payment-method').value;
+  var productNames = orderItems.map(function(it) { return it.product + ' (' + it.qty + ' lb)'; }).join(', ');
+  var totalQty = orderItems.reduce(function(s, it) { return s + it.qty; }, 0);
+
+  /* Add to client's view */
+  var ordersTbody = document.getElementById('orders-tbody');
+  if (ordersTbody) {
+    var newRow = '<tr style="background:var(--green-pale);">';
+    newRow += '<td>' + orderId + '</td>';
+    newRow += '<td>' + today + '</td>';
+    newRow += '<td>' + escHtml(productNames) + '</td>';
+    newRow += '<td>' + totalQty + ' lb</td>';
+    newRow += '<td>' + formatCurrency(total) + '</td>';
+    newRow += '<td><span class="badge badge-blue">Pending Review</span></td>';
+    newRow += '<td><button class="btn btn-sm btn-danger" onclick="cancelClientOrder(\'' + orderId + '\', this)" style="padding:4px 10px;font-size:11px;">Cancel</button></td>';
+    newRow += '</tr>';
+    ordersTbody.insertAdjacentHTML('afterbegin', newRow);
+  }
+
+  /* Add to admin view */
+  adminOrders.unshift({
+    id: orderId,
+    memberId: 'MEM-001',
+    memberName: sessionStorage.getItem('memberName') || 'Member',
+    products: productNames,
+    qty: totalQty + ' lb',
+    total: total,
+    payment: paymentMethod,
+    date: today,
+    status: 'pending_review'
+  });
+
+  hidePlaceOrderForm();
+  document.getElementById('order-product-rows').innerHTML = '';
+  alert('Order ' + orderId + ' submitted for review!\n\nTotal: ' + formatCurrency(total) + '\nPayment: ' + paymentMethod + '\n\nYou will receive payment instructions once the order is approved.');
+}
+
+function cancelClientOrder(orderId, btn) {
+  if (confirm('Cancel order ' + orderId + '? This action cannot be undone.')) {
+    var row = btn.closest('tr');
+    if (row) {
+      row.style.background = 'var(--barn-red-pale)';
+      row.querySelector('td:nth-child(6)').innerHTML = '<span class="badge badge-red">Canceled</span>';
+      row.querySelector('td:last-child').innerHTML = '<span class="text-muted" style="font-size:12px;">Canceled</span>';
+    }
+    /* Update admin orders */
+    for (var i = 0; i < adminOrders.length; i++) {
+      if (adminOrders[i].id === orderId) {
+        adminOrders[i].status = 'canceled';
+        break;
+      }
+    }
+  }
+}
+
+/* ----------------------------------------------------------
+   21. MEMBERSHIP ENFORCEMENT
+   ---------------------------------------------------------- */
+/* Products page "Request Invoice" buttons check membership */
+function requestInvoice(sku) {
+  if (!sessionStorage.getItem('memberLoggedIn')) {
+    alert('You must be a member to request an invoice.\n\nPlease log in or apply for membership.');
+    navigate('login');
+    return;
+  }
+  if (sessionStorage.getItem('memberStatus') !== 'active') {
+    alert('Your membership must be active to place orders.');
+    return;
+  }
+  navigate('dashboard');
+  setTimeout(function() { showPlaceOrderForm(); }, 100);
+}
+
 function escHtml(str) {
   if (!str) return '';
   return String(str)
