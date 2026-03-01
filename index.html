@@ -1699,18 +1699,21 @@ tr:hover { background: var(--cream); }
 
 <!-- ==================== ADMIN: EDIT PRODUCT MODAL ==================== -->
 <div id="edit-product-modal" style="display:none;position:fixed;inset:0;background:rgba(20,20,16,.75);z-index:9999;overflow-y:auto;padding:24px;">
-  <div style="max-width:720px;margin:40px auto;background:var(--surface);border-radius:14px;padding:36px;box-shadow:0 24px 80px rgba(0,0,0,.3);">
+  <div style="max-width:780px;margin:40px auto;background:var(--surface);border-radius:14px;padding:36px;box-shadow:0 24px 80px rgba(0,0,0,.3);">
     <div style="display:flex;justify-content:space-between;align-items:center;" class="mb-3">
       <h2 id="edit-product-title">Edit Product</h2>
       <button class="btn btn-sm btn-secondary" onclick="closeEditProductModal()">&times; Close</button>
     </div>
+
+    <!-- ── Basic Info ── -->
+    <h4 class="mt-3 mb-2" style="color:var(--green-dark);">Basic Info</h4>
     <div class="form-row">
-      <div class="form-group"><label>SKU *</label><input type="text" id="edit-sku"></div>
+      <div class="form-group"><label>SKU *</label><input type="text" id="edit-sku" placeholder="HLF-TF-001"></div>
       <div class="form-group"><label>Product Name *</label><input type="text" id="edit-product-name"></div>
     </div>
     <div class="form-row">
       <div class="form-group"><label>Product Type</label><input type="text" id="edit-product-type" placeholder="e.g. THCA Flower"></div>
-      <div class="form-group"><label>Category</label><input type="text" id="edit-product-category" placeholder="e.g. Flower"></div>
+      <div class="form-group"><label>Category</label><input type="text" id="edit-product-category" placeholder="e.g. Flower, Concentrates"></div>
     </div>
     <div class="form-row">
       <div class="form-group"><label>Status</label>
@@ -1720,7 +1723,26 @@ tr:hover { background: var(--cream); }
         <select id="edit-featured"><option value="TRUE">Yes</option><option value="FALSE">No</option></select>
       </div>
     </div>
-    <h4 class="mt-3 mb-2">Pricing &amp; Inventory</h4>
+    <div class="form-row">
+      <div class="form-group"><label>Display Order</label><input type="number" id="edit-display-order" placeholder="1"></div>
+      <div class="form-group"><label>Min Order (lbs)</label><input type="number" id="edit-min-order" step="0.5" placeholder="1"></div>
+    </div>
+
+    <!-- ── Cultivation ── -->
+    <h4 class="mt-3 mb-2" style="color:var(--green-dark);">Cultivation</h4>
+    <div class="form-row">
+      <div class="form-group"><label>Strain Name</label><input type="text" id="edit-strain" placeholder="e.g. Cherry Blossom"></div>
+      <div class="form-group"><label>Cultivation Method</label>
+        <select id="edit-cultivation-method"><option value="">—</option><option value="Indoor">Indoor</option><option value="Greenhouse">Greenhouse</option><option value="Outdoor">Outdoor</option></select>
+      </div>
+    </div>
+    <div class="form-row">
+      <div class="form-group"><label>Cultivation Location</label><input type="text" id="edit-cultivation-location" placeholder="e.g. Eastern Shore, MD"></div>
+      <div class="form-group"><label>Harvest Date</label><input type="date" id="edit-harvest-date"></div>
+    </div>
+
+    <!-- ── Pricing & Inventory ── -->
+    <h4 class="mt-3 mb-2" style="color:var(--green-dark);">Pricing &amp; Inventory</h4>
     <div class="form-row">
       <div class="form-group"><label>Price per lb ($)</label><input type="number" id="edit-price-lb" step="0.01"></div>
       <div class="form-group"><label>Price 5 lb ($)</label><input type="number" id="edit-price-5lb" step="0.01"></div>
@@ -1729,25 +1751,113 @@ tr:hover { background: var(--cream); }
       <div class="form-group"><label>Price 10 lb ($)</label><input type="number" id="edit-price-10lb" step="0.01"></div>
       <div class="form-group"><label>Inventory (lbs available)</label><input type="number" id="edit-inventory" step="0.01"></div>
     </div>
-    <h4 class="mt-3 mb-2">Image</h4>
-    <div class="form-group"><label>Product Image Filename</label><input type="text" id="edit-product-image" placeholder="e.g. product-photo.jpg"></div>
-    <p class="text-muted" style="font-size:12px;">In production, this would be a file upload. For demo, enter a filename.</p>
-    <h4 class="mt-3 mb-2">Description</h4>
-    <div class="form-group"><label>Short Description</label><textarea id="edit-short-desc" style="min-height:60px;"></textarea></div>
-    <div class="form-group"><label>Long Description</label><textarea id="edit-long-desc" style="min-height:80px;"></textarea></div>
-    <h4 class="mt-3 mb-2">Compliance</h4>
+
+    <!-- ── Cannabinoids ── -->
+    <h4 class="mt-3 mb-2" style="color:var(--green-dark);">Cannabinoid Profile</h4>
     <div class="form-row">
-      <div class="form-group"><label>&Delta;9 THC %</label><input type="number" id="edit-thc" step="0.01"></div>
+      <div class="form-group"><label>&Delta;9 THC % *</label><input type="number" id="edit-thc" step="0.01" max="0.3" placeholder="≤ 0.3"></div>
       <div class="form-group"><label>THCA %</label><input type="number" id="edit-thca" step="0.01"></div>
     </div>
     <div class="form-row">
       <div class="form-group"><label>CBD %</label><input type="number" id="edit-cbd" step="0.01"></div>
-      <div class="form-group"><label>COA Batch #</label><input type="text" id="edit-coa-batch"></div>
+      <div class="form-group"><label>CBG %</label><input type="number" id="edit-cbg" step="0.01"></div>
+    </div>
+    <div class="form-row">
+      <div class="form-group"><label>CBN %</label><input type="number" id="edit-cbn" step="0.01"></div>
+      <div class="form-group"><label>Total Cannabinoids %</label><input type="number" id="edit-total-cannabinoids" step="0.01"></div>
+    </div>
+
+    <!-- ── Terpenes ── -->
+    <h4 class="mt-3 mb-2" style="color:var(--green-dark);">Terpene Profile</h4>
+    <div class="form-row">
+      <div class="form-group"><label>Terpene 1 Name</label><input type="text" id="edit-terp1-name" placeholder="e.g. Myrcene"></div>
+      <div class="form-group"><label>Terpene 1 %</label><input type="number" id="edit-terp1-pct" step="0.01"></div>
+    </div>
+    <div class="form-row">
+      <div class="form-group"><label>Terpene 2 Name</label><input type="text" id="edit-terp2-name" placeholder="e.g. Limonene"></div>
+      <div class="form-group"><label>Terpene 2 %</label><input type="number" id="edit-terp2-pct" step="0.01"></div>
+    </div>
+    <div class="form-row">
+      <div class="form-group"><label>Terpene 3 Name</label><input type="text" id="edit-terp3-name" placeholder="e.g. Caryophyllene"></div>
+      <div class="form-group"><label>Terpene 3 %</label><input type="number" id="edit-terp3-pct" step="0.01"></div>
+    </div>
+    <div class="form-group"><label>Total Terpenes %</label><input type="number" id="edit-total-terpenes" step="0.01"></div>
+
+    <!-- ── Physical Characteristics ── -->
+    <h4 class="mt-3 mb-2" style="color:var(--green-dark);">Physical Characteristics</h4>
+    <div class="form-row">
+      <div class="form-group"><label>Appearance</label><input type="text" id="edit-appearance" placeholder="e.g. Dense, frosty buds"></div>
+      <div class="form-group"><label>Aroma Profile</label><input type="text" id="edit-aroma" placeholder="e.g. Earthy, pine, citrus"></div>
+    </div>
+    <div class="form-row">
+      <div class="form-group"><label>Trim Type</label>
+        <select id="edit-trim-type"><option value="">—</option><option value="Hand-trimmed">Hand-trimmed</option><option value="Machine-trimmed">Machine-trimmed</option></select>
+      </div>
+      <div class="form-group"><label>Density</label>
+        <select id="edit-density"><option value="">—</option><option value="Light">Light</option><option value="Medium">Medium</option><option value="Dense">Dense</option></select>
+      </div>
+    </div>
+    <div class="form-group"><label>Moisture Content %</label><input type="number" id="edit-moisture" step="0.01" placeholder="e.g. 10.5"></div>
+
+    <!-- ── Lab / COA ── -->
+    <h4 class="mt-3 mb-2" style="color:var(--green-dark);">Lab Testing &amp; COA</h4>
+    <div class="form-row">
+      <div class="form-group"><label>COA Batch #</label><input type="text" id="edit-coa-batch" placeholder="e.g. COA-2025-0419-HLF"></div>
+      <div class="form-group"><label>COA Test Date</label><input type="date" id="edit-coa-date"></div>
+    </div>
+    <div class="form-row">
+      <div class="form-group"><label>Lab Name</label><input type="text" id="edit-coa-lab" placeholder="e.g. ProVerde Laboratories"></div>
+      <div class="form-group"><label>Lab Accreditation</label><input type="text" id="edit-coa-accreditation" value="ISO 17025"></div>
+    </div>
+    <div class="form-group"><label>COA PDF Filename</label><input type="text" id="edit-coa-pdf" placeholder="e.g. coa-hlf-tf-001.pdf"></div>
+    <p class="text-muted" style="font-size:12px;margin-bottom:12px;">Safety test results — all must pass for Farm Bill compliance.</p>
+    <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:8px;">
+      <label style="display:flex;align-items:center;gap:8px;font-size:14px;font-weight:600;"><input type="checkbox" id="edit-pass-metals" checked> Heavy Metals</label>
+      <label style="display:flex;align-items:center;gap:8px;font-size:14px;font-weight:600;"><input type="checkbox" id="edit-pass-pesticides" checked> Pesticides</label>
+      <label style="display:flex;align-items:center;gap:8px;font-size:14px;font-weight:600;"><input type="checkbox" id="edit-pass-microbials" checked> Microbials</label>
+      <label style="display:flex;align-items:center;gap:8px;font-size:14px;font-weight:600;"><input type="checkbox" id="edit-pass-mycotoxins" checked> Mycotoxins</label>
+      <label style="display:flex;align-items:center;gap:8px;font-size:14px;font-weight:600;"><input type="checkbox" id="edit-pass-solvents" checked> Residual Solvents</label>
+      <label style="display:flex;align-items:center;gap:8px;font-size:14px;font-weight:600;"><input type="checkbox" id="edit-pass-foreign" checked> Foreign Matter</label>
+    </div>
+
+    <!-- ── Packaging & Logistics ── -->
+    <h4 class="mt-3 mb-2" style="color:var(--green-dark);">Packaging &amp; Logistics</h4>
+    <div class="form-row">
+      <div class="form-group"><label>Packaging Type</label><input type="text" id="edit-packaging" placeholder="e.g. Heat-sealed mylar bags"></div>
+      <div class="form-group"><label>Shelf Life (days)</label><input type="number" id="edit-shelf-life" placeholder="e.g. 365"></div>
+    </div>
+    <div class="form-row">
+      <div class="form-group"><label>Storage Requirements</label><input type="text" id="edit-storage" placeholder="e.g. Cool, dry, dark location"></div>
+      <div class="form-group"><label>Ships From State</label><input type="text" id="edit-ships-from" placeholder="e.g. MD"></div>
     </div>
     <div class="form-group"><label>Restricted States (comma-separated codes)</label><input type="text" id="edit-restricted" placeholder="e.g. ID,OR,SD"></div>
+
+    <!-- ── Chain of Custody ── -->
+    <h4 class="mt-3 mb-2" style="color:var(--green-dark);">Chain of Custody</h4>
+    <div class="form-row">
+      <div class="form-group"><label>Cultivation Origin</label><input type="text" id="edit-coc-origin" placeholder="e.g. Hemp Life Farms, MD"></div>
+      <div class="form-group"><label>Processor</label><input type="text" id="edit-coc-processor" placeholder="e.g. Hemp Life Processing"></div>
+    </div>
+    <div class="form-row">
+      <div class="form-group"><label>Handler</label><input type="text" id="edit-coc-handler" placeholder="e.g. Hemp Life Farmers Supply"></div>
+      <div class="form-group"><label>Storage Facility</label><input type="text" id="edit-coc-storage" placeholder="e.g. HLF Warehouse, MD"></div>
+    </div>
+    <div class="form-group"><label>Last Audit Date</label><input type="date" id="edit-coc-audit-date"></div>
+
+    <!-- ── Image & Description ── -->
+    <h4 class="mt-3 mb-2" style="color:var(--green-dark);">Image &amp; Description</h4>
+    <div class="form-group"><label>Product Image Filename</label><input type="text" id="edit-product-image" placeholder="e.g. product-photo.jpg"></div>
+    <p class="text-muted" style="font-size:12px;margin-bottom:12px;">Upload images to /images/ folder. Enter filename only.</p>
+    <div class="form-group"><label>Short Description</label><textarea id="edit-short-desc" style="min-height:60px;"></textarea></div>
+    <div class="form-group"><label>Long Description</label><textarea id="edit-long-desc" style="min-height:80px;"></textarea></div>
+
+    <!-- ── Internal Notes ── -->
+    <h4 class="mt-3 mb-2" style="color:var(--green-dark);">Internal Notes</h4>
+    <div class="form-group"><label>Admin Notes (not visible to members)</label><textarea id="edit-notes-internal" style="min-height:60px;" placeholder="Private notes about this product..."></textarea></div>
+
     <input type="hidden" id="edit-product-index" value="-1">
     <div class="mt-3" style="display:flex;gap:12px;">
-      <button class="btn btn-primary" onclick="saveProductEdit()">Save Changes</button>
+      <button class="btn btn-primary" onclick="saveProductEdit()">Save Product</button>
       <button class="btn btn-secondary" onclick="closeEditProductModal()">Cancel</button>
     </div>
   </div>
@@ -3974,41 +4084,116 @@ function renderAdminProducts() {
   container.innerHTML = html;
 }
 
+var productFormFields = [
+  'edit-sku','edit-product-name','edit-product-type','edit-product-category',
+  'edit-display-order','edit-min-order',
+  'edit-strain','edit-cultivation-location','edit-harvest-date',
+  'edit-price-lb','edit-price-5lb','edit-price-10lb','edit-inventory',
+  'edit-thc','edit-thca','edit-cbd','edit-cbg','edit-cbn','edit-total-cannabinoids',
+  'edit-terp1-name','edit-terp1-pct','edit-terp2-name','edit-terp2-pct',
+  'edit-terp3-name','edit-terp3-pct','edit-total-terpenes',
+  'edit-appearance','edit-aroma','edit-moisture',
+  'edit-coa-batch','edit-coa-date','edit-coa-lab','edit-coa-accreditation','edit-coa-pdf',
+  'edit-packaging','edit-shelf-life','edit-storage','edit-ships-from','edit-restricted',
+  'edit-coc-origin','edit-coc-processor','edit-coc-handler','edit-coc-storage','edit-coc-audit-date',
+  'edit-product-image','edit-short-desc','edit-long-desc','edit-notes-internal'
+];
+
 function editProduct(idx) {
   var p = productData[idx];
   document.getElementById('edit-product-index').value = idx;
   document.getElementById('edit-product-title').textContent = 'Edit: ' + p.product_name;
+  /* Basic */
   document.getElementById('edit-sku').value = p.sku || '';
   document.getElementById('edit-product-name').value = p.product_name || '';
   document.getElementById('edit-product-type').value = p.product_type || '';
   document.getElementById('edit-product-category').value = p.product_category || '';
   document.getElementById('edit-status').value = p.status || 'active';
   document.getElementById('edit-featured').value = p.featured || 'FALSE';
+  document.getElementById('edit-display-order').value = p.display_order || '';
+  document.getElementById('edit-min-order').value = p.min_order_lbs || '';
+  /* Cultivation */
+  document.getElementById('edit-strain').value = p.strain_name_internal || '';
+  document.getElementById('edit-cultivation-method').value = p.cultivation_method || '';
+  document.getElementById('edit-cultivation-location').value = p.cultivation_location || '';
+  document.getElementById('edit-harvest-date').value = p.harvest_date || '';
+  /* Pricing */
   document.getElementById('edit-price-lb').value = p.price_per_lb || '';
   document.getElementById('edit-price-5lb').value = p.price_5lb || '';
   document.getElementById('edit-price-10lb').value = p.price_10lb || '';
   document.getElementById('edit-inventory').value = p.inventory_lbs_available || '';
-  document.getElementById('edit-product-image').value = p.product_image_filename || '';
-  document.getElementById('edit-short-desc').value = p.short_description || '';
-  document.getElementById('edit-long-desc').value = p.long_description || '';
+  /* Cannabinoids */
   document.getElementById('edit-thc').value = p.delta9_thc_pct || '';
   document.getElementById('edit-thca').value = p.thca_pct || '';
   document.getElementById('edit-cbd').value = p.cbd_pct || '';
+  document.getElementById('edit-cbg').value = p.cbg_pct || '';
+  document.getElementById('edit-cbn').value = p.cbn_pct || '';
+  document.getElementById('edit-total-cannabinoids').value = p.total_cannabinoids_pct || '';
+  /* Terpenes */
+  document.getElementById('edit-terp1-name').value = p.terpene_1_name || '';
+  document.getElementById('edit-terp1-pct').value = p.terpene_1_pct || '';
+  document.getElementById('edit-terp2-name').value = p.terpene_2_name || '';
+  document.getElementById('edit-terp2-pct').value = p.terpene_2_pct || '';
+  document.getElementById('edit-terp3-name').value = p.terpene_3_name || '';
+  document.getElementById('edit-terp3-pct').value = p.terpene_3_pct || '';
+  document.getElementById('edit-total-terpenes').value = p.total_terpenes_pct || '';
+  /* Physical */
+  document.getElementById('edit-appearance').value = p.appearance || '';
+  document.getElementById('edit-aroma').value = p.aroma_profile || '';
+  document.getElementById('edit-trim-type').value = p.trim_type || '';
+  document.getElementById('edit-density').value = p.density || '';
+  document.getElementById('edit-moisture').value = p.moisture_content_pct || '';
+  /* Lab / COA */
   document.getElementById('edit-coa-batch').value = p.coa_batch_number || '';
+  document.getElementById('edit-coa-date').value = p.coa_test_date || '';
+  document.getElementById('edit-coa-lab').value = p.coa_lab_name || '';
+  document.getElementById('edit-coa-accreditation').value = p.coa_lab_accreditation || 'ISO 17025';
+  document.getElementById('edit-coa-pdf').value = p.coa_pdf_filename || '';
+  document.getElementById('edit-pass-metals').checked = p.heavy_metals_pass !== 'FALSE';
+  document.getElementById('edit-pass-pesticides').checked = p.pesticides_pass !== 'FALSE';
+  document.getElementById('edit-pass-microbials').checked = p.microbials_pass !== 'FALSE';
+  document.getElementById('edit-pass-mycotoxins').checked = p.mycotoxins_pass !== 'FALSE';
+  document.getElementById('edit-pass-solvents').checked = p.residual_solvents_pass !== 'FALSE';
+  document.getElementById('edit-pass-foreign').checked = p.foreign_matter_pass !== 'FALSE';
+  /* Packaging */
+  document.getElementById('edit-packaging').value = p.packaging_type || '';
+  document.getElementById('edit-shelf-life').value = p.shelf_life_days || '';
+  document.getElementById('edit-storage').value = p.storage_requirements || '';
+  document.getElementById('edit-ships-from').value = p.ships_from_state || '';
   document.getElementById('edit-restricted').value = p.restricted_states || '';
+  /* Chain of Custody */
+  document.getElementById('edit-coc-origin').value = p.coc_cultivation_origin || '';
+  document.getElementById('edit-coc-processor').value = p.coc_processor || '';
+  document.getElementById('edit-coc-handler').value = p.coc_handler || '';
+  document.getElementById('edit-coc-storage').value = p.coc_storage_facility || '';
+  document.getElementById('edit-coc-audit-date').value = p.coc_last_audit_date || '';
+  /* Image & Description */
+  document.getElementById('edit-product-image').value = p.product_image_filename || '';
+  document.getElementById('edit-short-desc').value = p.short_description || '';
+  document.getElementById('edit-long-desc').value = p.long_description || '';
+  document.getElementById('edit-notes-internal').value = p.notes_internal || '';
   document.getElementById('edit-product-modal').style.display = 'block';
 }
 
 function showAddProductModal() {
   document.getElementById('edit-product-index').value = '-1';
   document.getElementById('edit-product-title').textContent = 'Add New Product';
-  var fields = ['edit-sku','edit-product-name','edit-product-type','edit-product-category','edit-price-lb','edit-price-5lb','edit-price-10lb','edit-inventory','edit-product-image','edit-short-desc','edit-long-desc','edit-thc','edit-thca','edit-cbd','edit-coa-batch','edit-restricted'];
-  for (var i = 0; i < fields.length; i++) {
-    var el = document.getElementById(fields[i]);
+  for (var i = 0; i < productFormFields.length; i++) {
+    var el = document.getElementById(productFormFields[i]);
     if (el) el.value = '';
   }
   document.getElementById('edit-status').value = 'active';
   document.getElementById('edit-featured').value = 'FALSE';
+  document.getElementById('edit-cultivation-method').value = '';
+  document.getElementById('edit-trim-type').value = '';
+  document.getElementById('edit-density').value = '';
+  document.getElementById('edit-coa-accreditation').value = 'ISO 17025';
+  document.getElementById('edit-pass-metals').checked = true;
+  document.getElementById('edit-pass-pesticides').checked = true;
+  document.getElementById('edit-pass-microbials').checked = true;
+  document.getElementById('edit-pass-mycotoxins').checked = true;
+  document.getElementById('edit-pass-solvents').checked = true;
+  document.getElementById('edit-pass-foreign').checked = true;
   document.getElementById('edit-product-modal').style.display = 'block';
 }
 
@@ -4024,45 +4209,90 @@ function saveProductEdit() {
   var thcVal = parseFloat(document.getElementById('edit-thc').value);
   if (!isNaN(thcVal) && thcVal > 0.3) { alert('COMPLIANCE BLOCK: Delta-9 THC cannot exceed 0.3%.'); return; }
 
+  var boolField = function(id) { return document.getElementById(id).checked ? 'TRUE' : 'FALSE'; };
+  var val = function(id) { var e = document.getElementById(id); return e ? e.value.trim() : ''; };
+
   var data = {
     sku: sku,
     product_name: name,
-    product_type: document.getElementById('edit-product-type').value.trim(),
-    product_category: document.getElementById('edit-product-category').value.trim(),
-    status: document.getElementById('edit-status').value,
-    featured: document.getElementById('edit-featured').value,
-    price_per_lb: document.getElementById('edit-price-lb').value,
-    price_5lb: document.getElementById('edit-price-5lb').value,
-    price_10lb: document.getElementById('edit-price-10lb').value,
-    inventory_lbs_available: document.getElementById('edit-inventory').value,
-    product_image_filename: document.getElementById('edit-product-image').value.trim(),
-    short_description: document.getElementById('edit-short-desc').value.trim(),
-    long_description: document.getElementById('edit-long-desc').value.trim(),
-    delta9_thc_pct: document.getElementById('edit-thc').value,
-    thca_pct: document.getElementById('edit-thca').value,
-    cbd_pct: document.getElementById('edit-cbd').value,
-    coa_batch_number: document.getElementById('edit-coa-batch').value.trim(),
-    restricted_states: document.getElementById('edit-restricted').value.trim(),
+    product_type: val('edit-product-type'),
+    product_category: val('edit-product-category'),
+    status: val('edit-status'),
+    featured: val('edit-featured'),
+    display_order: val('edit-display-order'),
+    min_order_lbs: val('edit-min-order') || '1',
+    /* Cultivation */
+    strain_name_internal: val('edit-strain'),
+    cultivation_method: val('edit-cultivation-method'),
+    cultivation_location: val('edit-cultivation-location'),
+    harvest_date: val('edit-harvest-date'),
+    /* Pricing */
+    price_per_lb: val('edit-price-lb'),
+    price_5lb: val('edit-price-5lb'),
+    price_10lb: val('edit-price-10lb'),
+    inventory_lbs_available: val('edit-inventory'),
+    /* Cannabinoids */
+    delta9_thc_pct: val('edit-thc'),
+    thca_pct: val('edit-thca'),
+    cbd_pct: val('edit-cbd'),
+    cbg_pct: val('edit-cbg'),
+    cbn_pct: val('edit-cbn'),
+    total_cannabinoids_pct: val('edit-total-cannabinoids'),
+    /* Terpenes */
+    terpene_1_name: val('edit-terp1-name'),
+    terpene_1_pct: val('edit-terp1-pct'),
+    terpene_2_name: val('edit-terp2-name'),
+    terpene_2_pct: val('edit-terp2-pct'),
+    terpene_3_name: val('edit-terp3-name'),
+    terpene_3_pct: val('edit-terp3-pct'),
+    total_terpenes_pct: val('edit-total-terpenes'),
+    /* Physical */
+    appearance: val('edit-appearance'),
+    aroma_profile: val('edit-aroma'),
+    trim_type: val('edit-trim-type'),
+    density: val('edit-density'),
+    moisture_content_pct: val('edit-moisture'),
+    /* Lab / COA */
+    coa_batch_number: val('edit-coa-batch'),
+    coa_test_date: val('edit-coa-date'),
+    coa_lab_name: val('edit-coa-lab'),
+    coa_lab_accreditation: val('edit-coa-accreditation') || 'ISO 17025',
+    coa_pdf_filename: val('edit-coa-pdf'),
+    heavy_metals_pass: boolField('edit-pass-metals'),
+    pesticides_pass: boolField('edit-pass-pesticides'),
+    microbials_pass: boolField('edit-pass-microbials'),
+    mycotoxins_pass: boolField('edit-pass-mycotoxins'),
+    residual_solvents_pass: boolField('edit-pass-solvents'),
+    foreign_matter_pass: boolField('edit-pass-foreign'),
+    /* Packaging */
+    packaging_type: val('edit-packaging'),
+    shelf_life_days: val('edit-shelf-life'),
+    storage_requirements: val('edit-storage'),
+    ships_from_state: val('edit-ships-from'),
+    restricted_states: val('edit-restricted'),
+    /* Chain of Custody */
+    coc_cultivation_origin: val('edit-coc-origin'),
+    coc_processor: val('edit-coc-processor'),
+    coc_handler: val('edit-coc-handler'),
+    coc_storage_facility: val('edit-coc-storage'),
+    coc_last_audit_date: val('edit-coc-audit-date'),
+    /* Image & Description */
+    product_image_filename: val('edit-product-image'),
+    short_description: val('edit-short-desc'),
+    long_description: val('edit-long-desc'),
+    notes_internal: val('edit-notes-internal'),
+    /* Compliance auto-set */
     farm_bill_compliant: 'TRUE',
-    compliance_statement: 'All Hemp Life Farmers products are derived from hemp and contain \u22640.3% \u03949-THC on a dry-weight basis in compliance with the 2018 Farm Bill.'
+    compliance_statement: 'All Hemp Life Farmers products are derived from hemp and contain \u22640.3% \u03949-THC on a dry-weight basis in compliance with the 2018 Farm Bill.',
+    last_updated: new Date().toISOString().slice(0,10)
   };
 
   if (idx >= 0 && idx < productData.length) {
-    /* Update existing — merge to preserve fields not in the edit form */
     for (var key in data) { productData[idx][key] = data[key]; }
   } else {
-    /* Add new product — set defaults for missing fields */
     data.inventory_status = 'in_stock';
-    data.min_order_lbs = '1';
-    data.coa_test_date = new Date().toISOString().slice(0,10);
-    data.coa_lab_name = 'TBD';
-    data.coa_lab_accreditation = 'ISO 17025';
-    data.coa_pdf_filename = 'TBD';
-    data.heavy_metals_pass = 'TRUE'; data.pesticides_pass = 'TRUE'; data.microbials_pass = 'TRUE';
-    data.mycotoxins_pass = 'TRUE'; data.residual_solvents_pass = 'TRUE'; data.foreign_matter_pass = 'TRUE';
     data.date_added = new Date().toISOString().slice(0,10);
-    data.last_updated = new Date().toISOString().slice(0,10);
-    data.display_order = String(productData.length + 1);
+    if (!data.display_order) data.display_order = String(productData.length + 1);
     productData.push(data);
   }
 
